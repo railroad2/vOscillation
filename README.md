@@ -19,7 +19,7 @@ double  E        = 2;     // unit : MeV
 TString iflavour = "e";   // "e" or "mu" or "tau"
 TString fflavour = "mu";
 bool    anti     = false;
-probability = vosc->getProbability(L, E, iflavour, fflavour, anti);
+double probability = vosc->getProbability(L, E, iflavour, fflavour, anti);
 ```
 
 ---------------------
