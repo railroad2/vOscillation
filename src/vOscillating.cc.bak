@@ -219,8 +219,6 @@ double vOscillating::getCPAsymmetry(double L, double E, TString iflavour, TStrin
 		double sin_dm2_21 = TMath::Sin(unitconst * fDm2_21 * L / E);
 		double sin_dm2_31 = TMath::Sin(unitconst * fDm2_31 * L / E);
 		double sin_dm2_32 = TMath::Sin(unitconst * fDm2_32 * L / E);
-		
-		return 16 * epsilon * J * sin_dm2_21 * sin_dm2_31 * sin_dm2_32;
 	}
 }
 

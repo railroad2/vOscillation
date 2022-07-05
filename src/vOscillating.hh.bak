@@ -20,7 +20,7 @@ class vOscillating
     // Main Method
         double getProbability(double L, double E, TString iflavour, TString fflavour, bool anti=false);
         TComplex getPMNSmatrix(int row, int column);
-		double getCPAsymmetry(double L, double E, TString iflavour, TString fflavour);
+		double getCPAsymmetry(TString iflavour, TString fflavour);
     
     // DataLoader (Setter)
         void loadstddata(bool IO=false, bool withSK=false);
