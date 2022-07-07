@@ -47,3 +47,8 @@ You can select one of these data:
 vOscillating * vosc = new vOscillating();
 vosc -> loadstddata(true, true); // Inverse Ordering = true, considering SK data = true
 ```
+
+Reference
+>[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
+
+>[2] NuFIT 5.1 (2021), www.nu-fit.org
