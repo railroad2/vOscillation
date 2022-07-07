@@ -3,7 +3,7 @@ This class is a Calculator class for Neutrino Oscillation.
 This Class need to be used with ROOT(CERN).
 
 -----------------------
-## How to get PMNS matrix element
+## How to get PMNS matrix elements
 If you want to get PMNS matrix element with ith row and jth column, $U_{ij}$, then
 ``` C++
 vOscillating * vosc = new vOscillating();
@@ -26,7 +26,7 @@ double probability = vosc->getProbability(L, E, iflavour, fflavour, anti);
 ```
 
 ---------------------
-## How to change paramters $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
+## How to change paramters : $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
 In this class, $\Delta m_{32}^2$ is defined as:
 
 $\Delta m_{32}^2 = \Delta m_{31}^2 - \Delta m_{21}^2$
