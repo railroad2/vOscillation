@@ -1,5 +1,6 @@
 # vOscillating
 This class is a Calculator class for Neutrino Oscillation.
+
 This Class need to be used with ROOT(CERN).
 
 -----------------------
@@ -32,6 +33,7 @@ In this class, $\Delta m_{32}^2$ is defined as:
 $\Delta m_{32}^2 = \Delta m_{31}^2 - \Delta m_{21}^2$
 
 You can change the parameters with setter and getter.
+
 Please read the header file.
 
 --------------------
