@@ -4,6 +4,11 @@ This class is a Calculator class for Neutrino Oscillation.
 This class need to be used with ROOT(CERN).
 
 -----------------------
+## How to incstall
+> git clone https://github.com/jangddol/vOscillating.git
+
+
+-----------------------
 ## How to get PMNS matrix elements
 If you want to get PMNS matrix element with ith row and jth column, $U_{ij}$, then
 ``` C++
