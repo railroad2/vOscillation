@@ -4,7 +4,7 @@ This class is a Calculator class for Neutrino Oscillation.
 This class need to be used with ROOT(CERN).
 
 -----------------------
-## How to incstall
+## How to download
 > git clone https://github.com/jangddol/vOscillating.git
 
 
