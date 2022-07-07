@@ -1,7 +1,7 @@
 # vOscillating
 This class is a Calculator class for Neutrino Oscillation.
 
-This Class need to be used with ROOT(CERN).
+This class need to be used with ROOT(CERN).
 
 -----------------------
 ## How to get PMNS matrix elements
