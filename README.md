@@ -1,8 +1,15 @@
 # vOscillating
-Calculator class for Neutrino Oscillation.
+This class is a Calculator class for Neutrino Oscillation.
+
+This class need to be used with ROOT(CERN).
 
 -----------------------
-## How to get PMNS matrix element
+## How to download
+> git clone https://github.com/jangddol/vOscillating.git
+
+
+-----------------------
+## How to get PMNS matrix elements
 If you want to get PMNS matrix element with ith row and jth column, $U_{ij}$, then
 ``` C++
 vOscillating * vosc = new vOscillating();
@@ -11,6 +18,8 @@ double element = vosc->getPMNSmatrix(i, j);
 
 ----------------------
 ## How to get Survival Probability
+$ P_{\alpha \xrightarrow{} \beta}(L) = \delta_{\alpha \beta}- 4 \sum_{j>i} \textrm{Re} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin^2 \left( \frac{\Delta m_{ji}^2 L}{4 E} \right) + 2 \sum_{j>i} \textrm{Im} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin \left( \frac{\Delta m_{ji}^2 L}{2 E} \right)$
+
 If you want to get Survival Probability $P(\nu_e -> \nu_\mu)$ of Neutrino with Energy $E$ and flight length $L$, then
 ``` C++
 vOscillating * vosc = new vOscillating();
@@ -23,8 +32,13 @@ double probability = vosc->getProbability(L, E, iflavour, fflavour, anti);
 ```
 
 ---------------------
-## How to change paramters $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
+## How to change paramters : $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
+In this class, $\Delta m_{32}^2$ is defined as:
+
+$\Delta m_{32}^2 = \Delta m_{31}^2 - \Delta m_{21}^2$
+
 You can change the parameters with setter and getter.
+
 Please read the header file.
 
 --------------------
@@ -40,3 +54,8 @@ You can select one of these data:
 vOscillating * vosc = new vOscillating();
 vosc -> loadstddata(true, true); // Inverse Ordering = true, considering SK data = true
 ```
+
+Reference
+>[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
+
+>[2] NuFIT 5.1 (2021), www.nu-fit.org
