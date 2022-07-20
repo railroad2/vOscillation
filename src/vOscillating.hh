@@ -18,35 +18,35 @@ class vOscillating
         virtual ~vOscillating();
     
     // Main Method
-        double getProbability(double L, double E, TString iflavour, TString fflavour, bool anti=false);
-        TComplex getPMNSmatrix(int row, int column);
-		double getCPAsymmetry(double L, double E, TString iflavour, TString fflavour);
+        double   GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti=false);
+        TComplex GetPMNSmatrix(int row, int column);
+		double   GetCPAsymmetry(double L, double E, TString iflavour, TString fflavour);
     
     // DataLoader (Setter)
-        void loadstddata(bool IO=false, bool withSK=false);
+        void LoadStdData(bool IO=false, bool withSK=false);
 
     // Setter and Getter
-        void settheta(double theta_12=33.44, double theta_13=8.57, double theta_23=49.2);
-        void setradian(double rad_12, double rad_13, double rad_23);
-        void setDm2(double Dm2_21=0.0000759, double Dm2_31=0.00232, bool IO=false);
-        void setdelta_CP(double delta_CP);
-        std::vector<double> gettheta();
-        std::vector<double> getradian();
-        std::vector<double> getDm2();
-        double getdelta_CP();
+        void Settheta(double theta_12=33.44, double theta_13=8.57, double theta_23=49.2);
+        void Setradian(double rad_12, double rad_13, double rad_23);
+        void SetDm2(double Dm2_21=0.0000759, double Dm2_31=0.00232, bool IO=false);
+        void Setdelta_CP(double delta_CP);
+        std::vector<double> Gettheta();
+        std::vector<double> Getradian();
+        std::vector<double> GetDm2();
+        double Getdelta_CP();
 
 
     private:
-        double ftheta_12 = 33.44;     // degree
-        double ftheta_13 = 8.57;      // degree
-        double ftheta_23 = 49.2;      // degree
-        double frad_12;               // radian
-        double frad_13;               // radian
-        double frad_23;               // radian
-        double fDm2_21   = 0.0000742; // eV^2
-        double fDm2_31   = 0.002515;  // eV^2
-        double fDm2_32;               // eV^2
-        double fdelta_CP  = 194;      // degree
+        double mtheta_12 = 33.44;     // degree
+        double mtheta_13 = 8.57;      // degree
+        double mtheta_23 = 49.2;      // degree
+        double mrad_12;               // radian
+        double mrad_13;               // radian
+        double mrad_23;               // radian
+        double mDm2_21   = 0.0000742; // eV^2
+        double mDm2_31   = 0.002515;  // eV^2
+        double mDm2_32;               // eV^2
+        double mdelta_CP  = 194;      // degree
 
     // Standard Value
     // Reference:
