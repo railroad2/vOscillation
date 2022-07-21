@@ -104,7 +104,7 @@ double flux = vref->GetReactorNeutrinoFlux(E);
 
 
 --------------------
-## vCrossSection : How to get Cross Section of IBD
+## vCrossSection : How to get Cross Section of IBD [3]
 
 ```C++
 vCrossSection* vcs = new vCrossSection();
@@ -117,3 +117,5 @@ Reference
 >[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
 
 >[2] NuFIT 5.1 (2021), www.nu-fit.org
+
+>[3]Vogel P and Beacom J F 1999 Phys. Rev. D 60 53003
