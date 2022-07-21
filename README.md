@@ -10,7 +10,7 @@ This class need to be used with ROOT(CERN).
 
 
 -----------------------
-## Hierarchy
+## Structure and Hierarchy
 There are four classes : vOscillating, vCrossSection, vReactorFlux, vConstant
 
 The file "vClass.hh" is not a class file.
@@ -66,7 +66,7 @@ Please read the header file.
 
 --------------------
 ## vOscillating : 4 Standard Parameter Data
-In vOscillating class, there are 4 standard Parameter data : 
+In vOscillating class, there are 4 standard Parameter data[1][2] : 
 1. Normal Ordering, no considering SK atmosperic data 
 2. Normal Ordering, considering SK atmosperic data 
 3. Inverse Ordering, no considering SK atmosperic data 
@@ -100,6 +100,16 @@ vref->SetReleasedEnergy(re); // default : in source code
 vReactorFlux* vref = new vReactorFlux("HuberMuller");
 double E = 3; // Neutrino Energy, unit : MeV
 double flux = vref->GetReactorNeutrinoFlux(E);
+```
+
+
+--------------------
+## vCrossSection : How to get Cross Section of IBD
+
+```C++
+vCrossSection* vcs = new vCrossSection();
+double E_nu = 3;
+double sigma = vcs->GetCrossSection_IBD(E_nu);
 ```
 
 
