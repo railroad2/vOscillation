@@ -118,4 +118,4 @@ Reference
 
 >[2] NuFIT 5.1 (2021), www.nu-fit.org
 
->[3]Vogel P and Beacom J F 1999 Phys. Rev. D 60 53003
+>[3]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
