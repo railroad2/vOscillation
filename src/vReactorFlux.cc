@@ -37,6 +37,13 @@ void vReactorFlux::SetDistance(double distance)
 }
 
 
+void vReactorFlux::SetThermalPower(double thermalPower)
+{
+	mThermalPower = thermalPower;
+	Initialization();
+}
+
+
 void vReactorFlux::SetFissionFraction(std::vector<double> ff)
 {
 	mFissionFraction = ff;
