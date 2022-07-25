@@ -123,6 +123,6 @@ double sigma = vcs->GetCrossSection_IBD(E_nu);
 
 >[4]Mueller, T. A., et al. (2011). Improved predictions of reactor antineutrino spectra. Physical Review C, 83(5). https://doi.org/10.1103/physrevc.83.054615
 
->[5]Huber
+>[5]Huber, P. (2011). Determination of antineutrino spectra from nuclear reactors. Physical Review C, 84(2). https://doi.org/10.1103/physrevc.84.024617
 
->[3]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
+>[6]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
