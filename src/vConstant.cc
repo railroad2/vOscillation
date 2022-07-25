@@ -24,11 +24,11 @@ std::vector<double> vConstant::GetGutleinConstant(int iso)
 }
 
 
-std::vector<double> vConstant::GetHuberMullerConstant(int iso)
+std::vector<double> vConstant::GetHuberMuellerConstant(int iso)
 {
-    if (iso == 1) return mHuberMullerConstant_U235;
-    else if (iso == 2) return mHuberMullerConstant_U238;
-    else if (iso == 3) return mHuberMullerConstant_Pu239;
-    else if (iso == 4) return mHuberMullerConstant_Pu241;
+    if (iso == 1) return mHuberMuellerConstant_U235;
+    else if (iso == 2) return mHuberMuellerConstant_U238;
+    else if (iso == 3) return mHuberMuellerConstant_Pu239;
+    else if (iso == 4) return mHuberMuellerConstant_Pu241;
     else return {};
 }

@@ -17,7 +17,7 @@ vReactorFlux::~vReactorFlux() {}
 
 void vReactorFlux::Initialization()
 {
-	const double Day2Sec = 8.64E+04;
+	const double SecPerDay = 8.64E+04;
 	const double GW2MeV = 6.2415E+21;
 
 	double energyPerFission = 0;
@@ -26,7 +26,7 @@ void vReactorFlux::Initialization()
 	double NFissionPerSecond = mThermalPower * GW2MeV / energyPerFission;
 	mDistance = mDistance * 100; // m -> cm
 
-	mNeutrinoFlux0 = NFissionPerSecond * Day2Sec / 4. / TMath::Pi() / mDistance / mDistance;
+	mNeutrinoFlux0 = NFissionPerSecond * SecPerDay / 4. / TMath::Pi() / mDistance / mDistance;
 }
 
 
@@ -68,9 +68,19 @@ double vReactorFlux::GetReactorNeutrinoFlux(double E, int iso)
 	}
 	else
 	{
-		result = GetReactvFlux_HuberMuller(E, iso);
+		result = GetReactvFlux_HuberMueller(E, iso);
 	}
 	return result;
+}
+
+
+TF1* vReactorFlux::GetReactorNeutrinoFlux_TF(int iso, double startE, double endE)
+{
+	vRF_TF vrftf = vRF_TF(this);
+	TF1* f = new TF1("ReactorFlux", vrftf, startE, endE, 1);
+	f->SetParNames("Isotope");
+	f->SetParameter(0, iso);
+	return f;
 }
 
 
@@ -90,17 +100,17 @@ double vReactorFlux::GetReactvFlux_Gutlein(double E, int iso)
 }
 
 
-double vReactorFlux::GetReactvFlux_HuberMuller(double E, int iso)
+double vReactorFlux::GetReactvFlux_HuberMueller(double E, int iso)
 {
 	if (E < 0) return 0;
 	double result;
 	if (iso == 0)
 	{
-		result = GetReactvFlux_HuberMuller_Total(E);
+		result = GetReactvFlux_HuberMueller_Total(E);
 	}
 	else
 	{
-		result = GetReactvFlux_HuberMuller_Isotope(E, iso);
+		result = GetReactvFlux_HuberMueller_Isotope(E, iso);
 	}
 	return result;
 }
@@ -126,7 +136,7 @@ double vReactorFlux::GetReactvFlux_Gutlein_Isotope(double E, int iso)
 	double result = 0;
 
 	int isoindex = iso - 1;
-	if (iso > 2) return 0;
+	if (iso >= 4) return 0;
 
 	const int niso = 3;
 	double ff[niso] = { 0, 0, 0 };
@@ -144,7 +154,8 @@ double vReactorFlux::GetReactvFlux_Gutlein_Isotope(double E, int iso)
 
 	double flux = a0 * (A0 - A1) - a1 * A0 + a2 * A1;
 	flux *= A0 * (TMath::Exp(-E / a0) - TMath::Exp(-E / a1)) + A1 * (TMath::Exp(-E / a2) - TMath::Exp(-E / a0));
-	flux *= 0.0001;
+	flux *= 0.0001; // Why?
+	flux *= 1000; // /keV -> /MeV
 
 	result = ff[isoindex] * flux * mNeutrinoFlux0;
 
@@ -153,27 +164,27 @@ double vReactorFlux::GetReactvFlux_Gutlein_Isotope(double E, int iso)
 }
 
 
-double vReactorFlux::GetReactvFlux_HuberMuller_Total(double E)
+double vReactorFlux::GetReactvFlux_HuberMueller_Total(double E)
 {
 	if (E < 0) return 0;
 	double result = 0;
 	for (int iso = 1; iso <= 3; iso++)
 	{
-		result += GetReactvFlux_HuberMuller_Isotope(E, iso);
+		result += GetReactvFlux_HuberMueller_Isotope(E, iso);
 	}
 	if (result < 0) result = 0;
 	return result;
 }
 
 
-double vReactorFlux::GetReactvFlux_HuberMuller_Isotope(double E, int iso)
+double vReactorFlux::GetReactvFlux_HuberMueller_Isotope(double E, int iso)
 {
 	if (E < 0) return 0;
 	if (iso > 4) return 0;
 	double result = 0;
 	int isoindex = iso - 1;
 
-	std::vector<double> par = mvConstant->GetHuberMullerConstant(iso);
+	std::vector<double> par = mvConstant->GetHuberMuellerConstant(iso);
 
 	double E2 = E * E;
 	double E3 = E2 * E;
