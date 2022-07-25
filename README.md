@@ -119,7 +119,7 @@ double sigma = vcs->GetCrossSection_IBD(E_nu);
 
 >[2] NuFIT 5.1 (2021), www.nu-fit.org
 
->[3]A. Gutlei, Feasibility study for a first observation of coherent neutrino necleus scattering using low-temperature detectors
+>[3]A. Gutlein, Feasibility study for a first observation of coherent neutrino necleus scattering using low-temperature detectors
 
 >[4]Mueller, T. A., et al. (2011). Improved predictions of reactor antineutrino spectra. Physical Review C, 83(5). https://doi.org/10.1103/physrevc.83.054615
 
