@@ -83,7 +83,7 @@ vosc -> loadstddata(true, true); // Inverse Ordering = true, considering SK data
 ## vReactorFlux : How to set the reactor properties : ThermalPower, Distance to Detector, Fission Fraction, Released Energy
 
 ```C++
-vReactorFlux* vref = new vReactorFlux("HuberMuller");
+vReactorFlux* vref = new vReactorFlux("HuberMuller"); // or "Gutlein" (not recommended) [3][4][5]
 vref->SetDistance(2000); // unit : m , default : 60000
 vref->SetThermalPower(14); // unit : GWth, default : 16.85(Hanul reactors, Korea)
 std::vector<double> ff = {0.3, 0.4, 0.1, 0.2};
@@ -104,7 +104,8 @@ double flux = vref->GetReactorNeutrinoFlux(E);
 
 
 --------------------
-## vCrossSection : How to get Cross Section of IBD [3]
+## vCrossSection : How to get Cross Section of IBD 
+Reference : [6]
 
 ```C++
 vCrossSection* vcs = new vCrossSection();
@@ -113,9 +114,15 @@ double sigma = vcs->GetCrossSection_IBD(E_nu);
 ```
 
 
-Reference
+## Reference
 >[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
 
 >[2] NuFIT 5.1 (2021), www.nu-fit.org
+
+>[3]Gutlein
+
+>[4]Mueller
+
+>[5]Huber
 
 >[3]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
