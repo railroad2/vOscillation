@@ -22,8 +22,8 @@ The file "vClass.hh" is not a class file.
 #include "vClass.hh"
 
 vOscillating* vosc = new vOscillating();
-vReactorFlux* vref = new vReactorFlux("Gutlein"); // modelName (or "HuberMuller")
-vCrossSection* vcrs = new vCrossSection();
+vReactorFlux* vrf = new vReactorFlux("HuberMueller"); // modelName (or "Gutlein")
+vCrossSection* vcs = new vCrossSection();
 
 ```
 
