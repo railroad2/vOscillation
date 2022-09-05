@@ -45,7 +45,7 @@ where $\alpha = e, \mu, \tau$, and $i = 1, 2, 3$.
 If you want to get PMNS matrix element with ith row and jth column, $U_{ij}$, then
 ``` C++
 vOscillating* vosc = new vOscillating();
-double element = vosc->getPMNSmatrix(i, j);
+double element = vosc->GetPMNSmatrix(i, j);
 ```
 
 
@@ -61,7 +61,7 @@ double  E        = 2;     // unit : MeV
 TString iflavour = "e";   // "e" or "mu" or "tau"
 TString fflavour = "mu";
 bool    anti     = false;
-double probability = vosc->getProbability(L, E, iflavour, fflavour, anti);
+double probability = vosc->GetProbability(L, E, iflavour, fflavour, anti);
 ```
 
 
@@ -127,6 +127,18 @@ double flux = vref->GetReactorNeutrinoFlux(E);
 
 --------------------
 ## vCrossSection
+Reactor neutrino is anti electron neutrino and this can be detected with Inverse Beta Decay.
+Detected neutrino flux can be calculated as following:
+
+$\frac{d N_{\text{det}}}{d E_\nu} = \frac{d \Phi}{d E_\nu} \sigma_{\text{IBD}} P(\overline{\nu_e} \xrightarrow{} \overline{\nu_e})$
+
+where $\frac{d \Phi}{d E_\nu}$ is the energy spectrum of reactor neutrino, $\sigma_{\text{IBD}}$ is the cross section of IBD, $P(\overline{\nu_e} \xrightarrow{} \overline{\nu_e})$ is the survival probability of anti electron neutirno, $E_{\nu}$ is the energy of neutrino.
+
+Solar neutrino is electron neutrino and this can be detected with neutrino-electron scattering.
+Detected neutrino flux can be calculated as following:
+
+$\frac{d N_{\text{det}}}{d T} = \int \frac{d \Phi}{d E_\nu} (\frac{d \sigma_{e}}{d T} \overline{P_{ee}} + \frac{d \sigma_{\mu, \tau}}{d T} (1 - \overline{P_{ee}})) dE_{\nu}$
+
 ### How to get Cross Section of IBD 
 Reference : [6]
 
@@ -146,7 +158,7 @@ vCrossSection* vcs = new vCrossSection();
 double E_nu = 3; // Neutrino energy, unit : MeV
 double T_re = 2; // Recoiled electron kinetic energy, unit : MeV
 TString flavour = "e"; // Neutrino flavour, "e", "mu", or "tau"
-double sigma = vcs->GetCrossSection_IBD(E_nu, T_re, flavour);
+double sigma = vcs->GetDifCrossSection_ve_Scattering(E_nu, T_re, flavour);
 ```
 
 
