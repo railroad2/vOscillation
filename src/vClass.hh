@@ -2,3 +2,4 @@
 #include "vCrossSection.cc"
 #include "vOscillating.cc"
 #include "vReactorFlux.cc"
+#include "vSolarFlux.cc"

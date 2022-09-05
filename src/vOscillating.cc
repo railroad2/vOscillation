@@ -82,6 +82,52 @@ double vOscillating::GetProbability(double L, double E, TString iflavour, TStrin
 }
 
 
+double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
+{
+    // dist : m, energy : MeV
+    int alpha;
+    int beta;
+
+    if (iflavour == "e") alpha = 1;
+    else if (iflavour == "mu") alpha = 2;
+    else if (iflavour == "tau") alpha = 3;
+    else
+    {
+        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        return 0;
+    }
+
+    if (fflavour == "e") beta = 1;
+    else if (fflavour == "mu") beta = 2;
+    else if (fflavour == "tau") beta = 3;
+    else
+    {
+        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        return 0;
+    }
+
+
+    double delta_ab;
+    if (alpha == beta) delta_ab = 1;
+    else delta_ab = 0;
+
+    TComplex U_i1 = GetPMNSmatrix(alpha, 1);
+    TComplex U_i2 = GetPMNSmatrix(alpha, 2);
+    TComplex U_i3 = GetPMNSmatrix(alpha, 3);
+    TComplex U_f1 = GetPMNSmatrix(beta, 1);
+    TComplex U_f2 = GetPMNSmatrix(beta, 2);
+    TComplex U_f3 = GetPMNSmatrix(beta, 3);
+
+    TComplex UUUU_12 = U_i1 * TComplex::Conjugate(U_f1) * TComplex::Conjugate(U_i2) * U_f2;
+    TComplex UUUU_13 = U_i1 * TComplex::Conjugate(U_f1) * TComplex::Conjugate(U_i3) * U_f3;
+    TComplex UUUU_23 = U_i2 * TComplex::Conjugate(U_f2) * TComplex::Conjugate(U_i3) * U_f3;
+
+    double Sympart = UUUU_12.Re() + UUUU_13.Re() + UUUU_23.Re();
+
+    return delta_ab - 2 * Sympart;
+}
+
+
 TComplex vOscillating::GetPMNSmatrix(int row, int column)
 {
     double rad_12       = mtheta_12 * TMath::Pi() / 180; 
@@ -224,31 +270,64 @@ double vOscillating::GetCPAsymmetry(double L, double E, TString iflavour, TStrin
 	}
 }
 
+void vOscillating::LoadStdData_PDG(bool IO = false)
+{
+    if (IO == false)
+    {
+        double sin2_12 = PDGNO_sin2_12;
+        double sin2_13 = PDGNO_sin2_13;
+        double sin2_23 = PDGNO_sin2_23;
+        double dm21 = PDGNO_Dm2_21;
+        double dm31 = PDGNO_Dm2_31;
+        double dcp = PDGNO_delta_CP;
+        double r12 = TMath::ASin(TMath::Sqrt(sin2_12));
+        double r13 = TMath::ASin(TMath::Sqrt(sin2_13));
+        double r23 = TMath::ASin(TMath::Sqrt(sin2_23));
+        Setradian(r12, r13, r23);
+        SetDm2(dm21, dm31, false);
+        Setdelta_CP(dcp);
+    }
+    else
+    {
+        double sin2_12 = PDGIO_sin2_12;
+        double sin2_13 = PDGIO_sin2_13;
+        double sin2_23 = PDGIO_sin2_23;
+        double dm21 = PDGIO_Dm2_21;
+        double dm31 = PDGIO_Dm2_31;
+        double dcp = PDGIO_delta_CP;
+        double r12 = TMath::ASin(TMath::Sqrt(sin2_12));
+        double r13 = TMath::ASin(TMath::Sqrt(sin2_13));
+        double r23 = TMath::ASin(TMath::Sqrt(sin2_23));
+        Setradian(r12, r13, r23);
+        SetDm2(dm21, dm31, true);
+        Setdelta_CP(dcp);
+    }
 
-void vOscillating::LoadStdData(bool IO, bool withSK)
+}
+void vOscillating::LoadStdData_NuFit(bool IO = false, bool withSK = false)
 {
     if(IO == false)
     {
         if(withSK == false)
         {
-            double t12  = stdNO_theta_12;
-            double t13  = stdNO_theta_13;
-            double t23  = stdNO_theta_23;
-            double dm21 = stdNO_Dm2_21;
-            double dm31 = stdNO_Dm2_31;
-            double dcp  = stdNO_delta_CP;
+            double t12  = NuFitNO_theta_12;
+            double t13  = NuFitNO_theta_13;
+            double t23  = NuFitNO_theta_23;
+            double dm21 = NuFitNO_Dm2_21;
+            double dm31 = NuFitNO_Dm2_31;
+            double dcp  = NuFitNO_delta_CP;
             Settheta(t12, t13, t23);
             SetDm2(dm21, dm31, false);
             Setdelta_CP(dcp);
         }
         else
         {
-            double t12  = stdNO_SKatm_theta_12;
-            double t13  = stdNO_SKatm_theta_13;
-            double t23  = stdNO_SKatm_theta_23;
-            double dm21 = stdNO_SKatm_Dm2_21;
-            double dm31 = stdNO_SKatm_Dm2_31;
-            double dcp  = stdNO_SKatm_delta_CP;
+            double t12  = NuFitNO_SKatm_theta_12;
+            double t13  = NuFitNO_SKatm_theta_13;
+            double t23  = NuFitNO_SKatm_theta_23;
+            double dm21 = NuFitNO_SKatm_Dm2_21;
+            double dm31 = NuFitNO_SKatm_Dm2_31;
+            double dcp  = NuFitNO_SKatm_delta_CP;
             Settheta(t12, t13, t23);
             SetDm2(dm21, dm31, false);
             Setdelta_CP(dcp);
@@ -258,24 +337,24 @@ void vOscillating::LoadStdData(bool IO, bool withSK)
     {
         if(withSK == false)
         {
-            double t12  = stdIO_theta_12;
-            double t13  = stdIO_theta_13;
-            double t23  = stdIO_theta_23;
-            double dm21 = stdIO_Dm2_21;
-            double dm31 = stdIO_Dm2_31;
-            double dcp  = stdIO_delta_CP;
+            double t12  = NuFitIO_theta_12;
+            double t13  = NuFitIO_theta_13;
+            double t23  = NuFitIO_theta_23;
+            double dm21 = NuFitIO_Dm2_21;
+            double dm31 = NuFitIO_Dm2_31;
+            double dcp  = NuFitIO_delta_CP;
             Settheta(t12, t13, t23);
             SetDm2(dm21, dm31, true);
             Setdelta_CP(dcp);
         }
         else
         {
-            double t12  = stdIO_SKatm_theta_12;
-            double t13  = stdIO_SKatm_theta_13;
-            double t23  = stdIO_SKatm_theta_23;
-            double dm21 = stdIO_SKatm_Dm2_21;
-            double dm31 = stdIO_SKatm_Dm2_31;
-            double dcp  = stdIO_SKatm_delta_CP;
+            double t12  = NuFitIO_SKatm_theta_12;
+            double t13  = NuFitIO_SKatm_theta_13;
+            double t23  = NuFitIO_SKatm_theta_23;
+            double dm21 = NuFitIO_SKatm_Dm2_21;
+            double dm31 = NuFitIO_SKatm_Dm2_31;
+            double dcp  = NuFitIO_SKatm_delta_CP;
             Settheta(t12, t13, t23);
             SetDm2(dm21, dm31, true);
             Setdelta_CP(dcp);

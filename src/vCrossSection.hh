@@ -12,10 +12,13 @@ class vCrossSection
     public:
         vCrossSection() { mvConstant = new vConstant; }
         ~vCrossSection() { delete mvConstant; }
+        // Inverse Beta Decay
         double GetCrossSection_IBD(double E);
         TF1* GetCrossSection_IBD_TF(double startE = 0, double endE = 10);
-        double GetDifferentialCrossSection_IBD(double E, double theta);
-        TF1* GetDifferentialCrossSection_IBD_TF(double starttheta = 0, double endtheta = TMath::Pi());
+        double GetDifCrossSection_IBD(double E, double theta);
+        TF1* GetDifCrossSection_IBD_TF(double starttheta = 0, double endtheta = TMath::Pi());
+        // Nu_e Scattering
+        double GetDifCrossSection_ve_Scattering(double E, double T, TString vflavour = "e");
 
     private:
         double GetMomentum_Positron(double E);
@@ -25,3 +28,9 @@ class vCrossSection
         vDifCR_IBD mDifCR_IBD = vDifCR_IBD();
 };
 #endif
+
+// Reference
+// [1] P. Vogel, L. Wen and C. Zhang, Neutrino Oscillation Studies with Reactors, Nature Commun. 6 (2015) 6935 [1503.01059].
+// [2] J. N. Bahcall, Neutrino-electron scattering and solar neutrino experiments, Reviews of Modern Physics, Vol. 59, No. 2, April 1987
+// [3] 't Hooft, G., 1971,Phys. Lett. B 37, 195.
+

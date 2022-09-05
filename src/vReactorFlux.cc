@@ -24,9 +24,8 @@ void vReactorFlux::Initialization()
 	for (int i = 0; i < 4; i++)
 		energyPerFission += mFissionFraction[i] * mReleasedEnergy[i];
 	double NFissionPerSecond = mThermalPower * GW2MeV / energyPerFission;
-	mDistance = mDistance * 100; // m -> cm
-
-	mNeutrinoFlux0 = NFissionPerSecond * SecPerDay / 4. / TMath::Pi() / mDistance / mDistance;
+	double mDistancecm = mDistance * 100; // m -> cm
+	mNeutrinoFlux0 = NFissionPerSecond * SecPerDay / 4. / TMath::Pi() / mDistancecm / mDistancecm;
 }
 
 

@@ -39,8 +39,8 @@ double vCR_IBD::operator()(double* x, double* p)
 
 class vDifCR_IBD
 {
-public:
-    double operator()(double* x, double* p);
+    public:
+        double operator()(double* x, double* p);
 };
 
 
@@ -72,7 +72,7 @@ double vDifCR_IBD::operator()(double* x, double* p)
         double Gamma = temp1 + temp2 + temp3 + temp4;
         result = sigma_0 / 2 * E_e * E_e * ((f_sq + 3 * g_sq) + (f_sq - g_sq) * TMath::Cos(theta) - Gamma / M);
     }
-    return result;
+    return result / 2 / TMath::Pi();
 }
 
 #endif
