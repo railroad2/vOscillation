@@ -30,10 +30,21 @@ vCrossSection* vcs = new vCrossSection();
 
 -----------------------
 ## vOscillating
+
+vOscillating class is the class that contains methods to get PMNS matrix and Neutrino Survival Probability.
+
+PMNS matrix is a unitary matrix that representate the mismatch of flavor eigenstate and mass eigenstate of the neutrinos : 
+
+$\nu_\alpha = U_{\alpha i} \nu_i$
+
+$|\nu_\alpha \rangle = U^*_{\alpha i} |\nu_i \rangle$
+
+where $\alpha = e, \mu, \tau$, and $i = 1, 2, 3$.
+
 ### How to get PMNS matrix elements
 If you want to get PMNS matrix element with ith row and jth column, $U_{ij}$, then
 ``` C++
-vOscillating * vosc = new vOscillating();
+vOscillating* vosc = new vOscillating();
 double element = vosc->getPMNSmatrix(i, j);
 ```
 
@@ -44,7 +55,7 @@ $P_{\alpha \xrightarrow{} \beta}(L) = \delta_{\alpha \beta}- 4 \sum_{j>i} \textr
 
 If you want to get Survival Probability $P(\nu_e -> \nu_\mu)$ of Neutrino with Energy $E$ and flight length $L$, then
 ``` C++
-vOscillating * vosc = new vOscillating();
+vOscillating* vosc = new vOscillating();
 double  L        = 10000; // unit : m
 double  E        = 2;     // unit : MeV
 TString iflavour = "e";   // "e" or "mu" or "tau"
@@ -79,7 +90,7 @@ In vOscillating class, there are 6 standard Parameter data[1][2] :
 
 You can select one of these data:
 ```C++
-vOscillating * vosc = new vOscillating();
+vOscillating* vosc = new vOscillating();
 vosc->LoadStdData_PDG(false); // PDG data, Inverted Ordering = false.
 vosc->LoadStdData_PDG(true); // PDG data, Inverted Ordering = true.
 vosc->LoadStdData_NuFit(false, false); // NuFit data, Inverted Ordering = false, SK considering = false.
