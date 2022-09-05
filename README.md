@@ -83,7 +83,7 @@ vosc -> loadstddata(true, true); // Inverse Ordering = true, considering SK data
 ## vReactorFlux : How to set the reactor properties : ThermalPower, Distance to Detector, Fission Fraction, Released Energy
 
 ```C++
-vReactorFlux* vref = new vReactorFlux("HuberMuller");
+vReactorFlux* vref = new vReactorFlux("HuberMuller"); // or "Gutlein" (not recommended) [3][4][5]
 vref->SetDistance(2000); // unit : m , default : 60000
 vref->SetThermalPower(14); // unit : GWth, default : 16.85(Hanul reactors, Korea)
 std::vector<double> ff = {0.3, 0.4, 0.1, 0.2};
@@ -104,7 +104,8 @@ double flux = vref->GetReactorNeutrinoFlux(E);
 
 
 --------------------
-## vCrossSection : How to get Cross Section of IBD [3]
+## vCrossSection : How to get Cross Section of IBD 
+Reference : [6]
 
 ```C++
 vCrossSection* vcs = new vCrossSection();
@@ -113,9 +114,15 @@ double sigma = vcs->GetCrossSection_IBD(E_nu);
 ```
 
 
-Reference
+## Reference
 >[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
 
 >[2] NuFIT 5.1 (2021), www.nu-fit.org
 
->[3]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
+>[3]A. Gutlein, Feasibility study for a first observation of coherent neutrino necleus scattering using low-temperature detectors
+
+>[4]Mueller, T. A., et al. (2011). Improved predictions of reactor antineutrino spectra. Physical Review C, 83(5). https://doi.org/10.1103/physrevc.83.054615
+
+>[5]Huber, P. (2011). Determination of antineutrino spectra from nuclear reactors. Physical Review C, 84(2). https://doi.org/10.1103/physrevc.84.024617
+
+>[6]Vogel P., Beacom J. F. 1999 Phys. Rev. D 60 53003
