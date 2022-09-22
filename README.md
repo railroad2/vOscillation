@@ -17,7 +17,7 @@ The file "vClass.hh" is not a class file.
 
 
 -----------------------
-## How to start
+## How to include
 ``` C++
 #include "vClass.hh"
 
@@ -49,7 +49,7 @@ double element = vosc->GetPMNSmatrix(i, j);
 ```
 
 
-----------------------
+
 ### How to get Survival Probability
 $P_{\alpha \xrightarrow{} \beta}(L) = \delta_{\alpha \beta}- 4 \sum_{j>i} \textrm{Re} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin^2 \left( \frac{\Delta m_{ji}^2 L}{4 E} \right) + 2 \sum_{j>i} \textrm{Im} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin \left( \frac{\Delta m_{ji}^2 L}{2 E} \right)$
 
@@ -65,7 +65,7 @@ double probability = vosc->GetProbability(L, E, iflavour, fflavour, anti);
 ```
 
 
----------------------
+
 ### How to change paramters : $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
 In this class, $\Delta m_{32}^2$ is defined as:
 
@@ -76,7 +76,7 @@ You can change the parameters with setter and getter.
 Please read the header file.
 
 
---------------------
+
 ### 4 Standard Parameter Data
 In vOscillating class, there are 6 standard Parameter data[1][2] : 
 1. PDG data
@@ -115,7 +115,7 @@ vrf->SetReleasedEnergy(re); // default : in source code
 ```
 
 
---------------------
+
 ### How to get Neutrino Flux from Reactor
 
 ```C++
@@ -149,7 +149,7 @@ double sigma = vcs->GetCrossSection_IBD(E_nu);
 ```
 
 
---------------------
+
 ### How to get Cross Section of neutrino-electron scattering
 Reference : [7]
 
@@ -161,7 +161,7 @@ TString flavour = "e"; // Neutrino flavour, "e", "mu", or "tau"
 double sigma = vcs->GetDifCrossSection_ve_Scattering(E_nu, T_re, flavour);
 ```
 
-
+--------------------
 ## Reference
 >[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
 
