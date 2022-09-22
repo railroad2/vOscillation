@@ -119,7 +119,7 @@ vrf->SetReleasedEnergy(re); // default : in source code
 ### How to get Neutrino Flux from Reactor
 
 ```C++
-vReactorFlux* vref = new vReactorFlux("HuberMuller");
+vReactorFlux* vref = new vReactorFlux("HuberMueller");
 double E = 3; // Neutrino Energy, unit : MeV
 double flux = vref->GetReactorNeutrinoFlux(E);
 ```
