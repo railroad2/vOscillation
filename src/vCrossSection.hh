@@ -15,10 +15,12 @@ class vCrossSection
         // Inverse Beta Decay
         double GetCrossSection_IBD(double E);
         TF1* GetCrossSection_IBD_TF(double startE = 0, double endE = 10);
+        double GetCrossSection_IBD_Zeroth(double E);
         double GetDifCrossSection_IBD(double E, double theta);
         TF1* GetDifCrossSection_IBD_TF(double starttheta = 0, double endtheta = TMath::Pi());
         // Nu_e Scattering
         double GetDifCrossSection_ve_Scattering(double E, double T, TString vflavour = "e");
+        double GetDifCrossSection_ve_Scattering_Correction(double E, double T, TString vflavour = "e");
 
     private:
         double GetMomentum_Positron(double E);

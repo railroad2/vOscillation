@@ -76,17 +76,23 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
     double flux = 0;
     if (src == 6) // pep
     {
-        flux =  1.41E+8; // /cm^2/sec
+        flux = 1.41E+8; // BP04(Garching) /cm^2/sec
+        flux = 1.44E+8; // B16-GS98
+        flux = 1.46E+8; // B16-AGSS09met
     }
     else if (src == 7) // Be7_firstpeak
     {
-        flux = 4.84E+9 * 0.103; // /cm^2/sec
+        // flux = 4.84E+9 * 0.103; // BP04(Garching) /cm^2/sec
+        flux = 4.93E+9 * 0.103; // B16-GS98
+        // flux = 4.50E+9 * 0.103; // B16-AGSS09met
     }
     else if (src == 8) // Be7_secondpeak
     {
-        flux = 4.84E+9 * 0.897; // /cm^2/sec
+        // flux = 4.84E+9 * 0.897; // BP04(Garching) /cm^2/sec
+        flux = 4.93E+9 * 0.897; // B16-GS98
+        // flux = 4.50E+9 * 0.897; // B16-AGSS09met
     }
-    return flux * 86400.;
+    return flux * 86400.; // /cm^2/day
 }
 
 
@@ -129,7 +135,9 @@ double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E, int src)
 {
     const int numSrcNoPeak = 6;
 
-    double preflux[numSrcNoPeak] = { 5.54E+10, 7.88E+03, 5.74E+06, 5.70E+08, 4.98E+08, 5.87E+06 };
+    // double preflux[numSrcNoPeak] = { 5.94E+10, 7.88E+03, 5.74E+06, 5.70E+08, 4.98E+08, 5.87E+06 }; // BP04(Garching)
+    double preflux[numSrcNoPeak] = { 5.98E+10, 7.98E+03, 5.46E+06, 2.78E+08, 2.05E+08, 5.29E+06 }; // B16-GS98
+    // double preflux[numSRcNoPeak] = { 6.03E+10, 8.25E+03, 4.50E+06, 2.04E+08, 1.44E+08, 3.26E+06 }; // B16-AGSS09met
     double emax[numSrcNoPeak] = { 0.428, 18.790, 14.880, 1.201, 1.733, 1.740 }; // MeV
     double par[numSrcNoPeak][9]
         = { -2.87034E-01, 1.63559E+02, -1.22253E+03,  1.55085E+04, -1.465140E+05,  7.843750E+05, -2.35724E+06,  3.71082E+06, -2.38308E+06,

@@ -1,10 +1,6 @@
 #include "vConstant.hh"
 
 
-vConstant::vConstant() {}
-vConstant::~vConstant() {}
-
-
 double vConstant::GetMass(TString particleName)
 {
     if (particleName == "electron" || particleName == "e" || particleName == "Electron") return mM_e;
