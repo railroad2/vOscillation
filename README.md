@@ -1,5 +1,5 @@
 # vOscillating
-This class is a Calculator class for Neutrino Oscillation.
+This Project is for the calculation tool for the detection of neutrino with inverse beta deacy.
 
 This class need to be used with ROOT(CERN).
 
@@ -11,7 +11,7 @@ This class need to be used with ROOT(CERN).
 
 -----------------------
 ## Structure and Hierarchy
-There are four classes : vOscillating, vCrossSection, vReactorFlux, vConstant
+![plot](./Class_Diagram.png)
 
 The file "vClass.hh" is not a class file.
 
