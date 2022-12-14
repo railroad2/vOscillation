@@ -1,4 +1,4 @@
-#include "vSolarFlux.hh"
+#include "../header/vSolarFlux.hh"
 
 
 double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E)
@@ -76,9 +76,9 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
     double flux = 0;
     if (src == 6) // pep
     {
-        flux = 1.41E+8; // BP04(Garching) /cm^2/sec
+        // flux = 1.41E+8; // BP04(Garching) /cm^2/sec
         flux = 1.44E+8; // B16-GS98
-        flux = 1.46E+8; // B16-AGSS09met
+        // flux = 1.46E+8; // B16-AGSS09met
     }
     else if (src == 7) // Be7_firstpeak
     {
@@ -93,28 +93,6 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
         // flux = 4.50E+9 * 0.897; // B16-AGSS09met
     }
     return flux * 86400.; // /cm^2/day
-}
-
-
-TF1* vSolarFlux::GetTF_SolarNeutrinoFlux_NoPeak(TString src, double startE = 1.5, double endE = 9)
-{
-    if      (src == "pp"  || src == "PP")  return GetTF_SolarNeutrinoFlux_NoPeak(1, startE, endE);
-    else if (src == "hep" || src == "HEP") return GetTF_SolarNeutrinoFlux_NoPeak(2, startE, endE);
-    else if (src == "B8"  || src == "B")   return GetTF_SolarNeutrinoFlux_NoPeak(3, startE, endE);
-    else if (src == "N13" || src == "N")   return GetTF_SolarNeutrinoFlux_NoPeak(4, startE, endE);
-    else if (src == "O15" || src == "O")   return GetTF_SolarNeutrinoFlux_NoPeak(5, startE, endE);
-    else if (src == "F17" || src == "F")   return GetTF_SolarNeutrinoFlux_NoPeak(6, startE, endE);
-    else return 0;
-}
-
-
-TF1* vSolarFlux::GetTF_SolarNeutrinoFlux_NoPeak(int src = 0, double startE = 1.5, double endE = 9)
-{
-    vSolarFlux* vcf = new vSolarFlux();
-    vSL_TF* SL_TF = new vSL_TF(vcf);
-    TF1* f = new TF1("flux", SL_TF, startE, endE, 1);
-    f->SetParameter(0, src);
-    return f;
 }
 
 
