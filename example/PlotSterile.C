@@ -1,0 +1,101 @@
+#include "../vClass.hh"
+
+void PlotSterile()
+{
+	gStyle->SetOptStat(kFALSE);
+
+	TGraph* gve2ve = new TGraph(); // v_e -> v_e
+	gve2ve->SetLineColor(1);
+	TGraph* gve2vm = new TGraph(); // v_e -> v_mu
+	gve2vm->SetLineColor(2);
+	TGraph* gve2vt = new TGraph(); // v_e -> v_tau
+	gve2vt->SetLineColor(3);
+	TGraph* gvm2ve = new TGraph(); // v_mu -> v_e
+	gvm2ve->SetLineColor(1);
+	TGraph* gvm2vm = new TGraph(); // v_mu -> v_mu
+	gvm2vm->SetLineColor(2);
+	TGraph* gvm2vt = new TGraph(); // v_mu -> v_tau
+	gvm2vt->SetLineColor(3);
+	TGraph* gvt2ve = new TGraph(); // v_tau -> v_e
+	gvt2ve->SetLineColor(1);
+	TGraph* gvt2vm = new TGraph(); // v_tau -> v_mu
+	gvt2vm->SetLineColor(2);
+	TGraph* gvt2vt = new TGraph(); // v_tau -> v_tau
+	gvt2vt->SetLineColor(3);
+
+	vSterile* vosc = new vSterile();
+	vosc->LoadStdData(); // load PDG data for 3v-oscillating parameters
+	vosc->Load4StdData(); // load offset (3+1)-oscilating sterile parameters
+
+	// false -> neutrino, true -> anti neutrino
+	bool whetherAnti = false;
+	double endLoE = 25000; // m/MeV
+
+
+	int gN = 500;
+	for (int i = 0; i < gN; i++)
+	{
+		double LoE = endLoE * (double)i / (double)(gN - 1);
+		gve2ve->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "e", "e", whetherAnti));
+		gve2vm->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "e", "mu", whetherAnti));
+		gve2vt->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "e", "tau", whetherAnti));
+		gvm2ve->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "mu", "e", whetherAnti));
+		gvm2vm->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "mu", "mu", whetherAnti));
+		gvm2vt->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "mu", "tau", whetherAnti));
+		gvt2ve->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "tau", "e", whetherAnti));
+		gvt2vm->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "tau", "mu", whetherAnti));
+		gvt2vt->SetPoint(i, LoE, vosc->GetProbability(LoE, 1, "tau", "tau", whetherAnti));
+	}
+
+
+	// Plot
+
+	TCanvas* can1 = new TCanvas("Electron Neutrino Survival Probability", "Electron Neutrino Survival Probability", 1200, 800);
+	gPad->SetLeftMargin(0.12);
+	gPad->SetBottomMargin(0.12);
+	gPad->SetRightMargin(0.08);
+	gPad->SetTopMargin(0.05);
+
+	TH1D* hFrame1 = new TH1D("hFrame1", "", 100, 0, endLoE);
+	hFrame1->GetXaxis()->SetTitle("L/E (m/MeV)");
+	hFrame1->GetYaxis()->SetTitle("Probability");
+	hFrame1->GetYaxis()->SetRangeUser(0, 1);
+	hFrame1->Draw();
+	gve2ve->Draw("SAMEl");
+	gve2vm->Draw("SAMEl");
+	gve2vt->Draw("SAMEl");
+
+
+
+	TCanvas* can2 = new TCanvas("Muon Neutrino Survival Probability", "Muon Neutrino Survival Probability", 1200, 800);
+	gPad->SetLeftMargin(0.12);
+	gPad->SetBottomMargin(0.12);
+	gPad->SetRightMargin(0.08);
+	gPad->SetTopMargin(0.05);
+
+	TH1D* hFrame2 = new TH1D("hFrame2", "", 100, 0, endLoE);
+	hFrame2->GetXaxis()->SetTitle("L/E (m/MeV)");
+	hFrame2->GetYaxis()->SetTitle("Probability");
+	hFrame2->GetYaxis()->SetRangeUser(0, 1);
+	hFrame2->Draw();
+	gvm2ve->Draw("SAMEl");
+	gvm2vm->Draw("SAMEl");
+	gvm2vt->Draw("SAMEl");
+
+
+
+	TCanvas* can3 = new TCanvas("Tau Neutrino Survival Probability", "Tau Neutrino Survival Probability", 1200, 800);
+	gPad->SetLeftMargin(0.12);
+	gPad->SetBottomMargin(0.12);
+	gPad->SetRightMargin(0.08);
+	gPad->SetTopMargin(0.05);
+
+	TH1D* hFrame3 = new TH1D("hFrame3", "", 100, 0, endLoE);
+	hFrame3->GetXaxis()->SetTitle("L/E (m/MeV)");
+	hFrame3->GetYaxis()->SetTitle("Probability");
+	hFrame3->GetYaxis()->SetRangeUser(0, 1);
+	hFrame3->Draw();
+	gvt2ve->Draw("SAMEl");
+	gvt2vm->Draw("SAMEl");
+	gvt2vt->Draw("SAMEl");
+}
