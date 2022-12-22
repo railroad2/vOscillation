@@ -6,22 +6,31 @@ void PlotSterile()
 
 	TGraph* gve2ve = new TGraph(); // v_e -> v_e
 	gve2ve->SetLineColor(1);
+	gve2ve->SetName("Pee");
 	TGraph* gve2vm = new TGraph(); // v_e -> v_mu
 	gve2vm->SetLineColor(2);
+	gve2vm->SetName("Pem");
 	TGraph* gve2vt = new TGraph(); // v_e -> v_tau
 	gve2vt->SetLineColor(3);
+	gve2vt->SetName("Pet");
 	TGraph* gvm2ve = new TGraph(); // v_mu -> v_e
 	gvm2ve->SetLineColor(1);
+	gvm2ve->SetName("Pme");
 	TGraph* gvm2vm = new TGraph(); // v_mu -> v_mu
 	gvm2vm->SetLineColor(2);
+	gvm2vm->SetName("Pmm");
 	TGraph* gvm2vt = new TGraph(); // v_mu -> v_tau
 	gvm2vt->SetLineColor(3);
+	gvm2vt->SetName("Pmt");
 	TGraph* gvt2ve = new TGraph(); // v_tau -> v_e
 	gvt2ve->SetLineColor(1);
+	gvt2ve->SetName("Pte");
 	TGraph* gvt2vm = new TGraph(); // v_tau -> v_mu
 	gvt2vm->SetLineColor(2);
+	gvt2vm->SetName("Ptm");
 	TGraph* gvt2vt = new TGraph(); // v_tau -> v_tau
 	gvt2vt->SetLineColor(3);
+	gvt2vt->SetName("Ptt");
 
 	vSterile* vosc = new vSterile();
 	vosc->LoadStdData(); // load PDG data for 3v-oscillating parameters
@@ -29,10 +38,10 @@ void PlotSterile()
 
 	// false -> neutrino, true -> anti neutrino
 	bool whetherAnti = false;
-	double endLoE = 25000; // m/MeV
+	double endLoE = 20; // m/MeV
 
 
-	int gN = 500;
+	int gN = 50000;
 	for (int i = 0; i < gN; i++)
 	{
 		double LoE = endLoE * (double)i / (double)(gN - 1);
@@ -65,6 +74,12 @@ void PlotSterile()
 	gve2vm->Draw("SAMEl");
 	gve2vt->Draw("SAMEl");
 
+	TLegend* leg1 = new TLegend();
+	leg1->AddEntry("Pee", "P(#nu_{e}->#nu_{e})", "l");
+	leg1->AddEntry("Pem", "P(#nu_{e}->#nu_{#mu})", "l");
+	leg1->AddEntry("Pet", "P(#nu_{e}->#nu_{#tau})", "l");
+	leg1->Draw();
+
 
 
 	TCanvas* can2 = new TCanvas("Muon Neutrino Survival Probability", "Muon Neutrino Survival Probability", 1200, 800);
@@ -82,6 +97,12 @@ void PlotSterile()
 	gvm2vm->Draw("SAMEl");
 	gvm2vt->Draw("SAMEl");
 
+	TLegend* leg2 = new TLegend();
+	leg2->AddEntry("Pme", "P(#nu_{#mu}->#nu_{e})", "l");
+	leg2->AddEntry("Pmm", "P(#nu_{#mu}->#nu_{#mu})", "l");
+	leg2->AddEntry("Pmt", "P(#nu_{#mu}->#nu_{#tau})", "l");
+	leg2->Draw();
+
 
 
 	TCanvas* can3 = new TCanvas("Tau Neutrino Survival Probability", "Tau Neutrino Survival Probability", 1200, 800);
@@ -98,4 +119,10 @@ void PlotSterile()
 	gvt2ve->Draw("SAMEl");
 	gvt2vm->Draw("SAMEl");
 	gvt2vt->Draw("SAMEl");
+
+	TLegend* leg3 = new TLegend();
+	leg3->AddEntry("Pte", "P(#nu_{#tau}->#nu_{e})", "l");
+	leg3->AddEntry("Ptm", "P(#nu_{#tau}->#nu_{#mu})", "l");
+	leg3->AddEntry("Ptt", "P(#nu_{#tau}->#nu_{#tau})", "l");
+	leg3->Draw();
 }
