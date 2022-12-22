@@ -21,7 +21,7 @@ public:
     TComplex GetPMNSmatrix_Truncated(int row, int column);
 
     // DataLoader (Setter)
-    void Load4StdData(bool IO = false);
+    void Load4StdData();
 
     // Setter
     void Set4theta(double theta_14, double theta_24, double theta_34);

@@ -43,15 +43,15 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(TString src)
 
 double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0)
 {
-    if (src == 6) // pep
+    if (src == 7) // pep
     {
         return mE_PEP;
     }
-    else if (src == 7) // Be7_firstpeak
+    else if (src == 8) // Be7_firstpeak
     {
         return mE_Be7_1;
     }
-    else if (src == 8) // Be7_secondpeak
+    else if (src == 9) // Be7_secondpeak
     {
         return mE_Be7_2;
     }
@@ -74,19 +74,19 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(TString src)
 double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
 {
     double flux = 0;
-    if (src == 6) // pep
+    if (src == 7) // pep
     {
         // flux = 1.41E+8; // BP04(Garching) /cm^2/sec
         flux = 1.44E+8; // B16-GS98
         // flux = 1.46E+8; // B16-AGSS09met
     }
-    else if (src == 7) // Be7_firstpeak
+    else if (src == 8) // Be7_firstpeak
     {
         // flux = 4.84E+9 * 0.103; // BP04(Garching) /cm^2/sec
         flux = 4.93E+9 * 0.103; // B16-GS98
         // flux = 4.50E+9 * 0.103; // B16-AGSS09met
     }
-    else if (src == 8) // Be7_secondpeak
+    else if (src == 9) // Be7_secondpeak
     {
         // flux = 4.84E+9 * 0.897; // BP04(Garching) /cm^2/sec
         flux = 4.93E+9 * 0.897; // B16-GS98

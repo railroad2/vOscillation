@@ -150,11 +150,11 @@ TComplex vSterile::GetPMNSmatrix_Truncated(int row, int column)
 }
 
 
-void vSterile::Load4StdData(bool IO)
+void vSterile::Load4StdData()
 {
-    Set4radian( TMath::ASin(0.1), // v_e disappearence global fit
-                TMath::ASin(TMath::Sqrt(0.6)) / 2., // v_mu -> v_e oscillating global fit
-                0); // constraint : |U_tau,4|^2 < 0.13
+    Set4radian( TMath::ASin(0.1),               // v_e disappearence global fit, sin_14 ~ 0.1
+                TMath::ASin(TMath::Sqrt(0.15)), // v_mu -> v_e oscillating global fit, 4|U_e4|^2|U_m4|^2 ~ 0.6
+                0);                             // constraint : |U_tau,4|^2 < 0.13
     Set4Dm2(1.3); // v_e disappearence global fit
 
     // reference
@@ -167,9 +167,9 @@ void vSterile::Set4theta(double theta_14, double theta_24, double theta_34)
     ftheta_14 = theta_14;
     ftheta_24 = theta_24;
     ftheta_34 = theta_34;
-    frad_14 = theta_14 / 180 * TMath::Pi();
-    frad_24 = theta_24 / 180 * TMath::Pi();
-    frad_34 = theta_34 / 180 * TMath::Pi();
+    frad_14 = theta_14 / 180. * TMath::Pi();
+    frad_24 = theta_24 / 180. * TMath::Pi();
+    frad_34 = theta_34 / 180. * TMath::Pi();
 }
 
 
