@@ -12,13 +12,12 @@ public:
 	void PrintInfo();
 	
 	double GetCurrent(double E);
-	
+	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization);
+
 	void SetActivity(double activity) { fActivity = activity; } // The unit of Activity should be /day
 	double GetActivity() { return fActivity; }
 
 protected:
-	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization);
-	
 	void SetVectorSize(int size) { fVectorSize = size; }
 	void SetQValues(std::vector<double> qValue) { fQValue = qValue; }
 	void SetZdaughter(std::vector<double> Z_f) { fZdaughter = Z_f; }

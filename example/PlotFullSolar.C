@@ -1,30 +1,22 @@
 // Detected Solar Flux + Resolution + C12, C14 background
 #include "../vClass.hh"
 
+vBetaSpectrum* vbs = new vBetaSpectrum();
 
-double BetaSpectrum_C11(double T) {
-	vConstant* vc = new vConstant();
-	double E_0 = vc->GetMass("Delta");
-	double m_nu = 0.000001;
-	double m_e = vc->GetMass("electron");
-	double E_e = (T + m_e);
-	double fsc = 7.29735e-3;
-	double p = TMath::Sqrt(E_e * E_e - m_e * m_e);
-	double Q = 0.960; // 960 keV, m_C11 - m_B11 (only nuclear mass)
-	if (Q < T) return 0;
-	double S_0 = p * E_e * (Q - T) * (Q - T);
-	double Z_f = 5.;
-	double eta = -Z_f * fsc * E_e / p;
-	double F = 2 * TMath::Pi() * eta / (1 - TMath::Exp(-2 * TMath::Pi() * eta));
-
-	double normalization = 0.1099013900669717;
-	if (p <= 0) return 0;
-	if (F * S_0 > 0) return F * S_0 / normalization;
-	else return 0;
+double BetaSpectrum_C11(double T)
+{
+	// -BetaSpectrum(-Z_f) -> beta+ decay
+	return - vbs->GetBetaSpectrum(T, 0.960, -5., 0.1099013900669717);
 }
 
 
-double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE, double m_e)
+double BetaSpectrum_C14(double T)
+{
+	return vbs->GetBetaSpectrum(T, 0.1565, 7., 0.0002089169740292279);
+}
+
+
+double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE)
 {
 	double result = 0;
 
@@ -40,7 +32,7 @@ double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE, 
 	{
 		T = a + h * (double)i;
 		sigma = resolution / 100. * TMath::Sqrt(T);
-		integrand = BetaSpectrum_C11(T - 2 * m_e) * TMath::Gaus(Tdet - T, 0, sigma, kTRUE);
+		integrand = BetaSpectrum_C11(T - 2 * MASSELECTRON) * TMath::Gaus(Tdet - T, 0, sigma, kTRUE);
 		if (i == 0 or i == 2 * N) result += integrand;
 		else if (i % 2 == 0)      result += 2. * integrand;
 		else                      result += 4. * integrand;
@@ -50,31 +42,7 @@ double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE, 
 }
 
 
-double BetaSpectrum_C14(double T)
-{
-	vConstant* vc = new vConstant();
-	double E_0 = vc->GetMass("Delta");
-	double m_nu = 0.000001;
-	double m_e = vc->GetMass("electron");
-	double E_e = (T + m_e);
-	double fsc = 7.29735e-3;
-	double p = TMath::Sqrt(E_e * E_e - m_e * m_e);
-	double Q = 0.1565; // 156.5 keV, m_C14 - m_N14 (only nuclear mass)
-	if (Q < T) return 0;
-	double S_0 = p * E_e * (Q - T) * (Q - T);
-	double Z_f = 7.;
-	double eta = Z_f * fsc * E_e / p;
-	double F = 2 * TMath::Pi() * eta / (1 - TMath::Exp(-2 * TMath::Pi() * eta));
-
-	double normalization = 0.0002089169740292279;
-	if (p == 0) return 2 * TMath::Pi() * Z_f * fsc * m_e * m_e * Q * Q / normalization;
-	if (p < 0) return 0;
-	if (F * S_0 > 0) return F * S_0 / normalization;
-	else return 0;
-}
-
-
-double integral_dcs_spectrum(double T, int N, double a, double b, vOscillating* vosc, vCrossSection* vcs, vSolarFlux* vsf, int iso)
+double integral_dcs_spectrum(double T, int N, double a, double b, vOscillating* vosc, vScatteringve* vcs, vSolarFlux* vsf, int iso)
 {
 	// integral ds/dT * flux from a to b with stepsize (b-a) / 2N
 
@@ -88,7 +56,7 @@ double integral_dcs_spectrum(double T, int N, double a, double b, vOscillating* 
 	for (int i = 0; i <= 2 * N; i++)
 	{
 		E = a + h * (double)i;
-		dcs = vcs->GetDifCrossSection_ve_Scattering(E, T, "e") * P_ee + vcs->GetDifCrossSection_ve_Scattering(E, T, "mu") * P_em; // cm^2 / MeV
+		dcs = vcs->GetDifCrossSection_Correction(E, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(E, T, "mu") * P_em; // cm^2 / MeV
 		spectrum = vsf->GetSolarNeutrinoFlux_NoPeak(E, iso);         // / cm^2 / keV / day
 		if (i == 0 or i == 2 * N) resultIntegral += dcs * spectrum;
 		else if (i % 2 == 0)      resultIntegral += 2. * dcs * spectrum;
@@ -130,13 +98,10 @@ void PlotFullSolar()
 	cout << "totBetaRateC11 : " << totBetaRateC11 << endl;
 
 	vOscillating* vosc = new vOscillating();
-	vCrossSection* vcs = new vCrossSection();
+	vScatteringve* vcs = new vScatteringve();
 	vSolarFlux* vsf = new vSolarFlux();
-	vConstant* vConst = new vConstant();
 
-	double m_e = vConst->GetMass("electron");
-	cout << "m_e : " << m_e << endl;
-
+	double m_e = MASSELECTRON;
 
 	double P_ee = vosc->GetProbability_Smear("e", "e");
 	double P_em = 1 - P_ee;
@@ -191,11 +156,11 @@ void PlotFullSolar()
 		flux_F17 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 6);
 
 		flux_C14 = totBetaRate * BetaSpectrum_C14(T);
-		flux_C11 = totBetaRateC11 * BetaSpectrum_C11_Resolution(T, 5., 2.5, m_e);
+		flux_C11 = totBetaRateC11 * BetaSpectrum_C11_Resolution(T, 5., 2.5);
 
-		dcs_PEP = vcs->GetDifCrossSection_ve_Scattering(fPEP_Enu, T, "e") * P_ee + vcs->GetDifCrossSection_ve_Scattering(fPEP_Enu, T, "mu") * P_em;
-		dcs_Be7_1 = vcs->GetDifCrossSection_ve_Scattering(fBe7_Enu1, T, "e") * P_ee + vcs->GetDifCrossSection_ve_Scattering(fBe7_Enu1, T, "mu") * P_em;
-		dcs_Be7_2 = vcs->GetDifCrossSection_ve_Scattering(fBe7_Enu2, T, "e") * P_ee + vcs->GetDifCrossSection_ve_Scattering(fBe7_Enu2, T, "mu") * P_em;
+		dcs_PEP = vcs->GetDifCrossSection_Correction(fPEP_Enu, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fPEP_Enu, T, "mu") * P_em;
+		dcs_Be7_1 = vcs->GetDifCrossSection_Correction(fBe7_Enu1, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fBe7_Enu1, T, "mu") * P_em;
+		dcs_Be7_2 = vcs->GetDifCrossSection_Correction(fBe7_Enu2, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fBe7_Enu2, T, "mu") * P_em;
 
 		flux_PEP = totElectronNumber * fPEP_Flux * dcs_PEP;
 		flux_Be7 = totElectronNumber * (fBe7_Flux1 * dcs_Be7_1 + fBe7_Flux2 * dcs_Be7_2);
@@ -222,16 +187,7 @@ void PlotFullSolar()
 	TH1D* hFrame = new TH1D("hFrame", "", 100, 0.1, 2.6);
 	hFrame->GetXaxis()->SetTitle("Electron Kinetic Energy(MeV)");
 	hFrame->GetYaxis()->SetTitle("Detected Neutrino Spectrum (# / day / keV / 100 tons)");
-	hFrame->GetXaxis()->SetTitleSize(0.038);
-	hFrame->GetYaxis()->SetTitleSize(0.038);
-	hFrame->GetXaxis()->SetTitleOffset(0.9);
-	hFrame->GetYaxis()->SetTitleOffset(0.9);
-	hFrame->GetXaxis()->CenterTitle();
-	hFrame->GetYaxis()->CenterTitle();
 	gPad->SetLogy();
-	hFrame->GetXaxis()->SetLabelSize(0.038);
-	hFrame->GetYaxis()->SetLabelSize(0.038);
-	hFrame->GetYaxis()->SetNdivisions(505);
 	hFrame->GetYaxis()->SetRangeUser(1e-5, 1);
 	hFrame->Draw();
 
