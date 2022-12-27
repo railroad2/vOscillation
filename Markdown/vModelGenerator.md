@@ -105,7 +105,7 @@ This class can calculate four distribution.
 
 For example, the distribution of detected energy can be calculated as
 
-$\frac{d^2N}{dE_{det}dt}(E_{det}) = \frac{n_p}{4 \pi V_{source}} \int_0^{\infty} dE_{det} D(E_{det}, E) \sigma(E) \frac{d \Phi^o}{d E} \int_{source} d^3 X^{(s)} \int_{detector} d^3 X^{(d)} \frac{ P\left(\dfrac{\scriptr}{E}\right)}{\scriptr^2}$
+$\frac{d^2N}{dE_{det}dt}(E_{det}) = \frac{n_p}{4 \pi V_{source}} \int_0^{\infty} dE_{det} D(E_{det}, E) \sigma(E) \frac{d \Phi^o}{d E} \int_{source} d^3 X^{(s)} \int_{detector} d^3 X^{(d)} \frac{ P\left(\dfrac{r}{E}\right)}{r^2}$
 
 ,where
 
@@ -114,8 +114,8 @@ $n_p$ is the density of protons in the LS of the detectos,
 $D(E_{det}, E)$ is the detector matrix, which contains the resolution information,
 $\sigma(E)$ is the cross section of IBD,
 $\frac{d \Phi^o}{d E}$ is the energy diffrential current of neutrino from source,
-$\scriptr$ is the flight distance of neutrino, and
-$P\left(\dfrac{\scriptr}{E}\right)$ is the survival probability of neutrinos.
+$r$ is the flight distance of neutrino, and
+$P\left(\dfrac{r}{E}\right)$ is the survival probability of neutrinos.
 
 This 7-dimensions integration is difficult to do analytically.
 This class calculate this integration with Cutoff Method(Monte Carlo).
