@@ -24,6 +24,8 @@ The file "vClass.hh" is not a class file.
 
 
 ## Code Discription
-![link](./Markdown/vOscillating.md)
-![link](./Markdown/vModelGenerator.md)
-![link](./Markdown/vEnergySpectrum.md)
+[vOscillating](./Markdown/vOscillating.md)
+
+[vModelGenerator](./Markdown/vModelGenerator.md)
+
+[vEnergySpectrum](./Markdown/vEnergySpectrum.md)
