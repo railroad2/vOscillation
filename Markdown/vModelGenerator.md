@@ -105,7 +105,7 @@ This class can calculate four distribution.
 
 For example, the distribution of detected energy can be calculated as
 
-$\frac{d^2N}{dE_{det}dt}(E_{det}) &=& \frac{n_p}{4 \pi V_{source}} \int_0^{\infty} dE_{det} D(E_{det}, E) \sigma(E) \frac{d \Phi^o}{d E} \int_{source} d^3 X^{(s)} \int_{detector} d^3 X^{(d)} \frac{ P\left(\dfrac{\scriptr}{E}\right)}{\scriptr^2}$
+$\frac{d^2N}{dE_{det}dt}(E_{det}) = \frac{n_p}{4 \pi V_{source}} \int_0^{\infty} dE_{det} D(E_{det}, E) \sigma(E) \frac{d \Phi^o}{d E} \int_{source} d^3 X^{(s)} \int_{detector} d^3 X^{(d)} \frac{ P\left(\dfrac{\scriptr}{E}\right)}{\scriptr^2}$
 
 ,where
 
