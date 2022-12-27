@@ -121,7 +121,7 @@ This 7-dimensions integration is difficult to do analytically.
 This class calculate this integration with Cutoff Method(Monte Carlo).
 Therefore the equation of the above is changed as
 
-$\int_{E_i}^{E_{i+1}} \frac{d^2 N}{dE_{det}dt} dE_{det} = \frac{F_i(E_{det})}{\text{iterNum}} \frac{N_p}{4 \pi \scriptr_{min}^2} \frac{A}{2} \int dE \sigma(E) f(E)$
+$\int_{E_i}^{E_{i+1}} \frac{d^2 N}{dE_{det}dt} dE_{det} = \frac{F_i(E_{det})}{\text{iterNum}} \frac{N_p}{4 \pi r_{min}^2} \frac{A}{2} \int dE \sigma(E) f(E)$
 ,where
 $A$ is the activity of neutrino source,
 $f(E)$ is the distribution of energy of neutrino,
