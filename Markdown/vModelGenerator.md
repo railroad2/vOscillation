@@ -47,7 +47,7 @@ detector->Initialization();
 double Lmax = (double)(int)(delta_X + delta_Z + H_det / 2 + R_det) + 1.;
 
 
-// Energy Spectrum TF assign
+// Energy Spectrum
 
 double Emin = 1.8;
 double Emax = 3.0;
