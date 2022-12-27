@@ -37,12 +37,13 @@ You can also make new child class for your purposes.
 ### vBetaSpectrum
 This class is for the energy spectrum of neutrinos from the beta decay (also beta+ decay).
 
-$\text{Spectrum} \sim FpE_e(Q-T)^2$
+$\text{Spectrum} \sim FpE_e(Q-T)^2 / \text{normalization}$
 
 $F = \frac{2 \pi \eta}{1 - \text{exp}\left( -2 \pi \eta \right)}$
 
 $\eta = \pm\frac{Z_f \;\alpha E_e}{p}$ (plus : beta decay, minus : beta+ decay)
 
+The normalization factor is the factor to make the integral of Spectrum to be 1.
 
 
 --------------------
