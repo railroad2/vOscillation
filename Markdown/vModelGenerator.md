@@ -126,7 +126,7 @@ $\int_{E_i}^{E_{i+1}} \frac{d^2 N}{dE_{det}dt} dE_{det} = \frac{F_i(E_{det})}{\t
 $A$ is the activity of neutrino source,
 $f(E)$ is the distribution of energy of neutrino,
 $iterNum$ is the number of loop iteration in the code,
-$F_i(E_{det}) is the binContent of the histogram of detected energy.
+$F_i(E_{det})$ is the binContent of the histogram of detected energy.
 
 
 --------------------
