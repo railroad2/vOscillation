@@ -17,6 +17,8 @@ public:
 		CalDistance();
 	}
 
+	void PrintInfo();
+
 	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum);
 	
 	void SetvOscillating(vOscillating* vosc) { fvosc = vosc; }

@@ -33,6 +33,7 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 		if (gRandom->Uniform(0, 1) < P)
 		{
 			fDetector->GetRandomResolutionEnergy(resolE, E_nu);
+			fDetector->GetRandomResolutionPosition(resolX, resolY, resolZ, E_nu);
 
 			double L_det = CalculateL(-X_det + fDeltaX + resolX, -Y_det + resolY, -Z_det + fDeltaZ + resolZ);
 			double E_prompt = E_nu - DeltaEnergy;
@@ -58,6 +59,17 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 	oHistE->Scale(Coef, "nosw2");
 	oHistLoE->Scale(Coef, "nosw2");
 	oHistLE->Scale(Coef, "nosw2");
+}
+
+
+void vModelGeneratorLBL::PrintInfo()
+{
+	cout << "<vModelGenerator>" << endl;
+	cout << "    Delta X          : " << fDeltaX << endl;
+	cout << "    Delta Z          : " << fDeltaZ << endl;
+	fDetector->PrintInfo();
+	fSource->PrintInfo();
+	fSpectrum.PrintInfo();
 }
 
 

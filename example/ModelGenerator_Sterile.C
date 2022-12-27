@@ -1,4 +1,4 @@
-#include "../newsrc/vClass.hh"
+#include "../vClass.hh"
 
 
 void ModelGenerator_Sterile()
@@ -72,8 +72,8 @@ void ModelGenerator_Sterile()
 
 	int binNum = 500;
 	int startIndex = 0;
-	int listSize = 2;
-	int64_t N = 100000;
+	int listSize = 5;
+	int64_t N = 1000000;
 	int64_t iterNum;
 	double minDm2 = 1.e-2;
 	double maxDm2 = 1.e2;

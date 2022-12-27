@@ -1,4 +1,4 @@
-#include "../newsrc/vClass.hh"
+#include "../vClass.hh"
 
 
 void ModelGenerator()
@@ -51,8 +51,8 @@ void ModelGenerator()
 
 	// Set Model Generator Parameter
 	vModelGeneratorSterileEE* vmg = new vModelGeneratorSterileEE(detector, source, fobj);
-	double delta_X = 9.4; // 조정가능
-	double delta_Z = 0; // 조사해야함
+	double delta_X = 9.4;
+	double delta_Z = 0;
 	vmg->SetDeltaX(delta_X);
 	vmg->SetDeltaZ(delta_Z);
 	vmg->SetSterileEE(vst);

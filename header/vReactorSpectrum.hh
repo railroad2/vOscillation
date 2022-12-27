@@ -17,7 +17,7 @@ public:
 	void Initialization();
 
 	double GetCurrent(double E); // /day
-	double GetCurrent(double E, int iso = 0); // /day
+	double GetCurrent(double E, int iso); // /day
 
 	//Setter and Getter
 	void                SetThermalPower(double thermalPower);
