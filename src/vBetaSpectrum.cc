@@ -26,7 +26,7 @@ double vBetaSpectrum::GetCurrent(double E)
 }
 
 
-double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization)
+double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti)
 {
 	double E_0 = MASSDELTA;
 	double m_e = MASSELECTRON;
@@ -35,7 +35,10 @@ double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double nor
 	double p = TMath::Sqrt(E_e * E_e - m_e * m_e);
 	if (Q < T) return 0;
 	double S_0 = p * E_e * (Q - T) * (Q - T);
-	double eta = Z_f * fsc * E_e / p;
+
+	if (anti) double eta =  Z_f * fsc * E_e / p;
+	else      double eta = -Z_f * fsc * E_e / p;
+
 	double F = 2 * TMath::Pi() * eta / (1 - TMath::Exp(-2 * TMath::Pi() * eta));
 
 	if (p == 0) return 2 * TMath::Pi() * Z_f * fsc * m_e * m_e * Q * Q / normalization;

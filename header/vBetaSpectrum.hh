@@ -12,7 +12,7 @@ public:
 	void PrintInfo();
 	
 	double GetCurrent(double E);
-	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization);
+	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti = false);
 
 	void SetActivity(double activity) { fActivity = activity; } // The unit of Activity should be /day
 	double GetActivity() { return fActivity; }
