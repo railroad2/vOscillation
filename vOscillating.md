@@ -1,34 +1,3 @@
-# vOscillating
-This Project is for the calculation tool for the detection of neutrino with inverse beta deacy.
-
-This class need to be used with ROOT(CERN).
-
-
------------------------
-## How to download
-> git clone https://github.com/jangddol/vOscillating.git
-
-
------------------------
-## Structure and Hierarchy
-![plot](./Class_Diagram.png)
-
-The file "vClass.hh" is not a class file.
-
-
------------------------
-## How to include
-``` C++
-#include "vClass.hh"
-
-vOscillating* vosc = new vOscillating();
-vReactorFlux* vrf = new vReactorFlux("HuberMueller"); // modelName (or "Gutlein")
-vCrossSection* vcs = new vCrossSection();
-
-```
-
-
------------------------
 ## vOscillating
 
 vOscillating class is the class that contains methods to get PMNS matrix and Neutrino Survival Probability.
@@ -48,7 +17,7 @@ vOscillating* vosc = new vOscillating();
 double element = vosc->GetPMNSmatrix(i, j);
 ```
 
-
+-----------------------
 
 ### How to get Survival Probability
 $P_{\alpha \xrightarrow{} \beta}(L) = \delta_{\alpha \beta}- 4 \sum_{j>i} \textrm{Re} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin^2 \left( \frac{\Delta m_{ji}^2 L}{4 E} \right) + 2 \sum_{j>i} \textrm{Im} \left( U_{\alpha i} U_{\beta i}^* U_{\alpha j}^* U_{\beta j} \right) \sin \left( \frac{\Delta m_{ji}^2 L}{2 E} \right)$
@@ -65,7 +34,7 @@ bool    anti     = false;
 double probability = vosc->GetProbability(L, E, iflavour, fflavour, anti);
 ```
 
-
+-----------------------
 
 ### How to change paramters : $\theta_{ij}, \Delta m_{ji}^2, \delta_{CP}$
 In this class, $\Delta m_{32}^2$ is defined as:
@@ -76,7 +45,7 @@ You can change the parameters with setter and getter.
 
 Please read the header file.
 
-
+-----------------------
 
 ### 4 Standard Parameter Data
 In vOscillating class, there are 6 standard Parameter data[1] : 
