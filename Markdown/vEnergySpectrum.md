@@ -37,11 +37,11 @@ You can also make new child class for your purposes.
 ### vBetaSpectrum
 This class is for the energy spectrum of neutrinos from the beta decay (also beta+ decay).
 
-$ Spectrum ~ FpE_e(Q-T)^2 $
+$Spectrum ~ FpE_e(Q-T)^2$
 
-$ F = \frac{2 \pi \eta}{1 - \text{exp}\left( -2 \pi \eta \right) $
+$F = \frac{2 \pi \eta}{1 - \text{exp}\left( -2 \pi \eta \right)$
 
-$ eta = \pm\frac{Z_f \alpha E_e}{p} $ (plus : beta decay, minus : beta+ decay)
+$eta = \pm\frac{Z_f \alpha E_e}{p}$ (plus : beta decay, minus : beta+ decay)
 
 
 
