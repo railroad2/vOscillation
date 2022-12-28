@@ -62,4 +62,4 @@ vosc->LoadStdData(true); // PDG data, Inverted Ordering = true
 
 --------------------
 ## Reference
->[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
+>[1] Partical Data Group, https://pdg.lbl.gov/
