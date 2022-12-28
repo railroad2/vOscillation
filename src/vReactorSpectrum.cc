@@ -24,6 +24,23 @@ void vReactorSpectrum::Initialization()
 }
 
 
+void vReactorSpectrum::PrintInfo()
+{
+	cout << "<vEnergySpectrum->vNeutrinoSpectrum->vReactorSpectrum>" << endl;
+	cout << "    Thermal Power (GWth)  : " << fActivity << endl;
+	cout << "    Fission Fraction      : ["
+		<< fFissionFraction[0] << ", "
+		<< fFissionFraction[1] << ", "
+		<< fFissionFraction[2] << ", "
+		<< fFissionFraction[3] << "]" << endl;
+	cout << "    Released Energy (MeV) : ["
+		<< fReleasedEnergy[0] << ", "
+		<< fReleasedEnergy[1] << ", "
+		<< fReleasedEnergy[2] << ", "
+		<< fReleasedEnergy[3] << "]" << endl;
+}
+
+
 void vReactorSpectrum::SetThermalPower(double thermalPower)
 {
 	fThermalPower = thermalPower;

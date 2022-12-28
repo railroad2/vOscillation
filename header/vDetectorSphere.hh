@@ -8,10 +8,10 @@
 class vDetectorSphere : public vDetector
 {
 public:
-	
+	vDetectorSphere() { SetShapeType("Sphere"); }
+
 	void PrintInfo();
 	
-	vDetectorSphere() { SetShapeType("Sphere"); }
 	double GetRadius() { return fRadius; }
 	void GetRandomPosition(double& oX, double& oY, double& oZ);
 	void SetRadius(double radius) { fRadius = radius; }

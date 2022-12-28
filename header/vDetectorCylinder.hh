@@ -8,10 +8,10 @@
 class vDetectorCylinder : public vDetector
 {
 public:
+	vDetectorCylinder() { SetShapeType("Cylinder"); }
 
 	void PrintInfo();
 
-	vDetectorCylinder() { SetShapeType("Cylinder"); }
 	double GetRadius() { return fRadius; }
 	double GetHeight() { return fHeight; }
 	void GetRandomPosition(double& oX, double& oY, double& oZ);

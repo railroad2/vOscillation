@@ -15,6 +15,7 @@ public:
 	~vReactorSpectrum() {}
 
 	void Initialization();
+	void PrintInfo();
 
 	double GetCurrent(double E); // /day
 	double GetCurrent(double E, int iso); // /day
