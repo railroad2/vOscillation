@@ -45,15 +45,15 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0)
 {
     if (src == 7) // pep
     {
-        return mE_PEP;
+        return fE_PEP;
     }
     else if (src == 8) // Be7_firstpeak
     {
-        return mE_Be7_1;
+        return fE_Be7_1;
     }
     else if (src == 9) // Be7_secondpeak
     {
-        return mE_Be7_2;
+        return fE_Be7_2;
     }
     else
     {
@@ -99,7 +99,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
 double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E)
 {
     double totflux = 0;
-    for (int i = 0; i < mNumSrcNoPeak; i++)
+    for (int i = 0; i < fNumSrcNoPeak; i++)
     {
         totflux += CalSolNuFlux_Priv_NoPeak(E, i);
     }
@@ -125,8 +125,8 @@ double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E, int src)
             -1.36811E-02, 3.94221E+00, -8.55431E+00,  2.36712E+01, -5.004770E+01,  6.075420E+01, -4.15278E+01,  1.49462E+01, -2.20367E+00,
             -6.74473E-02, 4.63141E+00, -1.15350E+01,  2.85067E+01, -5.116640E+01,  5.511020E+01, -3.45332E+01,  1.16550E+01, -1.63814E+00 };
     
-    double normSolar[mNumSrcNoPeak];
-    for (int i = 0; i < mNumSrcNoPeak; i++)
+    double normSolar[fNumSrcNoPeak];
+    for (int i = 0; i < fNumSrcNoPeak; i++)
     {
         normSolar[i] = 0;
         for (int j = 0; j < 9; j++)

@@ -17,11 +17,11 @@ private:
 	double CalSolNuFlux_Priv_NoPeak(double E);
 	double CalSolNuFlux_Priv_NoPeak(double E, int src);
 
-	const int mNumSrc = 8;
-	const int mNumSrcNoPeak = 6;
-	double mE_PEP = 1.442; // MeV
-	double mE_Be7_1 = 0.385; // MeV
-	double mE_Be7_2 = 0.862; // MeV
+	const int fNumSrc = 8;
+	const int fNumSrcNoPeak = 6;
+	double fE_PEP = 1.442; // MeV
+	double fE_Be7_1 = 0.385; // MeV
+	double fE_Be7_2 = 0.862; // MeV
 };
 
 #endif

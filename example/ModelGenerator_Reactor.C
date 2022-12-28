@@ -6,6 +6,7 @@ void ModelGenerator_Reactor()
 	gStyle->SetOptStat(kFALSE);
 	gRandom->SetSeed(0);
 
+
 	// Source Spatial Information Setting (point, Volume = 0)
 	vSource* source = new vSource();
 
@@ -23,6 +24,7 @@ void ModelGenerator_Reactor()
 	detector->Initialization();
 	double N_p = detector->GetProtonNumber();
 
+
 	// Energy Spectrum TF assign
 	double thermalPower = 24.84;
 	vReactorSpectrum* vrf = new vReactorSpectrum("HuberMueller");
@@ -36,6 +38,7 @@ void ModelGenerator_Reactor()
 	vOscillating* vosc = new vOscillating();
 	vosc->LoadStdData();
 
+
 	// Set Model Generator Parameter
 	vModelGeneratorLBL* vmg = new vModelGeneratorLBL(detector, source, ves);
 	double delta_X = 53000.;
@@ -46,16 +49,14 @@ void ModelGenerator_Reactor()
 	vmg->Initialization();
 
 
-	
-
-
 	// Set Histogram Parameter
 
 	int binNum = 500;
 	TH1D* histL = new TH1D("histL_NoOsc", "", binNum, delta_X - R_det, delta_X + R_det);
 	TH1D* histE = new TH1D("histE_NoOsc", "", binNum, 0, Emax);
 	TH1D* histLoE = new TH1D("histLoE_NoOsc", "", binNum, (delta_X - R_det) / Emax, (delta_X + R_det) / Emin);
-	TH2D* histLE = new TH2D("histLE_NoOsc", "", binNum, delta_X - R_det, delta_X + R_det, binNum, Emin, Emax);
+	TH2D* histLE = new TH2D("histLE_NoOsc", "", binNum, delta_X - R_det, delta_X + R_det, binNum, 0, Emax);
+
 
 	// Get the Monte Carlo Result
 
@@ -65,7 +66,7 @@ void ModelGenerator_Reactor()
 
 
 	// Print Information
-	cout << "iterNum                               : " << iterNum << endl;
+	cout << "iterNum : " << iterNum << endl;
 	vmg->PrintInfo();
 
 

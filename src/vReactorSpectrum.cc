@@ -27,7 +27,7 @@ void vReactorSpectrum::Initialization()
 void vReactorSpectrum::PrintInfo()
 {
 	cout << "<vEnergySpectrum->vNeutrinoSpectrum->vReactorSpectrum>" << endl;
-	cout << "    Thermal Power (GWth)  : " << fActivity << endl;
+	cout << "    Thermal Power (GWth)  : " << fThermalPower << endl;
 	cout << "    Fission Fraction      : ["
 		<< fFissionFraction[0] << ", "
 		<< fFissionFraction[1] << ", "
