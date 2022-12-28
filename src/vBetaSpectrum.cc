@@ -37,8 +37,8 @@ double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double nor
 	double S_0 = p * E_e * (Q - T) * (Q - T);
 
 	double eta;
-	if (anti) eta =  Z_f * fsc * E_e / p;
-	else      eta = -Z_f * fsc * E_e / p;
+	if (anti) eta = -Z_f * fsc * E_e / p;
+	else      eta =  Z_f * fsc * E_e / p;
 
 	double F = 2 * TMath::Pi() * eta / (1 - TMath::Exp(-2 * TMath::Pi() * eta));
 

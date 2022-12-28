@@ -77,6 +77,24 @@ double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
     int alpha;
     int beta;
 
+    if (iflavour == "e") alpha = 1;
+    else if (iflavour == "mu") alpha = 2;
+    else if (iflavour == "tau") alpha = 3;
+    else
+    {
+        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        return 0;
+    }
+
+    if (fflavour == "e") beta = 1;
+    else if (fflavour == "mu") beta = 2;
+    else if (fflavour == "tau") beta = 3;
+    else
+    {
+        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        return 0;
+    }
+
     double delta_ab;
     if (alpha == beta) delta_ab = 1;
     else delta_ab = 0;

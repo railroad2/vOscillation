@@ -5,7 +5,6 @@ vBetaSpectrum* vbs = new vBetaSpectrum();
 
 double BetaSpectrum_C11(double T)
 {
-	// -BetaSpectrum(-Z_f) -> beta+ decay
 	return vbs->GetBetaSpectrum(T, 0.960, 5., 0.1099013900669717, true);
 }
 
@@ -18,6 +17,8 @@ double BetaSpectrum_C14(double T)
 
 double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE)
 {
+	// integral Gaussian * BetaDeflux from a to b with stepsize (b-a) / 2N
+	
 	double result = 0;
 
 	int N = 100;
@@ -98,6 +99,7 @@ void PlotFullSolar()
 	cout << "totBetaRateC11 : " << totBetaRateC11 << endl;
 
 	vOscillating* vosc = new vOscillating();
+	vosc->LoadStdData();
 	vScatteringve* vcs = new vScatteringve();
 	vSolarFlux* vsf = new vSolarFlux();
 
@@ -105,6 +107,9 @@ void PlotFullSolar()
 
 	double P_ee = vosc->GetProbability_Smear("e", "e");
 	double P_em = 1 - P_ee;
+
+	cout << "Pee : " << P_ee << endl;
+	cout << "Pem : " << P_em << endl;
 
 	TGraph* gPP = new TGraph();
 	TGraph* gHEP = new TGraph();
@@ -142,17 +147,17 @@ void PlotFullSolar()
 	{
 		T = (double)i * 0.001 + 0.1;
 
-		b = 1.;
+		b = 0.428;
 		flux_PP = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 1);
-		b = 20.;
+		b = 18.790;
 		flux_HEP = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 2);
-		b = 20.;
+		b = 14.880;
 		flux_B8 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 3);
-		b = 2.;
+		b = 1.201;
 		flux_N13 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 4);
-		b = 2.;
+		b = 1.733;
 		flux_O15 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 5);
-		b = 2.;
+		b = 1.740;
 		flux_F17 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 6);
 
 		flux_C14 = totBetaRate * BetaSpectrum_C14(T);
@@ -215,13 +220,13 @@ void PlotFullSolar()
 	latPP->SetTextFont(42);
 	latPP->Draw("SAME");
 
-	TLatex* latHEP = new TLatex(0.25, 1.e-1, "hep");
-	latHEP->SetTextColor(3);
-	latHEP->SetTextSize(0.03);
-	latHEP->SetTextFont(42);
-	latHEP->Draw("SAME");
+	//TLatex* latHEP = new TLatex(0.25, 1.e-1, "hep");
+	//latHEP->SetTextColor(3);
+	//latHEP->SetTextSize(0.03);
+	//latHEP->SetTextFont(42);
+	//latHEP->Draw("SAME");
 
-	TLatex* latB8 = new TLatex(0.25, 1.e-1, "B8");
+	TLatex* latB8 = new TLatex(2.3, 1.e-4, "B8");
 	latB8->SetTextColor(4);
 	latB8->SetTextSize(0.03);
 	latB8->SetTextFont(42);
@@ -233,7 +238,7 @@ void PlotFullSolar()
 	latCNO->SetTextFont(42);
 	latCNO->Draw("SAME");
 
-	TLatex* latPEP = new TLatex(0.25, 1.e-1, "pep");
+	TLatex* latPEP = new TLatex(0.4, 2.8e-3, "pep");
 	latPEP->SetTextColor(6);
 	latPEP->SetTextSize(0.03);
 	latPEP->SetTextFont(42);
@@ -250,5 +255,11 @@ void PlotFullSolar()
 	latC14->SetTextSize(0.03);
 	latC14->SetTextFont(42);
 	latC14->Draw("SAME");
+
+	TLatex* latC11 = new TLatex(0.25, 1.e-1, "C11");
+	latC11->SetTextColor(8);
+	latC11->SetTextSize(0.03);
+	latC11->SetTextFont(42);
+	latC11->Draw("SAME");
 
 }
