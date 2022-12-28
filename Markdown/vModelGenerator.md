@@ -137,8 +137,3 @@ It is assumed that the relative energy resolution is proportional to the 1/sqrt(
 Therefore the energy resolution is proportional to the sqrt(E).
 
 Is is also assumed that the position resolution is proportional to the 1/sqrt(E).
-
-
---------------------
-## Reference
->[1] JHEP 09 (2020) 178 [arXiv:2007.14792]
