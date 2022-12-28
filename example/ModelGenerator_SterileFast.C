@@ -1,7 +1,7 @@
 #include "../vClass.hh"
 
 
-void ModelGenerator_Sterile()
+void ModelGenerator_SterileFast()
 {
 	gStyle->SetOptStat(kFALSE);
 	gRandom->SetSeed(0);
@@ -79,32 +79,38 @@ void ModelGenerator_Sterile()
 	double maxDm2 = 1.e2;
 	double logMinDm2 = TMath::Log(minDm2);
 	double logMaxDm2 = TMath::Log(maxDm2);
-	TArrayD Dm2list = TArrayD(listSize);
+	std::vector<double> Dm2list(listSize);
 	TH1D* histL[listSize];
 	TH1D* histE[listSize];
 	TH1D* histLoE[listSize];
 	TH2D* histLE[listSize];
 
-	TFile* file;
+
 	for (int i = startIndex; i < listSize; i++)
 	{
-		iterNum = 0;
-		Dm2list.AddAt(TMath::Exp( logMinDm2 + (logMaxDm2 - logMinDm2) * (double)i / (double)(listSize-1) ), i);
+		Dm2list[i] = TMath::Exp(logMinDm2 + (logMaxDm2 - logMinDm2) * (double)i / (double)(listSize - 1));
 		histL[i] = new TH1D(Form("histL_%d", i), "", binNum, 0, Lmax);
 		histE[i] = new TH1D(Form("histE_%d", i), "", binNum, 0, 2.5);
 		histLoE[i] = new TH1D(Form("histLoE_%d", i), "", binNum, 0, Lmax / 1.5);
 		histLE[i] = new TH2D(Form("histLE_%d", i), "", binNum, 0, Lmax, binNum, 0, 2.5);
-		vst->SetDm2_41(Dm2list[i]);
-		vmg->SetSterileEE(vst);
-		vmg->Initialization();
-		vmg->FillHistogram(histL[i], histE[i], histLoE[i], histLE[i], iterNum, N);
-		cout << "iterNum : " << iterNum << endl;
+	}
 
+	vmg->FillHistogramFast(histL, histE, histLoE, histLE, listSize, Dm2list, N);
+
+	TFile* file;
+	TString modelFileName;
+	TFile* readFile;
+
+	for (int i = startIndex; i < listSize; i++)
+	{
 		file = new TFile(Form("Model_Sterile_dx_%.2f_resol_E%.3fL%.3f_Dm2_%.2e.root", delta_X, ResolutionE, ResolutionL, Dm2list[i]), "recreate");
 		histL[i]->Write();
 		histE[i]->Write();
 		histLoE[i]->Write();
 		histLE[i]->Write();
 		file->Close();
+
+		modelFileName = Form("Model_Sterile_dx_%.2f_resol_E%.3fL%.3f_Dm2_%.2e.root", delta_X, ResolutionE, ResolutionL, Dm2list[i]);
+		readFile = new TFile(modelFileName, "read");
 	}
 }

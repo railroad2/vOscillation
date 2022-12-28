@@ -1,5 +1,4 @@
 #include "../header/vModelGeneratorLBL.hh"
-#include "../header/vConstant.hh"
 
 
 void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum)

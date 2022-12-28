@@ -18,6 +18,8 @@ public:
 	}
 
 	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum);
+	void FillHistogramFast(TH1D** oHistLList, TH1D** oHistEList, TH1D** oHistLoEList, TH2D** oHistLEList,
+		int listSize, std::vector<double> Dm2_List, int64_t genNum);
 
 	void PrintInfo();
 

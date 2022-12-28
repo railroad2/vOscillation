@@ -6,7 +6,7 @@ vBetaSpectrum* vbs = new vBetaSpectrum();
 double BetaSpectrum_C11(double T)
 {
 	// -BetaSpectrum(-Z_f) -> beta+ decay
-	return - vbs->GetBetaSpectrum(T, 0.960, -5., 0.1099013900669717);
+	return vbs->GetBetaSpectrum(T, 0.960, 5., 0.1099013900669717, true);
 }
 
 
@@ -56,7 +56,7 @@ double integral_dcs_spectrum(double T, int N, double a, double b, vOscillating* 
 	for (int i = 0; i <= 2 * N; i++)
 	{
 		E = a + h * (double)i;
-		dcs = vcs->GetDifCrossSection_Correction(E, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(E, T, "mu") * P_em; // cm^2 / MeV
+		dcs = vcs->GetDifCrossSection(E, T, "e") * P_ee + vcs->GetDifCrossSection(E, T, "mu") * P_em; // cm^2 / MeV
 		spectrum = vsf->GetSolarNeutrinoFlux_NoPeak(E, iso);         // / cm^2 / keV / day
 		if (i == 0 or i == 2 * N) resultIntegral += dcs * spectrum;
 		else if (i % 2 == 0)      resultIntegral += 2. * dcs * spectrum;
@@ -142,25 +142,25 @@ void PlotFullSolar()
 	{
 		T = (double)i * 0.001 + 0.1;
 
-		b = 0.428;
+		b = 1.;
 		flux_PP = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 1);
-		b = 18.790;
+		b = 20.;
 		flux_HEP = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 2);
-		b = 14.880;
+		b = 20.;
 		flux_B8 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 3);
-		b = 1.201;
+		b = 2.;
 		flux_N13 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 4);
-		b = 1.733;
+		b = 2.;
 		flux_O15 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 5);
-		b = 1.740;
+		b = 2.;
 		flux_F17 = totElectronNumber * integral_dcs_spectrum(T, N, a, b, vosc, vcs, vsf, 6);
 
 		flux_C14 = totBetaRate * BetaSpectrum_C14(T);
 		flux_C11 = totBetaRateC11 * BetaSpectrum_C11_Resolution(T, 5., 2.5);
 
-		dcs_PEP = vcs->GetDifCrossSection_Correction(fPEP_Enu, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fPEP_Enu, T, "mu") * P_em;
-		dcs_Be7_1 = vcs->GetDifCrossSection_Correction(fBe7_Enu1, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fBe7_Enu1, T, "mu") * P_em;
-		dcs_Be7_2 = vcs->GetDifCrossSection_Correction(fBe7_Enu2, T, "e") * P_ee + vcs->GetDifCrossSection_Correction(fBe7_Enu2, T, "mu") * P_em;
+		dcs_PEP = vcs->GetDifCrossSection(fPEP_Enu, T, "e") * P_ee + vcs->GetDifCrossSection(fPEP_Enu, T, "mu") * P_em;
+		dcs_Be7_1 = vcs->GetDifCrossSection(fBe7_Enu1, T, "e") * P_ee + vcs->GetDifCrossSection(fBe7_Enu1, T, "mu") * P_em;
+		dcs_Be7_2 = vcs->GetDifCrossSection(fBe7_Enu2, T, "e") * P_ee + vcs->GetDifCrossSection(fBe7_Enu2, T, "mu") * P_em;
 
 		flux_PEP = totElectronNumber * fPEP_Flux * dcs_PEP;
 		flux_Be7 = totElectronNumber * (fBe7_Flux1 * dcs_Be7_1 + fBe7_Flux2 * dcs_Be7_2);
@@ -193,15 +193,15 @@ void PlotFullSolar()
 
 	gPP->SetLineColor(2);
 	gPP->Draw("SAMEl");
-	gHEP->SetLineColor(2);
+	gHEP->SetLineColor(3);
 	gHEP->Draw("SAMEl");
-	gB8->SetLineColor(2);
+	gB8->SetLineColor(4);
 	gB8->Draw("SAMEl");
-	gCNO->SetLineColor(2);
+	gCNO->SetLineColor(5);
 	gCNO->Draw("SAMEl");
-	gPEP->SetLineColor(2);
+	gPEP->SetLineColor(6);
 	gPEP->Draw("SAMEl");
-	gBe7->SetLineColor(2);
+	gBe7->SetLineColor(7);
 	gBe7->Draw("SAMEl");
 
 	gC14->SetLineColor(14);
@@ -209,43 +209,43 @@ void PlotFullSolar()
 	gC11->SetLineColor(8);
 	gC11->Draw("SAMEl");
 
-	TLatex* latPP = new TLatex(0.25, 1100, "pp");
+	TLatex* latPP = new TLatex(0.25, 1.e-1, "pp");
 	latPP->SetTextColor(2);
 	latPP->SetTextSize(0.03);
 	latPP->SetTextFont(42);
 	latPP->Draw("SAME");
 
-	//TLatex* latHEP = new TLatex(0.25, 1100, "hep");
-	//latHEP->SetTextColor(2);
-	//latHEP->SetTextSize(0.03);
-	//latHEP->SetTextFont(42);
-	//latHEP->Draw("SAME");
+	TLatex* latHEP = new TLatex(0.25, 1.e-1, "hep");
+	latHEP->SetTextColor(3);
+	latHEP->SetTextSize(0.03);
+	latHEP->SetTextFont(42);
+	latHEP->Draw("SAME");
 
-	TLatex* latB8 = new TLatex(0.25, 1100, "B8");
-	latB8->SetTextColor(2);
+	TLatex* latB8 = new TLatex(0.25, 1.e-1, "B8");
+	latB8->SetTextColor(4);
 	latB8->SetTextSize(0.03);
 	latB8->SetTextFont(42);
 	latB8->Draw("SAME");
 
-	TLatex* latCNO = new TLatex(0.25, 1100, "CNO");
-	latCNO->SetTextColor(2);
+	TLatex* latCNO = new TLatex(0.25, 1.e-1, "CNO");
+	latCNO->SetTextColor(5);
 	latCNO->SetTextSize(0.03);
 	latCNO->SetTextFont(42);
 	latCNO->Draw("SAME");
 
-	TLatex* latPEP = new TLatex(0.25, 1100, "pep");
-	latPEP->SetTextColor(2);
+	TLatex* latPEP = new TLatex(0.25, 1.e-1, "pep");
+	latPEP->SetTextColor(6);
 	latPEP->SetTextSize(0.03);
 	latPEP->SetTextFont(42);
 	latPEP->Draw("SAME");
 
-	TLatex* latBe7 = new TLatex(0.25, 1100, "Be7");
-	latBe7->SetTextColor(2);
+	TLatex* latBe7 = new TLatex(0.25, 1.e-1, "Be7");
+	latBe7->SetTextColor(7);
 	latBe7->SetTextSize(0.03);
 	latBe7->SetTextFont(42);
 	latBe7->Draw("SAME");
 
-	TLatex* latC14 = new TLatex(0.25, 1100, "C14");
+	TLatex* latC14 = new TLatex(0.25, 1.e-1, "C14");
 	latC14->SetTextColor(14);
 	latC14->SetTextSize(0.03);
 	latC14->SetTextFont(42);
