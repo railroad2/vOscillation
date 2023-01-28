@@ -1,4 +1,13 @@
 #include "../vClass.hh"
+#include <chrono>
+#include "TStyle.h"
+#include "TRandom.h"
+#include "TFile.h"
+#include "TH1D.h"
+#include "TH2D.h"
+
+
+using namespace std;
 
 
 void ModelGenerator_SterileFast()
@@ -6,6 +15,7 @@ void ModelGenerator_SterileFast()
 	gStyle->SetOptStat(kFALSE);
 	gRandom->SetSeed(0);
 
+	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 
 	// Set expDays and Source Activity Information Setting
 
@@ -72,7 +82,7 @@ void ModelGenerator_SterileFast()
 
 	int binNum = 500;
 	int startIndex = 0;
-	int listSize = 20;
+	int listSize = 100;
 	int64_t N = 1000000;
 	int64_t iterNum;
 	double minDm2 = 1.e-2;
@@ -113,4 +123,8 @@ void ModelGenerator_SterileFast()
 		modelFileName = Form("Model_Sterile_dx_%.2f_resol_E%.3fL%.3f_Dm2_%.2e.root", delta_X, ResolutionE, ResolutionL, Dm2list[i]);
 		readFile = new TFile(modelFileName, "read");
 	}
+
+	std::chrono::system_clock::time_point finish  = std::chrono::system_clock::now();
+	double durationTime = std::chrono::duration<double>(finish - start).count();
+	cout << "durationTime : " << durationTime << endl;
 }

@@ -16,13 +16,13 @@
 class vSourceCylinder : public vSource
 {
 public:
-	
-	void PrintInfo();
-	
 	vSourceCylinder() { SetShapeType("Cylinder"); }
-	double GetRadius() { return fRadius; }
-	double GetHeight() { return fHeight; }
-	void GetRandomPosition(double& oX, double& oY, double& oZ);
+	
+	void PrintInfo() const override;
+	
+	double GetRadius() const { return fRadius; }
+	double GetHeight() const { return fHeight; }
+	void GetRandomPosition(double& oX, double& oY, double& oZ) const override;
 	void SetRadius(double radius) { fRadius = radius; }
 	void SetHeight(double height) { fHeight = height; }
 

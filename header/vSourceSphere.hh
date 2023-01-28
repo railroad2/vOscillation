@@ -16,12 +16,12 @@
 class vSourceSphere : public vSource
 {
 public:
-	
-	void PrintInfo();
-	
 	vSourceSphere() { SetShapeType("Sphere"); }
-	double GetRadius() { return fRadius; }
-	void GetRandomPosition(double& oX, double& oY, double& oZ);
+
+	void PrintInfo() const override;
+	
+	double GetRadius() const { return fRadius; }
+	void GetRandomPosition(double& oX, double& oY, double& oZ) const override;
 	void SetRadius(double radius) { fRadius = radius; }
 
 private:

@@ -5,11 +5,11 @@
 class vIBD
 {
 public:
-	double GetCrossSection(double E);
-	double GetDifCrossSection(double E, double theta);
+	double GetCrossSection(double E) const;
+	double GetDifCrossSection(double E, double theta) const;
 
 private:
-	double GetMomentum_Positron(double E);
+	double GetMomentum_Positron(double E) const;
 };
 
 #endif 

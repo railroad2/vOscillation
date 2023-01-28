@@ -1,7 +1,7 @@
 #include "../header/vDetectorCylinder.hh"
 
 
-void vDetectorCylinder::PrintInfo()
+void vDetectorCylinder::PrintInfo() const
 {
 	vDetector::PrintInfo();
 	cout << "    fRadius (m)                      : " << fRadius << endl;
@@ -9,7 +9,7 @@ void vDetectorCylinder::PrintInfo()
 }
 
 
-void vDetectorCylinder::GetRandomPosition(double& oX, double& oY, double& oZ)
+void vDetectorCylinder::GetRandomPosition(double& oX, double& oY, double& oZ) const
 {
 	double theta = gRandom->Uniform(0, 2 * TMath::Pi());
 	double r = fRadius * TMath::Sqrt(gRandom->Uniform());

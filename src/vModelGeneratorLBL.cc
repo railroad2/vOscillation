@@ -1,7 +1,8 @@
 #include "../header/vModelGeneratorLBL.hh"
+#include "TF1.h"
 
 
-void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum)
+void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const
 {
 	// Energy Spectrum TF assign
 	TF1* tfEnergy = new TF1("tfEnergy", fSpectrum, fSpectrum.GetEmin(), fSpectrum.GetEmax(), 0);
@@ -61,7 +62,7 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 }
 
 
-void vModelGeneratorLBL::PrintInfo()
+void vModelGeneratorLBL::PrintInfo() const
 {
 	cout << "<vModelGenerator>" << endl;
 	cout << "    Delta X          : " << fDeltaX << endl;

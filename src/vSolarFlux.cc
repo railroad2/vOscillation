@@ -1,13 +1,13 @@
 #include "../header/vSolarFlux.hh"
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E)
+double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E) const
 {
     return GetSolarNeutrinoFlux_NoPeak(E, 0);
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, TString src)
+double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, TString src) const
 {
     if      (src == "pp"  || src == "PP")  return GetSolarNeutrinoFlux_NoPeak(E, 1);
     else if (src == "hep" || src == "HEP") return GetSolarNeutrinoFlux_NoPeak(E, 2);
@@ -19,7 +19,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, TString src)
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, int src = 0)
+double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, int src = 0) const
 {
     double enu = E * 1000;
     double flux = 0;
@@ -27,12 +27,12 @@ double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, int src = 0)
     else if (src > 0) flux = CalSolNuFlux_Priv_NoPeak(E, src-1);
     else flux = CalSolNuFlux_Priv_NoPeak(E);
 
-    double day2Sec = 86400.;
+    static double day2Sec = 86400.;
     return flux * day2Sec;
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(TString src)
+double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(TString src) const
 {
     if      (src == "pep"   || src == "PEP")  return GetSolarNeutrinoFlux_PeakEnergy(7);
     else if (src == "Be7_1" || src == "Be_1") return GetSolarNeutrinoFlux_PeakEnergy(8);
@@ -41,7 +41,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(TString src)
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0)
+double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0) const
 {
     if (src == 7) // pep
     {
@@ -62,7 +62,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0)
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(TString src)
+double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(TString src) const
 {
     if      (src == "pep"   || src == "PEP")  return GetSolarNeutrinoFlux_PeakFlux(7);
     else if (src == "Be7_1" || src == "Be_1") return GetSolarNeutrinoFlux_PeakFlux(8);
@@ -71,7 +71,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(TString src)
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
+double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0) const
 {
     double flux = 0;
     if (src == 7) // pep
@@ -96,7 +96,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0)
 }
 
 
-double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E)
+double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E) const
 {
     double totflux = 0;
     for (int i = 0; i < fNumSrcNoPeak; i++)
@@ -109,7 +109,7 @@ double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E)
 }
 
 
-double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E, int src)
+double vSolarFlux::CalSolNuFlux_Priv_NoPeak(double E, int src) const
 {
     const int numSrcNoPeak = 6;
 

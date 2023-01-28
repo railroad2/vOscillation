@@ -2,7 +2,10 @@
 #define VOSCILLATING_HH
 
 
+#include <iostream>
 #include <vector>
+#include "TString.h"
+#include "TComplex.h"
 
 
 /**
@@ -18,12 +21,12 @@ class vOscillating
 {
 public:
     vOscillating();
-    ~vOscillating();
+    virtual ~vOscillating();
 
     // Main Method
-    double   GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti = false);
-    double   GetProbability_Smear(TString iflavour, TString fflavour);
-    TComplex GetPMNSmatrix(int row, int column);
+    virtual double GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti = false) const;
+    virtual double GetProbability_Smear(TString iflavour, TString fflavour) const;
+    TComplex GetPMNSmatrix(int row, int column) const;
 
     // DataLoader (Setter)
     void LoadStdData(bool IO = false);
@@ -35,10 +38,10 @@ public:
     void Setdelta_CP(double delta_CP) { fdelta_CP = delta_CP; }
 
     //Getter
-    std::vector<double> Gettheta()  { return { ftheta_12, ftheta_13, ftheta_23 }; }
-    std::vector<double> Getradian() { return { frad_12, frad_13, frad_23 }; }
-    std::vector<double> GetDm2()    { return { fDm2_21, fDm2_31, fDm2_32 }; }
-    double Getdelta_CP() { return fdelta_CP; }
+    std::vector<double> Gettheta() const  { return { ftheta_12, ftheta_13, ftheta_23 }; }
+    std::vector<double> Getradian() const { return { frad_12, frad_13, frad_23 }; }
+    std::vector<double> GetDm2() const    { return { fDm2_21, fDm2_31, fDm2_32 }; }
+    double Getdelta_CP() const { return fdelta_CP; }
 
 
 protected:
@@ -58,22 +61,22 @@ private:
 // Reference:
 // [1] PDG, www.pdg.org
     // Normal Ordering
-    double PDGNO_sin2_12  = 0.307;
-    double PDGNO_sin2_13  = 0.0220;
-    double PDGNO_sin2_23  = 0.546;
-    double PDGNO_Dm2_21   = 0.0000753;
-    double PDGNO_Dm2_31   = 0.002453 + 0.0000753;
-    double PDGNO_Dm2_32   = 0.002453;
-    double PDGNO_delta_CP = 1.36 * 180;
+    constexpr static double PDGNO_sin2_12  = 0.307;
+    constexpr static double PDGNO_sin2_13  = 0.0220;
+    constexpr static double PDGNO_sin2_23  = 0.546;
+    constexpr static double PDGNO_Dm2_21   = 0.0000753;
+    constexpr static double PDGNO_Dm2_31   = 0.002453 + 0.0000753;
+    constexpr static double PDGNO_Dm2_32   = 0.002453;
+    constexpr static double PDGNO_delta_CP = 1.36 * 180;
 
     // Inverse Ordering
-    double PDGIO_sin2_12  = 0.307;
-    double PDGIO_sin2_13  = 0.0220;
-    double PDGIO_sin2_23  = 0.539;
-    double PDGIO_Dm2_21   = 0.0000753;
-    double PDGIO_Dm2_31   = -0.002536 + 0.0000753;
-    double PDGIO_Dm2_32   = -0.002536;
-    double PDGIO_delta_CP = 1.36 * 180;
+    constexpr static double PDGIO_sin2_12  = 0.307;
+    constexpr static double PDGIO_sin2_13  = 0.0220;
+    constexpr static double PDGIO_sin2_23  = 0.539;
+    constexpr static double PDGIO_Dm2_21   = 0.0000753;
+    constexpr static double PDGIO_Dm2_31   = -0.002536 + 0.0000753;
+    constexpr static double PDGIO_Dm2_32   = -0.002536;
+    constexpr static double PDGIO_delta_CP = 1.36 * 180;
 };
 
 #endif

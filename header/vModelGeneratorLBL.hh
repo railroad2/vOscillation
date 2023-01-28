@@ -10,20 +10,20 @@ class vModelGeneratorLBL : public vModelGenerator
 {
 public:
 	vModelGeneratorLBL(vDetector* detector, vSource* source, vEnergySpectrum spectrum) : vModelGenerator(detector, source, spectrum) {}
-	~vModelGeneratorLBL() {}
+	~vModelGeneratorLBL() override {}
 
-	void Initialization()
+	void Initialization() override
 	{
 		CalDistance();
 	}
 
-	void PrintInfo();
+	void PrintInfo() const override;
 
-	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum);
+	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const override;
 	
 	void SetvOscillating(vOscillating* vosc) { fvosc = vosc; }
-	vOscillating* GetvOscillating() { return fvosc; }
-	double GetDistance() { return fDistance; }
+	vOscillating* GetvOscillating() const { return fvosc; }
+	double GetDistance() const { return fDistance; }
 
 private:
 	void CalDistance();

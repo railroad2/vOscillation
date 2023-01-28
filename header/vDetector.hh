@@ -24,7 +24,7 @@ public:
 
 	void Initialization();
 
-	virtual void PrintInfo();
+	virtual void PrintInfo() const;
 
 	/**
 	 * Generate a random position vector (oX, oY, oZ) uniformly in the detector.
@@ -32,15 +32,15 @@ public:
 	 * In this class(vDetector), this method is not defined.
 	 * If you want to make another class you made inherit this class, then you should override this function with new spatial parameters (radius, height, etc.).
 	 */
-	virtual void GetRandomPosition(double& oX, double& oY, double& oZ) {}
-	void GetRandomResolutionPosition(double& oX, double& oY, double& oZ, double Enu);
-	void GetRandomResolutionEnergy(double& oE, double Enu);
+	virtual void GetRandomPosition(double& oX, double& oY, double& oZ) const {}
+	void GetRandomResolutionPosition(double& oX, double& oY, double& oZ, double Enu) const;
+	void GetRandomResolutionEnergy(double& oE, double Enu) const;
 
-	double GetResolutionE() { return fResolutionE; }
-	double GetResolutionL() { return fResolutionL; }
-	double GetVolume() { return fVolume; } // m^3
-	double GetProtonNumber() { return fProtonNumber; }
-	TString GetShapeType() { return fShapeType; }
+	double GetResolutionE() const { return fResolutionE; }
+	double GetResolutionL() const { return fResolutionL; }
+	double GetVolume() const { return fVolume; } // m^3
+	double GetProtonNumber() const { return fProtonNumber; }
+	TString GetShapeType() const { return fShapeType; }
 
 	void SetResolutionE(double resolution) { fResolutionE = resolution; } // @ 1 MeV, ex) 5% -> resolution = 0.05
 	void SetResolutionL(double resolution) { fResolutionL = resolution; } // @ 1 MeV, ex) 12cm -> resolution = 0.12

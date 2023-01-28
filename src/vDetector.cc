@@ -8,7 +8,7 @@ void vDetector::Initialization()
 }
 
 
-void vDetector::PrintInfo()
+void vDetector::PrintInfo() const
 {
 	cout << "<vDetector>" << endl;
 	cout << "    ShapeType                        : " << fShapeType << endl;
@@ -18,7 +18,7 @@ void vDetector::PrintInfo()
 }
 
 
-void vDetector::GetRandomResolutionPosition(double& oX, double& oY, double& oZ, double Enu)
+void vDetector::GetRandomResolutionPosition(double& oX, double& oY, double& oZ, double Enu) const
 {
 	oX = gRandom->Gaus(0, fResolutionL / TMath::Sqrt(Enu));
 	oY = gRandom->Gaus(0, fResolutionL / TMath::Sqrt(Enu));
@@ -26,7 +26,7 @@ void vDetector::GetRandomResolutionPosition(double& oX, double& oY, double& oZ, 
 }
 
 
-void vDetector::GetRandomResolutionEnergy(double& oE, double Enu)
+void vDetector::GetRandomResolutionEnergy(double& oE, double Enu) const
 {
 	oE = gRandom->Gaus(0, fResolutionE * TMath::Sqrt(Enu));
 }

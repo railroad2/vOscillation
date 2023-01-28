@@ -9,11 +9,11 @@ public:
     virtual ~vSterileEE();
 
     // Main Method
-    double GetProbability_SBL(double LoE);
+    double GetProbability_SBL(double LoE) const;
 
     // DataLoader (Setter)
-    double Gets22t14() { return fS22t14; }
-    double GetDm2_41() { return fDm2_41; }
+    double Gets22t14() const { return fS22t14; }
+    double GetDm2_41() const { return fDm2_41; }
     void Sets22t14(double s22t14) { fS22t14 = s22t14; }
     void SetDm2_41(double dm2_41) { fDm2_41 = dm2_41; }
 

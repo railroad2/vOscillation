@@ -10,7 +10,7 @@ vOscillating::vOscillating()
 vOscillating::~vOscillating() {};
 
 
-double vOscillating::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti)
+double vOscillating::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -21,7 +21,7 @@ double vOscillating::GetProbability(double L, double E, TString iflavour, TStrin
     else if (iflavour == "tau") alpha = 3;
     else
     {
-        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -30,7 +30,7 @@ double vOscillating::GetProbability(double L, double E, TString iflavour, TStrin
     else if (fflavour == "tau") beta = 3;
     else
     {
-        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -71,7 +71,7 @@ double vOscillating::GetProbability(double L, double E, TString iflavour, TStrin
 }
 
 
-double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
+double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -82,7 +82,7 @@ double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
     else if (iflavour == "tau") alpha = 3;
     else
     {
-        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -91,7 +91,7 @@ double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
     else if (fflavour == "tau") beta = 3;
     else
     {
-        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -116,7 +116,7 @@ double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour)
 }
 
 
-TComplex vOscillating::GetPMNSmatrix(int row, int column)
+TComplex vOscillating::GetPMNSmatrix(int row, int column) const
 {
     double rad_delta_CP = fdelta_CP * TMath::Pi() / 180;
 

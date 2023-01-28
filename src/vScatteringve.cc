@@ -2,7 +2,7 @@
 #include "../header/vConstant.hh"
 
 
-double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = "e")
+double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = "e") const
 {
     // Bahcall - Neutrino electron scattering and solar neutrino experiments
     double sign_g_L = 0;
@@ -15,8 +15,8 @@ double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = 
         return 0;
     }
 
-    double sigma_0 = 1.7232659e-44; // cm^2 / MeV,  2 * G_F * G_F * m_e / pi
-    double SsqthW = 0.23121; // (4), PDG
+    static double sigma_0 = 1.7232659e-44; // cm^2 / MeV,  2 * G_F * G_F * m_e / pi
+    static double SsqthW = 0.23121; // (4), PDG
     double g_L = SsqthW + 0.5 * sign_g_L;
     double g_R = SsqthW;
     double m_e = MASSELECTRON;
@@ -31,15 +31,15 @@ double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = 
 }
 
 
-double vScatteringve::GetDifCrossSection_Correction(double E, double T, TString vflavour)
+double vScatteringve::GetDifCrossSection_Correction(double E, double T, TString vflavour) const
 {
     // Bahcall - Neutrino electron scattering and solar neutrino experiments
 
     double m_e = MASSELECTRON; // MeV
-    double sigma_0 = 1.7232659e-44; // cm^2 / MeV,  2 * G_F * G_F * m_e / pi
-    double SsqthW = 0.23121; // (4), PDG
+    static double sigma_0 = 1.7232659e-44; // cm^2 / MeV,  2 * G_F * G_F * m_e / pi
+    static double SsqthW = 0.23121; // (4), PDG
 
-    double rho_NC_vl = 1.0126;
+    static double rho_NC_vl = 1.0126;
     double x = TMath::Sqrt(1 + 2 * m_e / T);
     double I = (1 / 3. + (3. - x * x) * (0.5 * x * TMath::Log((x + 1) / (x - 1)) - 1)) / 6.;
     double kappa_nue_e = 0.9791 + 0.0097 * I;
@@ -78,7 +78,7 @@ double vScatteringve::GetDifCrossSection_Correction(double E, double T, TString 
     double L_beta = -TMath::DiLog(beta); // L(beta)
     double Logz = TMath::Log(z);
 
-    double alpha = 7.2973525693e-3; // (11) fine structure constant
+    static double alpha = 7.2973525693e-3; // (11) fine structure constant
     double term1 = E_e / l * TMath::Log((E_e + l) / m_e) - 1;
     double term2 = 2 * TMath::Log(1 - z - m_e / (E_e + l));
     double f_minus = term1 * (term2 - TMath::Log(1 - z) - 0.5 * Logz - 5. / 12.)

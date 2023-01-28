@@ -15,28 +15,28 @@ public:
 	~vReactorSpectrum() {}
 
 	void Initialization();
-	void PrintInfo();
+	void PrintInfo() const;
 
-	double GetCurrent(double E); // /day
-	double GetCurrent(double E, int iso); // /day
+	double GetCurrent(double E) const; // /day
+	double GetCurrent(double E, int iso) const; // /day
 
 	//Setter and Getter
 	void                SetThermalPower(double thermalPower);
 	void                SetFissionFraction(std::vector<double> ff);
 	void                SetReleasedEnergy(std::vector<double> re);
 	
-	double              GetThermalPower() { return fThermalPower; }
-	std::vector<double> GetFissionFraction() { return fFissionFraction; }
-	std::vector<double> GetReleasedEnergy() { return fReleasedEnergy; }
-	double              GetNeutrinoCurrent0() { return fNeutrinoCurrent0; }
+	double              GetThermalPower() const { return fThermalPower; }
+	std::vector<double> GetFissionFraction() const { return fFissionFraction; }
+	std::vector<double> GetReleasedEnergy() const { return fReleasedEnergy; }
+	double              GetNeutrinoCurrent0() const { return fNeutrinoCurrent0; }
 
 private:
-	double GetReactvCurrent_Gutlein(double E, int iso); // 1 : U-235, 2 : U-238, 3 : Pu-239, 4 : Pu-241
-	double GetReactvCurrent_HuberMueller(double E, int iso);
-	double GetReactvCurrent_Gutlein_Total(double E);
-	double GetReactvCurrent_Gutlein_Isotope(double E, int iso);
-	double GetReactvCurrent_HuberMueller_Total(double E);
-	double GetReactvCurrent_HuberMueller_Isotope(double E, int iso);
+	double GetReactvCurrent_Gutlein(double E, int iso) const; // 1 : U-235, 2 : U-238, 3 : Pu-239, 4 : Pu-241
+	double GetReactvCurrent_HuberMueller(double E, int iso) const;
+	double GetReactvCurrent_Gutlein_Total(double E) const;
+	double GetReactvCurrent_Gutlein_Isotope(double E, int iso) const;
+	double GetReactvCurrent_HuberMueller_Total(double E) const;
+	double GetReactvCurrent_HuberMueller_Isotope(double E, int iso) const;
 
 	TString fModelName;
 	double fNeutrinoCurrent0;

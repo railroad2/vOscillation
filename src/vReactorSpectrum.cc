@@ -24,7 +24,7 @@ void vReactorSpectrum::Initialization()
 }
 
 
-void vReactorSpectrum::PrintInfo()
+void vReactorSpectrum::PrintInfo() const
 {
 	cout << "<vEnergySpectrum->vNeutrinoSpectrum->vReactorSpectrum>" << endl;
 	cout << "    Thermal Power (GWth)  : " << fThermalPower << endl;
@@ -62,13 +62,13 @@ void vReactorSpectrum::SetReleasedEnergy(std::vector<double> re)
 }
 
 
-double vReactorSpectrum::GetCurrent(double E)
+double vReactorSpectrum::GetCurrent(double E) const
 {
 	return GetCurrent(E, 0);
 }
 
 
-double vReactorSpectrum::GetCurrent(double E, int iso)
+double vReactorSpectrum::GetCurrent(double E, int iso) const
 {
 	if (E < 0) return 0;
 	double result;
@@ -84,7 +84,7 @@ double vReactorSpectrum::GetCurrent(double E, int iso)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_Gutlein(double E, int iso)
+double vReactorSpectrum::GetReactvCurrent_Gutlein(double E, int iso) const
 {
 	if (E < 0) return 0;
 	double result;
@@ -100,7 +100,7 @@ double vReactorSpectrum::GetReactvCurrent_Gutlein(double E, int iso)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_HuberMueller(double E, int iso)
+double vReactorSpectrum::GetReactvCurrent_HuberMueller(double E, int iso) const
 {
 	if (E < 0) return 0;
 	double result;
@@ -116,7 +116,7 @@ double vReactorSpectrum::GetReactvCurrent_HuberMueller(double E, int iso)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_Gutlein_Total(double E)
+double vReactorSpectrum::GetReactvCurrent_Gutlein_Total(double E) const
 {
 	if (E < 0) return 0;
 	double result = 0;
@@ -129,7 +129,7 @@ double vReactorSpectrum::GetReactvCurrent_Gutlein_Total(double E)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_Gutlein_Isotope(double E, int iso)
+double vReactorSpectrum::GetReactvCurrent_Gutlein_Isotope(double E, int iso) const
 {
 	if (E < 0) return 0;
 	E = E * 1000; // MeV -> keV
@@ -160,7 +160,7 @@ double vReactorSpectrum::GetReactvCurrent_Gutlein_Isotope(double E, int iso)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_HuberMueller_Total(double E)
+double vReactorSpectrum::GetReactvCurrent_HuberMueller_Total(double E) const
 {
 	if (E < 0) return 0;
 	double result = 0;
@@ -173,7 +173,7 @@ double vReactorSpectrum::GetReactvCurrent_HuberMueller_Total(double E)
 }
 
 
-double vReactorSpectrum::GetReactvCurrent_HuberMueller_Isotope(double E, int iso)
+double vReactorSpectrum::GetReactvCurrent_HuberMueller_Isotope(double E, int iso) const
 {
 	if (E < 0) return 0;
 	if (iso > 4) return 0;

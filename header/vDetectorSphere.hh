@@ -10,14 +10,14 @@ class vDetectorSphere : public vDetector
 public:
 	vDetectorSphere() { SetShapeType("Sphere"); }
 
-	void PrintInfo();
+	void PrintInfo() const override;
 	
-	double GetRadius() { return fRadius; }
-	void GetRandomPosition(double& oX, double& oY, double& oZ);
+	double GetRadius() const { return fRadius; }
+	void GetRandomPosition(double& oX, double& oY, double& oZ) const override;
 	void SetRadius(double radius) { fRadius = radius; }
 
 protected:
-	void CalVolume();
+	void CalVolume() override;
 
 private:
 	double fRadius;

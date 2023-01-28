@@ -9,13 +9,13 @@
 class vBetaSpectrum : public vNeutrinoSpectrum
 {
 public:
-	void PrintInfo();
+	void PrintInfo() const override;
 	
-	double GetCurrent(double E);
-	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti = false);
+	double GetCurrent(double E) const override;
+	double GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti = false) const;
 
 	void SetActivity(double activity) { fActivity = activity; } // The unit of Activity should be /day
-	double GetActivity() { return fActivity; }
+	double GetActivity() const { return fActivity; }
 
 protected:
 	void SetVectorSize(int size) { fVectorSize = size; }

@@ -1,14 +1,14 @@
 #include "../header/vDetectorSphere.hh"
 
 
-void vDetectorSphere::PrintInfo()
+void vDetectorSphere::PrintInfo() const
 {
 	vDetector::PrintInfo();
 	cout << "    fRadius                          : " << fRadius << endl;
 }
 
 
-void vDetectorSphere::GetRandomPosition(double& oX, double& oY, double& oZ)
+void vDetectorSphere::GetRandomPosition(double& oX, double& oY, double& oZ) const
 {
 	double r = fRadius * TMath::Power(gRandom->Uniform(0., 1.), 1. / 3.);
 	double phi = gRandom->Uniform(0., 2. * TMath::Pi());

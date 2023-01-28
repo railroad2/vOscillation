@@ -1,7 +1,7 @@
 #include "../header/vModelGenerator.hh"
 
 
-void vModelGenerator::PrintInfo()
+void vModelGenerator::PrintInfo() const
 {
 	cout << "<vModelGenerator>" << endl;
 	cout << "    Delta X          : " << fDeltaX << endl;
@@ -12,7 +12,7 @@ void vModelGenerator::PrintInfo()
 }
 
 
-double vModelGenerator::CalculateL(double x, double y, double z)
+double vModelGenerator::CalculateL(double x, double y, double z) const
 {
 	return TMath::Sqrt(x * x + y * y + z * z);
 }

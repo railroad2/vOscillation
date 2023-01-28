@@ -3,6 +3,8 @@
 
 
 #include "vOscillating.hh"
+#include "TString.h"
+#include "TComplex.h"
 
 
 class vSterile : public vOscillating
@@ -13,12 +15,12 @@ public:
         Set4radian(0, 0, 0);
         Set4Dm2(0);
     }
-    ~vSterile() {}
+    ~vSterile() override {}
 
     // Main Method
-    double   GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti = false);
-    double   GetProbability_Smear(TString iflavour, TString fflavour);
-    TComplex GetPMNSmatrix_Truncated(int row, int column);
+    double GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti = false) const override;
+    double GetProbability_Smear(TString iflavour, TString fflavour) const override;
+    TComplex GetPMNSmatrix_Truncated(int row, int column) const;
 
     // DataLoader (Setter)
     void Load4StdData();
@@ -29,9 +31,9 @@ public:
     void Set4Dm2(double Dm2_41);
 
     //Getter
-    std::vector<double> Get4theta() { return { ftheta_14, ftheta_24, ftheta_34 }; }
-    std::vector<double> Get4radian() { return { frad_14, frad_24, frad_34 }; }
-    std::vector<double> Get4Dm2() { return { fDm2_41, fDm2_42, fDm2_43 }; }
+    std::vector<double> Get4theta() const { return { ftheta_14, ftheta_24, ftheta_34 }; }
+    std::vector<double> Get4radian() const { return { frad_14, frad_24, frad_34 }; }
+    std::vector<double> Get4Dm2() const { return { fDm2_41, fDm2_42, fDm2_43 }; }
 
 
 private:

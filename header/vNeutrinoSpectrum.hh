@@ -5,8 +5,8 @@
 class vNeutrinoSpectrum
 {
 public:
-	virtual double GetCurrent(double E) { return 0.; } // /day, emitted neutrino number per day
-	virtual void PrintInfo() {}
+	virtual double GetCurrent(double E) const { return 0.; } // /day, emitted neutrino number per day
+	virtual void PrintInfo() const {}
 };
 
 

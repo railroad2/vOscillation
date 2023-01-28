@@ -2,14 +2,14 @@
 #include "../header/vConstant.hh"
 
 
-void vBetaSpectrum::PrintInfo()
+void vBetaSpectrum::PrintInfo() const
 {
 	cout << "<vEnergySpectrum->vNeutrinoSpectrum->vBetaSpectrum>" << endl;
 	cout << "    Activity (unit : user defined) : " << fActivity << endl;
 }
 
 
-double vBetaSpectrum::GetCurrent(double E)
+double vBetaSpectrum::GetCurrent(double E) const
 {
 	double Spectrum = 0;
 
@@ -26,7 +26,7 @@ double vBetaSpectrum::GetCurrent(double E)
 }
 
 
-double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti)
+double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti) const
 {
 	double E_0 = MASSDELTA;
 	double m_e = MASSELECTRON;

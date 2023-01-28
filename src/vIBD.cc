@@ -2,13 +2,13 @@
 #include "../header/vConstant.hh"
 
 
-double vIBD::GetCrossSection(double E)
+double vIBD::GetCrossSection(double E) const
 {
-    double f = 1;
-    double g = 1.26;
+    static double f = 1;
+    static double g = 1.26;
     double f_sq = f * f;
     double g_sq = g * g;
-    double f2 = 3.706;
+    static double f2 = 3.706;
 
     double Delta = MASSDELTA;
     double E_e = E - MASSDELTA;
@@ -28,15 +28,15 @@ double vIBD::GetCrossSection(double E)
 }
 
 
-double vIBD::GetDifCrossSection(double E, double theta)
+double vIBD::GetDifCrossSection(double E, double theta) const
 {
     double result;
 
-    double f = 1;
-    double g = 1.26;
+    static double f = 1;
+    static double g = 1.26;
     double f_sq = f * f;
     double g_sq = g * g;
-    double f2 = 3.706;
+    static double f2 = 3.706;
 
     double Delta = MASSDELTA;
     double E_e = E - MASSDELTA;
@@ -58,7 +58,7 @@ double vIBD::GetDifCrossSection(double E, double theta)
 }
 
 
-double vIBD::GetMomentum_Positron(double E)
+double vIBD::GetMomentum_Positron(double E) const
 {
     double E_e = E - MASSDELTA;
     double M_e = MASSELECTRON;

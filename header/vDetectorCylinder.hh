@@ -10,16 +10,16 @@ class vDetectorCylinder : public vDetector
 public:
 	vDetectorCylinder() { SetShapeType("Cylinder"); }
 
-	void PrintInfo();
+	void PrintInfo() const override;
 
-	double GetRadius() { return fRadius; }
-	double GetHeight() { return fHeight; }
-	void GetRandomPosition(double& oX, double& oY, double& oZ);
+	double GetRadius() const { return fRadius; }
+	double GetHeight() const { return fHeight; }
+	void GetRandomPosition(double& oX, double& oY, double& oZ) const override;
 	void SetRadius(double radius) { fRadius = radius; }
 	void SetHeight(double height) { fHeight = height; }
 
 protected:
-	void CalVolume();
+	void CalVolume() override;
 
 private:
 	double fRadius;

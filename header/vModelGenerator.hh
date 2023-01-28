@@ -16,19 +16,19 @@ public:
 		fDetector = detector;
 		fSource = source;
 	}
-	~vModelGenerator() {}
+	virtual ~vModelGenerator() {}
 
-	virtual void		Initialization() {}
+	virtual void Initialization() {}
 
-	virtual void		FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) {}
+	virtual void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const {}
 
-	virtual void		PrintInfo();
+	virtual void PrintInfo() const;
 
-	vDetector*			GetDetector() { return fDetector; }
-	vSource*			GetSource() { return fSource; }
-	double				GetDeltaX() { return fDeltaX; }
-	double				GetDeltaZ() { return fDeltaZ; }
-	vEnergySpectrum		GetSpectrum() { return fSpectrum; }
+	vDetector*			GetDetector() const { return fDetector; }
+	vSource*			GetSource() const { return fSource; }
+	double				GetDeltaX() const { return fDeltaX; }
+	double				GetDeltaZ() const { return fDeltaZ; }
+	vEnergySpectrum		GetSpectrum() const { return fSpectrum; }
 
 	void				SetDetector(vDetector* detector) { fDetector = detector; }
 	void				SetSource(vSource* source) { fSource = source; }
@@ -37,7 +37,7 @@ public:
 	void				SetSpectrum(vEnergySpectrum spectrum) { fSpectrum = spectrum; }
 
 protected:
-	double				CalculateL(double x, double y, double z);
+	double				CalculateL(double x, double y, double z) const;
 
 	vDetector*			fDetector;
 	vSource*			fSource;

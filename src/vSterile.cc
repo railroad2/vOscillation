@@ -1,7 +1,7 @@
 #include "../header/vSterile.hh"
 
 
-double vSterile::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti)
+double vSterile::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -12,7 +12,7 @@ double vSterile::GetProbability(double L, double E, TString iflavour, TString ff
     else if (iflavour == "tau") alpha = 3;
     else
     {
-        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -21,7 +21,7 @@ double vSterile::GetProbability(double L, double E, TString iflavour, TString ff
     else if (fflavour == "tau") beta = 3;
     else
     {
-        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -79,7 +79,7 @@ double vSterile::GetProbability(double L, double E, TString iflavour, TString ff
 }
 
 
-double vSterile::GetProbability_Smear(TString iflavour, TString fflavour)
+double vSterile::GetProbability_Smear(TString iflavour, TString fflavour) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -90,7 +90,7 @@ double vSterile::GetProbability_Smear(TString iflavour, TString fflavour)
     else if (iflavour == "tau") alpha = 3;
     else
     {
-        cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong iflavour value : " << iflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -99,7 +99,7 @@ double vSterile::GetProbability_Smear(TString iflavour, TString fflavour)
     else if (fflavour == "tau") beta = 3;
     else
     {
-        cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong fflavour value : " << fflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -132,7 +132,7 @@ double vSterile::GetProbability_Smear(TString iflavour, TString fflavour)
 }
 
 
-TComplex vSterile::GetPMNSmatrix_Truncated(int row, int column)
+TComplex vSterile::GetPMNSmatrix_Truncated(int row, int column) const
 {
 	if (column == 4)
 	{

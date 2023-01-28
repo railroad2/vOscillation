@@ -1,14 +1,14 @@
 #include "../header/vSourceSphere.hh"
 
 
-void vSourceSphere::PrintInfo()
+void vSourceSphere::PrintInfo() const
 {
 	vSource::PrintInfo();
 	cout << "    fRadius   : " << fRadius << endl;
 }
 
 
-void vSourceSphere::GetRandomPosition(double& oX, double& oY, double& oZ)
+void vSourceSphere::GetRandomPosition(double& oX, double& oY, double& oZ) const
 {
 	double r = fRadius * TMath::Power(gRandom->Uniform(0., 1.), 1. / 3.);
 	double phi = gRandom->Uniform(0., 2. * TMath::Pi());

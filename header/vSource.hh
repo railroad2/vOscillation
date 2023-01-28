@@ -2,6 +2,10 @@
 #define VSOURCE_HH
 
 
+#include <iostream>
+#include "TString.h"
+
+
 /**
  * This class is for the vModelGenerator which needs the spatial information of the neutrino source to work.
  *
@@ -15,10 +19,10 @@ class vSource
 public:
 	vSource() { SetShapeType("Point"); }
 
-	virtual void PrintInfo()
+	virtual void PrintInfo() const
 	{
-		cout << "<vSource>" << endl;
-		cout << "    ShapeType : " << fShapeType << endl;
+		std::cout << "<vSource>" << std::endl;
+		std::cout << "    ShapeType : " << fShapeType << std::endl;
 	}
 
 	/**
@@ -27,11 +31,11 @@ public:
 	 * In this class(vSource), since there is no volume, the position is just to be a Zero Vector.
 	 * If you want to make another class you made inherit this class, then you should override this function with new spatial parameters (radius, height, etc.).
 	 */
-	virtual void GetRandomPosition(double& oX, double& oY, double& oZ)
+	virtual void GetRandomPosition(double& oX, double& oY, double& oZ) const
 	{
 		oX = 0; oY = 0; oZ = 0;
 	}
-	TString GetShapeType() { return fShapeType; }
+	TString GetShapeType() const { return fShapeType; }
 
 protected:
 	void SetShapeType(TString shapeType) { fShapeType = shapeType; }
