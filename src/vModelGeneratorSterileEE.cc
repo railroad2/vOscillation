@@ -1,4 +1,11 @@
 #include "../header/vModelGeneratorSterileEE.hh"
+#include "../header/vConstant.hh"
+#include "../header/vDetector.hh"
+#include "../header/vDetectorCylinder.hh"
+#include "../header/vDetectorSphere.hh"
+#include "../header/vSource.hh"
+#include "../header/vSourceCylinder.hh"
+#include "../header/vSourceSphere.hh"
 
 
 void vModelGeneratorSterileEE::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const
