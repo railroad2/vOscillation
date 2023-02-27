@@ -145,7 +145,7 @@ void vModelGeneratorSterileEE::FillHistogramFast(TH1D** oHistLList, TH1D** oHist
 }
 
 
-void vModelGeneratorSterileEE::PrintInfo()
+void vModelGeneratorSterileEE::PrintInfo() const
 {
 	cout << "<vModelGenerator>" << endl;
 	cout << "    Minimum Distance : " << frmin << endl;

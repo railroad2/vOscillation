@@ -21,7 +21,7 @@ public:
 	void FillHistogramFast(TH1D** oHistLList, TH1D** oHistEList, TH1D** oHistLoEList, TH2D** oHistLEList,
 		int listSize, std::vector<double> Dm2_List, int64_t genNum) const;
 
-	void PrintInfo();
+	void PrintInfo() const override;
 
 	void SetSterileEE(vSterileEE* vst) { fvst = vst; }
 	vSterileEE* GetSterileEE() const { return fvst; }

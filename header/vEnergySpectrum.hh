@@ -20,7 +20,7 @@ public:
 	double operator()(double* x, double* p) const
 	{
 		double E = x[0];
-		return fvns->GetCurrent(E) * fvibd.GetCrossSection(E);
+		return fvns->GetCurrent(E) * fvibd.GetCrossSection(E); // cm^2/day/proton
 	}
 
 	void PrintInfo() const { fvns->PrintInfo(); }

@@ -17,10 +17,10 @@ public:
 		CalDistance();
 	}
 
-	void PrintInfo() const override;
-
 	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const override;
 	
+	void PrintInfo() const override;
+
 	void SetvOscillation(vOscillation* vosc) { fvosc = vosc; }
 	vOscillation* GetvOscillation() const { return fvosc; }
 	double GetDistance() const { return fDistance; }

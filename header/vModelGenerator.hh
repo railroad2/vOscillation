@@ -20,7 +20,7 @@ public:
 
 	virtual void Initialization() {}
 
-	virtual void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const {}
+	virtual void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const = 0;
 
 	virtual void PrintInfo() const;
 
