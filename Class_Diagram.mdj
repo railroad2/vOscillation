@@ -468,7 +468,7 @@
 											"top": 589,
 											"width": 191,
 											"height": 13,
-											"text": "-fvosc: vOscillating*",
+											"text": "-fvosc: vOscillation*",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3154,7 +3154,7 @@
 											"top": 487,
 											"width": 191,
 											"height": 13,
-											"text": "vOscillating"
+											"text": "vOscillation"
 										},
 										{
 											"_type": "LabelView",
@@ -8102,7 +8102,7 @@
 							},
 							"name": "fvosc",
 							"visibility": "private",
-							"type": "vOscillating*"
+							"type": "vOscillation*"
 						}
 					],
 					"operations": [
@@ -9186,7 +9186,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "vOscillating",
+					"name": "vOscillation",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
