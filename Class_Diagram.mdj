@@ -956,7 +956,7 @@
 											"font": "Arial;13;1",
 											"left": 1293,
 											"top": 863,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "vReactorSpectrum"
 										},
@@ -991,7 +991,7 @@
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 856,
-									"width": 210.18603515625,
+									"width": 214.51513671875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGE7Q1nqu3fjwQ="
@@ -1028,9 +1028,9 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 886,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
-											"text": "-fModelName: TSTring",
+											"text": "-fModelName: TString",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1045,7 +1045,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 901,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "-fNeutrinoCurrent0: double",
 											"horizontalAlignment": 0
@@ -1062,7 +1062,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 916,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "-fThermalPower: double",
 											"horizontalAlignment": 0
@@ -1079,7 +1079,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 931,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "-fFissionFraction: vector<double>",
 											"horizontalAlignment": 0
@@ -1096,16 +1096,16 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 946,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
-											"text": "-fReleasedEnergy: vectort<double",
+											"text": "-fReleasedEnergy: vector<double>",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 881,
-									"width": 210.18603515625,
+									"width": 214.51513671875,
 									"height": 83
 								},
 								{
@@ -1130,7 +1130,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 969,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "+Initialization()",
 											"horizontalAlignment": 0
@@ -1147,7 +1147,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 984,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "+PrintInfo(): override",
 											"horizontalAlignment": 0
@@ -1164,7 +1164,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 999,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "+GetCurrent(): override",
 											"horizontalAlignment": 0
@@ -1181,7 +1181,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 1014,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "+GetCurrent(E, iso): override",
 											"horizontalAlignment": 0
@@ -1198,7 +1198,7 @@
 											"font": "Arial;13;0",
 											"left": 1293,
 											"top": 1029,
-											"width": 200.18603515625,
+											"width": 204.51513671875,
 											"height": 13,
 											"text": "+Getters and Setters()",
 											"horizontalAlignment": 0
@@ -1207,7 +1207,7 @@
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 964,
-									"width": 210.18603515625,
+									"width": 214.51513671875,
 									"height": 83
 								},
 								{
@@ -1247,7 +1247,7 @@
 							"containerChangeable": true,
 							"left": 1288,
 							"top": 856,
-							"width": 210.18603515625,
+							"width": 214.51513671875,
 							"height": 191,
 							"nameCompartment": {
 								"$ref": "AAAAAAGE7Q1nqu3eAGE="
@@ -8300,7 +8300,7 @@
 							},
 							"name": "fModelName",
 							"visibility": "private",
-							"type": "TSTring"
+							"type": "TString"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8340,7 +8340,7 @@
 							},
 							"name": "fReleasedEnergy",
 							"visibility": "private",
-							"type": "vectort<double"
+							"type": "vector<double>"
 						}
 					],
 					"operations": [
