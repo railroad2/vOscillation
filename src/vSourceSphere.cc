@@ -4,7 +4,7 @@
 void vSourceSphere::PrintInfo() const
 {
 	vSource::PrintInfo();
-	cout << "    fRadius   : " << fRadius << endl;
+	std::cout << "    fRadius   : " << fRadius << std::endl;
 }
 
 

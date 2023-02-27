@@ -3,9 +3,9 @@
 
 void vModelGenerator::PrintInfo() const
 {
-	cout << "<vModelGenerator>" << endl;
-	cout << "    Delta X          : " << fDeltaX << endl;
-	cout << "    Delta Z          : " << fDeltaZ << endl;
+	std::cout << "<vModelGenerator>" << std::endl;
+	std::cout << "    Delta X          : " << fDeltaX << std::endl;
+	std::cout << "    Delta Z          : " << fDeltaZ << std::endl;
 	fDetector->PrintInfo();
 	fSource->PrintInfo();
 	fSpectrum.PrintInfo();

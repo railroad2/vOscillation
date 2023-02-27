@@ -44,7 +44,7 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 			oHistLoE->Fill(L_det / E_det);
 			oHistLE->Fill(L_det, E_det);
 
-			if (i % (int)(genNum / 10) == 0) cout << (int)((double)i / (double)genNum * 100) << "%" << endl;
+			if (i % (int)(genNum / 10) == 0) std::cout << (int)((double)i / (double)genNum * 100) << "%" << std::endl;
 		}
 		else
 		{

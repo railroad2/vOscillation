@@ -4,8 +4,8 @@
 void vSourceCylinder::PrintInfo() const
 {
 	vSource::PrintInfo();
-	cout << "    fRadius   : " << fRadius << endl;
-	cout << "    fHeight   : " << fHeight << endl;
+	std::cout << "    fRadius   : " << fRadius << std::endl;
+	std::cout << "    fHeight   : " << fHeight << std::endl;
 }
 
 

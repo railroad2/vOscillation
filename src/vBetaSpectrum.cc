@@ -4,8 +4,8 @@
 
 void vBetaSpectrum::PrintInfo() const
 {
-	cout << "<vEnergySpectrum->vNeutrinoSpectrum->vBetaSpectrum>" << endl;
-	cout << "    Activity (unit : user defined) : " << fActivity << endl;
+	std::cout << "<vEnergySpectrum->vNeutrinoSpectrum->vBetaSpectrum>" << std::endl;
+	std::cout << "    Activity (unit : user defined) : " << fActivity << std::endl;
 }
 
 

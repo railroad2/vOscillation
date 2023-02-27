@@ -4,7 +4,7 @@
 void vDetectorSphere::PrintInfo() const
 {
 	vDetector::PrintInfo();
-	cout << "    fRadius                          : " << fRadius << endl;
+	std::cout << "    fRadius                          : " << fRadius << std::endl;
 }
 
 

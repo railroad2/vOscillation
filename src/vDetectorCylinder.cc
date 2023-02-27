@@ -4,8 +4,8 @@
 void vDetectorCylinder::PrintInfo() const
 {
 	vDetector::PrintInfo();
-	cout << "    fRadius (m)                      : " << fRadius << endl;
-	cout << "    fHeight (m)                      : " << fHeight << endl;
+	std::cout << "    fRadius (m)                      : " << fRadius << std::endl;
+	std::cout << "    fHeight (m)                      : " << fHeight << std::endl;
 }
 
 

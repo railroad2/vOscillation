@@ -47,7 +47,7 @@ void vModelGeneratorSterileEE::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* o
 				oHistLoE->Fill(L_det / E_det);
 				oHistLE->Fill(L_det, E_det);
 
-				if (i % (int)(genNum / 10) == 0) cout << (int)((double)i / (double)genNum * 100) << "%" << endl;
+				if (i % (int)(genNum / 10) == 0) std::cout << (int)((double)i / (double)genNum * 100) << "%" << std::endl;
 			}
 			else i--;
 		}
@@ -128,7 +128,7 @@ void vModelGeneratorSterileEE::FillHistogramFast(TH1D** oHistLList, TH1D** oHist
 			}
 		}
 		if (minGenNum < genNum) i--;
-		else if (i % (int)(genNum / 10) == 0) cout << (int)((double)i / (double)genNum * 100) << "%" << endl;
+		else if (i % (int)(genNum / 10) == 0) std::cout << (int)((double)i / (double)genNum * 100) << "%" << std::endl;
 	}
 
 	double IntegralCurrentCrossSection = tfEnergy->Integral(fSpectrum.GetEmin(), fSpectrum.GetEmax());
@@ -147,10 +147,10 @@ void vModelGeneratorSterileEE::FillHistogramFast(TH1D** oHistLList, TH1D** oHist
 
 void vModelGeneratorSterileEE::PrintInfo() const
 {
-	cout << "<vModelGenerator>" << endl;
-	cout << "    Minimum Distance : " << frmin << endl;
-	cout << "    Delta X          : " << fDeltaX << endl;
-	cout << "    Delta Z          : " << fDeltaZ << endl;
+	std::cout << "<vModelGenerator>" << std::endl;
+	std::cout << "    Minimum Distance : " << frmin << std::endl;
+	std::cout << "    Delta X          : " << fDeltaX << std::endl;
+	std::cout << "    Delta Z          : " << fDeltaZ << std::endl;
 	fDetector->PrintInfo();
 	fSource->PrintInfo();
 	fSpectrum.PrintInfo();

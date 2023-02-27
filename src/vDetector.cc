@@ -10,11 +10,11 @@ void vDetector::Initialization()
 
 void vDetector::PrintInfo() const
 {
-	cout << "<vDetector>" << endl;
-	cout << "    ShapeType                        : " << fShapeType << endl;
-	cout << "    Volume                           : " << fVolume << endl;
-	cout << "    Energy resolution @ 1 MeV (%)    : " << fResolutionE * 100 << endl;
-	cout << "    Position resolution @ 1 MeV (cm) : " << fResolutionL * 100 << endl;
+	std::cout << "<vDetector>" << std::endl;
+	std::cout << "    ShapeType                        : " << fShapeType << std::endl;
+	std::cout << "    Volume                           : " << fVolume << std::endl;
+	std::cout << "    Energy resolution @ 1 MeV (%)    : " << fResolutionE * 100 << std::endl;
+	std::cout << "    Position resolution @ 1 MeV (cm) : " << fResolutionL * 100 << std::endl;
 }
 
 

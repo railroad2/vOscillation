@@ -11,7 +11,7 @@ double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = 
     else if (vflavour == "tau") sign_g_L = -1;
     else
     {
-        cerr << " Wrong vflavour value : " << vflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong vflavour value : " << vflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
@@ -64,7 +64,7 @@ double vScatteringve::GetDifCrossSection_Correction(double E, double T, TString 
     }
     else
     {
-        cerr << " Wrong vflavour value : " << vflavour << ", should be e, mu, or tau." << endl;
+        std::cerr << " Wrong vflavour value : " << vflavour << ", should be e, mu, or tau." << std::endl;
         return 0;
     }
 
