@@ -1,4 +1,4 @@
-# vOscillating
+# vOscillation
 This Project is for the calculation tool for the detection of neutrino with inverse beta decay.
 
 This class need to be used with ROOT(CERN).
@@ -6,7 +6,7 @@ This class need to be used with ROOT(CERN).
 
 -----------------------
 ## How to download
-> git clone https://github.com/jangddol/vOscillating.git
+> git clone https://github.com/jangddol/vOscillation.git
 
 
 -----------------------
@@ -24,7 +24,7 @@ The file "vClass.hh" is not a class file.
 
 
 ## Code Discription
-[vOscillating](./Markdown/vOscillating.md)
+[vOscillation](./Markdown/vOscillation.md)
 
 [vModelGenerator](./Markdown/vModelGenerator.md)
 

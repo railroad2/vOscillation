@@ -43,7 +43,7 @@ double BetaSpectrum_C11_Resolution(double Tdet, double resolution, double endE)
 }
 
 
-double integral_dcs_spectrum(double T, int N, double a, double b, vOscillating* vosc, vScatteringve* vcs, vSolarFlux* vsf, int iso)
+double integral_dcs_spectrum(double T, int N, double a, double b, vOscillation* vosc, vScatteringve* vcs, vSolarFlux* vsf, int iso)
 {
 	// integral ds/dT * flux from a to b with stepsize (b-a) / 2N
 
@@ -98,7 +98,7 @@ void PlotFullSolar()
 	double totBetaRateC11 = 28.5; // #/day, Borexino : 14.55;
 	cout << "totBetaRateC11 : " << totBetaRateC11 << endl;
 
-	vOscillating* vosc = new vOscillating();
+	vOscillation* vosc = new vOscillation();
 	vosc->LoadStdData();
 	vScatteringve* vcs = new vScatteringve();
 	vSolarFlux* vsf = new vSolarFlux();

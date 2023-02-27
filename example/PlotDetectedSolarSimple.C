@@ -24,7 +24,7 @@ double integral_dcs_spectrum(double T, int N, double a, double b, vScatteringve*
 void PlotDetectedSolarSimple()
 {
 	gStyle->SetOptStat(kFALSE);
-	vOscillating* vosc = new vOscillating();
+	vOscillation* vosc = new vOscillation();
 	vScatteringve* vcs = new vScatteringve();
 	vSolarFlux* vsf = new vSolarFlux();
 

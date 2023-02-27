@@ -33,7 +33,7 @@ void PlotOscillating()
 	gvt2vt->SetName("Ptt");
 
 	bool whetherIO = false; // false : Normal Ordering, true : Inversed Ordering
-	vOscillating* vosc = new vOscillating();
+	vOscillation* vosc = new vOscillation();
 	vosc->LoadStdData(whetherIO); // load PDG data for 3v-oscillating parameters
 
 	bool whetherAnti = false; // false -> neutrino, true -> anti neutrino

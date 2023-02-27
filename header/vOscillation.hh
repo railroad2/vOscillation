@@ -1,5 +1,5 @@
-#ifndef VOSCILLATING_HH
-#define VOSCILLATING_HH
+#ifndef VOSCILLATION_HH
+#define VOSCILLATION_HH
 
 
 #include <iostream>
@@ -17,11 +17,11 @@
  * 
  * "vSterile" class is the child class of this class. See also "vSterile.hh"
  */
-class vOscillating
+class vOscillation
 {
 public:
-    vOscillating();
-    virtual ~vOscillating();
+    vOscillation();
+    virtual ~vOscillation();
 
     // Main Method
     virtual double GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti = false) const;

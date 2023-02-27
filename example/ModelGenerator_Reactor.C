@@ -35,7 +35,7 @@ void ModelGenerator_Reactor()
 
 
 	// Set Oscillating Model
-	vOscillating* vosc = new vOscillating();
+	vOscillation* vosc = new vOscillation();
 	vosc->LoadStdData();
 
 
@@ -45,7 +45,7 @@ void ModelGenerator_Reactor()
 	double delta_Z = 0;
 	vmg->SetDeltaX(delta_X);
 	vmg->SetDeltaZ(delta_Z);
-	vmg->SetvOscillating(vosc);
+	vmg->SetvOscillation(vosc);
 	vmg->Initialization();
 
 

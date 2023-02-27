@@ -2,15 +2,15 @@
 #define VSTERILE_HH
 
 
-#include "vOscillating.hh"
+#include "vOscillation.hh"
 #include "TString.h"
 #include "TComplex.h"
 
 
-class vSterile : public vOscillating
+class vSterile : public vOscillation
 {
 public:
-    vSterile() : vOscillating()
+    vSterile() : vOscillation()
     {
         Set4radian(0, 0, 0);
         Set4Dm2(0);

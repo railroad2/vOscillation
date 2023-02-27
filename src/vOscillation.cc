@@ -1,16 +1,16 @@
-#include "../header/vOscillating.hh"
+#include "../header/vOscillation.hh"
 #include <stdexcept>
 
 
-vOscillating::vOscillating()
+vOscillation::vOscillation()
 {
     Settheta();
     SetDm2();
 };
-vOscillating::~vOscillating() {};
+vOscillation::~vOscillation() {};
 
 
-double vOscillating::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti) const
+double vOscillation::GetProbability(double L, double E, TString iflavour, TString fflavour, bool anti) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -71,7 +71,7 @@ double vOscillating::GetProbability(double L, double E, TString iflavour, TStrin
 }
 
 
-double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour) const
+double vOscillation::GetProbability_Smear(TString iflavour, TString fflavour) const
 {
     // distance : m, energy : MeV
     int alpha;
@@ -116,7 +116,7 @@ double vOscillating::GetProbability_Smear(TString iflavour, TString fflavour) co
 }
 
 
-TComplex vOscillating::GetPMNSmatrix(int row, int column) const
+TComplex vOscillation::GetPMNSmatrix(int row, int column) const
 {
     double rad_delta_CP = fdelta_CP * TMath::Pi() / 180;
 
@@ -205,7 +205,7 @@ TComplex vOscillating::GetPMNSmatrix(int row, int column) const
 }
 
 
-void vOscillating::LoadStdData(bool IO = false)
+void vOscillation::LoadStdData(bool IO = false)
 {
     if (IO == false)
     {
@@ -241,7 +241,7 @@ void vOscillating::LoadStdData(bool IO = false)
 }
 
 
-void vOscillating::Settheta(double theta_12, double theta_13, double theta_23)
+void vOscillation::Settheta(double theta_12, double theta_13, double theta_23)
 {
     ftheta_12 = theta_12;
     ftheta_13 = theta_13;
@@ -252,7 +252,7 @@ void vOscillating::Settheta(double theta_12, double theta_13, double theta_23)
 }
 
 
-void vOscillating::Setradian(double rad_12, double rad_13, double rad_23)
+void vOscillation::Setradian(double rad_12, double rad_13, double rad_23)
 {
     frad_12 = rad_12;
     frad_13 = rad_13;
@@ -263,7 +263,7 @@ void vOscillating::Setradian(double rad_12, double rad_13, double rad_23)
 }
 
 
-void vOscillating::SetDm2(double Dm2_21, double Dm2_31)
+void vOscillation::SetDm2(double Dm2_21, double Dm2_31)
 {
     fDm2_21 = Dm2_21;
     fDm2_31 = Dm2_31;

@@ -13,7 +13,7 @@
 #include "src/vModelGenerator.cc"
 #include "src/vModelGeneratorLBL.cc"
 #include "src/vModelGeneratorSterileEE.cc"
-#include "src/vOscillating.cc"
+#include "src/vOscillation.cc"
 #include "src/vReactorSpectrum.cc"
 #include "src/vScatteringve.cc"
 #include "src/vSolarFlux.cc"

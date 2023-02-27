@@ -3,7 +3,7 @@
 
 
 #include "vModelGenerator.hh"
-#include "vOscillating.hh"
+#include "vOscillation.hh"
 
 
 class vModelGeneratorLBL : public vModelGenerator
@@ -21,15 +21,15 @@ public:
 
 	void FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const override;
 	
-	void SetvOscillating(vOscillating* vosc) { fvosc = vosc; }
-	vOscillating* GetvOscillating() const { return fvosc; }
+	void SetvOscillation(vOscillation* vosc) { fvosc = vosc; }
+	vOscillation* GetvOscillation() const { return fvosc; }
 	double GetDistance() const { return fDistance; }
 
 private:
 	void CalDistance();
 
 	double fDistance;
-	vOscillating* fvosc;
+	vOscillation* fvosc;
 };
 
 #endif
