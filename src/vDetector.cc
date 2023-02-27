@@ -34,9 +34,9 @@ void vDetector::GetRandomResolutionEnergy(double& oE, double Enu) const
 
 void vDetector::CalProtonNumber()
 {
-	vector<double> Ratio = { 0.0047, 0.097, 0.3385, 0.3472, 0.2083, 0.0043 };
-	vector<double> Cnum = { 15, 16, 17, 18, 19, 20 };
-	vector<double> Hnum = { 24, 26, 28, 30, 32, 34 };
+	std::array<double, 6> Ratio = { 0.0047, 0.097, 0.3385, 0.3472, 0.2083, 0.0043 };
+	std::array<double, 6> Cnum = { 15, 16, 17, 18, 19, 20 };
+	std::array<double, 6> Hnum = { 24, 26, 28, 30, 32, 34 };
 
 	double Cgram = 12.011;
 	double Hgram = 1.008;
