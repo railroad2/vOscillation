@@ -2,6 +2,22 @@
 #include "../header/vConstant.hh"
 
 
+// this use the zeroth order approximation of IBD cross section from Vogel's paper (1999).
+double vIBD::GetCrossSection(double E) const
+{
+	double E_e = E - MASSDELTA;
+	double M_e = MASSELECTRON;
+
+	if (E_e < M_e) return 0;
+	else
+	{
+		double p_e = TMath::Sqrt(E_e * E_e - M_e * M_e);
+		return 0.0952 * 1e-42 * E_e * p_e; // cm^2 / MeV^2
+	}
+}
+
+/** Something Wrong
+ * this use the first order approximation of IBD cross section from Vogel's paper (1999).
 double vIBD::GetCrossSection(double E) const
 {
     static double f = 1;
@@ -26,6 +42,7 @@ double vIBD::GetCrossSection(double E) const
         return sigma_tot;
     }
 }
+*/
 
 
 double vIBD::GetDifCrossSection(double E, double theta) const
