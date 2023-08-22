@@ -20,7 +20,7 @@ public:
 	double operator()(double* x, double* p) const
 	{
 		double E = x[0];
-		return fvns->GetCurrent(E) * fvibd.GetCrossSection(E); // cm^2/day/proton
+        return GetEnergySpectrum(E);
 	}
 
 	void PrintInfo() const { fvns->PrintInfo(); }
@@ -33,6 +33,10 @@ public:
 	void   SetEmin(double emin) { fEmin = emin; }
 	void   SetEmax(double emax) { fEmax = emax; }
 
+    double GetEnergySpectrum(double E)
+    {
+        return fvns->GetCurrent(E) * fvibd.GetCrossSection_integral(E); // cm^2/day/proton
+    }
 private:
 	vNeutrinoSpectrum* fvns;
 	vIBD fvibd;

@@ -15,10 +15,12 @@ public:
 		// 2997.5 keV, m_Pr144 - m_Nd144 (ground state) (only nuclear mass)
 		// 2300.99 keV, m_Pr144 - m_Nd144 (first excited state) (only nuclear mass)
 		SetZdaughter({ 60., 60. });
+        SetA({144., 144.});
 		SetContribution({ 0.979 / 2., 0.0104 / 2. });
 		// Why devided by 2? : only half of the activity is the Pr144's one.
 		// Ce144 -(285 days)-> Pr144 -(17 min)-> Nd144
 		SetNormalization({ 50.17699342431172 , 16.17204881872361 });
+        SetNormalization({ 1.33037299014008834063815811532550e+01, 4.47861320647515981363540049642324e+00});
 	}
 };
 
