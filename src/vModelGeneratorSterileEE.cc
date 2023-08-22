@@ -1,3 +1,7 @@
+#include "TF1.h"
+#include "TMath.h"
+#include "TRandom.h"
+
 #include "../header/vModelGeneratorSterileEE.hh"
 #include "../header/vConstant.hh"
 #include "../header/vDetector.hh"

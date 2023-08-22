@@ -1,3 +1,6 @@
+#include <iostream>
+#include "TMath.h"
+#include "TRandom.h"
 #include "../header/vDetectorCylinder.hh"
 
 
@@ -24,7 +27,7 @@ void vDetectorCylinder::CalVolume()
 	fVolume = TMath::Pi() * fRadius * fRadius * fHeight;
 }
 
-double vDetectorCylinder::GetLDistribution(double L, double Xs, double Zs, int ndiv=1000, bool solid_angle=false) 
+double vDetectorCylinder::GetLDistribution(double L, double Xs, double Zs, int ndiv, bool solid_angle) 
 {
     double theta = -TMath::Pi();
     double dtheta = TMath::Pi()/(ndiv - 1);

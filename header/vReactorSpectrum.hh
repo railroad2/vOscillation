@@ -4,8 +4,9 @@
 #define VREACTORSPECTRUM_HH
 
 
-#include "vNeutrinoSpectrum.hh"
 #include <vector>
+#include "TString.h"
+#include "vNeutrinoSpectrum.hh"
 
 
 class vReactorSpectrum : public vNeutrinoSpectrum

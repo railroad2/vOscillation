@@ -1,3 +1,6 @@
+#include <iostream>
+#include "TRandom.h"
+#include "TMath.h"
 #include "../header/vDetectorSphere.hh"
 
 
@@ -24,7 +27,7 @@ void vDetectorSphere::CalVolume()
 	fVolume = 4. / 3. * TMath::Pi() * fRadius * fRadius * fRadius;
 }
 
-double vDetectorSphere::GetLDistribution(double L, double Xs, double Zs, int ndiv=1000, bool solid_angle=false)
+double vDetectorSphere::GetLDistribution(double L, double Xs, double Zs, int ndiv, bool solid_angle)
 {
     double theta = -TMath::Pi();
     double dtheta = TMath::Pi()/(ndiv - 1);

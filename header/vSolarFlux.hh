@@ -1,6 +1,7 @@
 #ifndef VSOLARFLUX_HH
 #define VSOLARFLUX_HH
 
+#include "TString.h"
 
 class vSolarFlux
 {
@@ -9,9 +10,9 @@ public:
 	double GetSolarNeutrinoFlux_NoPeak(double E, TString src) const;
 	double GetSolarNeutrinoFlux_NoPeak(double E, int src) const;
 	double GetSolarNeutrinoFlux_PeakEnergy(TString src) const;
-	double GetSolarNeutrinoFlux_PeakEnergy(int src = 0) const;
+	double GetSolarNeutrinoFlux_PeakEnergy(int src=0) const;
 	double GetSolarNeutrinoFlux_PeakFlux(TString src) const;
-	double GetSolarNeutrinoFlux_PeakFlux(int src = 0) const;
+	double GetSolarNeutrinoFlux_PeakFlux(int src=0) const;
 
 private:
 	double CalSolNuFlux_Priv_NoPeak(double E) const;

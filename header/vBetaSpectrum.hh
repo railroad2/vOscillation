@@ -1,9 +1,10 @@
 #ifndef VBETASPECTRUM_HH
 #define VBETASPECTRUM_HH
 
-
-#include "vNeutrinoSpectrum.hh"
+#include <iostream>
 #include <vector>
+#include "TComplex.h"
+#include "vNeutrinoSpectrum.hh"
 
 enum FFmethod
 {

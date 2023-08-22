@@ -1,7 +1,8 @@
 #ifndef VMODELGENERATOR_HH
 #define VMODELGENERATOR_HH
 
-
+#include "TH1.h"
+#include "TH2.h"
 #include "vDetector.hh"
 #include "vSource.hh"
 #include "vEnergySpectrum.hh"

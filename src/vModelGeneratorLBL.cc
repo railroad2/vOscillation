@@ -1,6 +1,8 @@
+#include <iostream>
+#include "TRandom.h"
+#include "TF1.h"
 #include "../header/vModelGeneratorLBL.hh"
 #include "../header/vConstant.hh"
-#include "TF1.h"
 
 
 void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLoE, TH2D* oHistLE, int64_t& oIterNum, int64_t genNum) const
@@ -65,9 +67,9 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 
 void vModelGeneratorLBL::PrintInfo() const
 {
-	cout << "<vModelGenerator>" << endl;
-	cout << "    Delta X          : " << fDeltaX << endl;
-	cout << "    Delta Z          : " << fDeltaZ << endl;
+	std::cout << "<vModelGenerator>" << std::endl;
+	std::cout << "    Delta X          : " << fDeltaX << std::endl;
+	std::cout << "    Delta Z          : " << fDeltaZ << std::endl;
 	fDetector->PrintInfo();
 	fSource->PrintInfo();
 	fSpectrum.PrintInfo();

@@ -29,7 +29,7 @@ public:
     TComplex GetPMNSmatrix(int row, int column) const;
 
     // DataLoader (Setter)
-    void LoadStdData(bool IO = false);
+    void LoadStdData(bool IO=false);
 
     // Setter
     void Settheta(double theta_12 = 33.44, double theta_13 = 8.57, double theta_23 = 49.2);

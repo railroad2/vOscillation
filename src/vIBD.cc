@@ -1,3 +1,4 @@
+#include "TMath.h"
 #include "../header/vIBD.hh"
 #include "../header/vConstant.hh"
 
@@ -8,7 +9,7 @@ double vIBD::GetCrossSection(double E) const
     return GetCrossSection_integral(E);
 }
 
-double vIBD::GetCrossSection_integral(double E, int npts=1001) const
+double vIBD::GetCrossSection_integral(double E, int npts) const
 {
     double ct;
     double dct = 2./(npts-1);
