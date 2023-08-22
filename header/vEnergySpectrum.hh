@@ -17,7 +17,7 @@ public:
 	}
 	virtual ~vEnergySpectrum() {}
 
-	double operator()(double* x, double* p) const
+	double operator()(double* x, double* p) 
 	{
 		double E = x[0];
         return GetEnergySpectrum(E);

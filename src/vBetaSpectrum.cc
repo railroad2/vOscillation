@@ -9,7 +9,7 @@ void vBetaSpectrum::PrintInfo() const
 }
 
 
-TComplex vBetaSpectrum::gamma_complex(double zreal, double zimag)
+TComplex vBetaSpectrum::gamma_complex(double zreal, double zimag) const
 {
 
     static const int g = 7;
@@ -48,7 +48,7 @@ TComplex vBetaSpectrum::gamma_complex(double zreal, double zimag)
 }
     
 
-double vBetaSpectrum::gamma_complex_mag2(double zreal, double zimage)
+double vBetaSpectrum::gamma_complex_mag2(double zreal, double zimage) const
 {
     TComplex g = gamma_complex(zreal, zimage);
     return g * TComplex::Conjugate(g);
@@ -56,7 +56,7 @@ double vBetaSpectrum::gamma_complex_mag2(double zreal, double zimage)
 }
 
 
-double vBetaSpectrum::GetFermiFunction(double T, double Z, double A, bool anti)
+double vBetaSpectrum::GetFermiFunction(double T, double Z, double A, bool anti) const
 {
 	double m_e = MASSELECTRON;
 	double E_e = (T + m_e);
@@ -108,14 +108,14 @@ double vBetaSpectrum::GetCurrent(double E) const
         double A = fA[i];
 		double cont = fContribution[i];
 		double norm = fNormalization[i];
-		Spectrum += cont * GetBetaSpectrum(qValue - E, qValue, Z_f, norm);
+		Spectrum += cont * GetBetaSpectrum(qValue - E, qValue, Z_f, norm, A);
 	}
 
 	return fActivity * Spectrum;
 }
 
 
-double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization, bool anti) const
+double vBetaSpectrum::GetBetaSpectrum(double T, double Q, double Z_f, double normalization, double A, bool anti) const 
 {
 	double E_0 = MASSDELTA;
 	double m_e = MASSELECTRON;

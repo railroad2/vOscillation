@@ -5,7 +5,7 @@
 // this use the zeroth order approximation of IBD cross section from Vogel's paper (1999).
 double vIBD::GetCrossSection(double E) const
 {
-    return GetCrossSection_integral(double E);
+    return GetCrossSection_integral(E);
 }
 
 double vIBD::GetCrossSection_integral(double E, int npts=1001) const
