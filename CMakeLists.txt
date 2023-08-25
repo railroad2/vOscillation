@@ -1,6 +1,7 @@
 CMAKE_MINIMUM_REQUIRED ( VERSION 3.11 )
-PROJECT ( vOscillation )
 SET ( CMAKE_VERBOSE_MAKEFILE true )
+
+PROJECT ( vOscillation )
 
 ADD_LIBRARY ( vOscillation SHARED
     src/vBetaSpectrum.cc
@@ -20,4 +21,14 @@ ADD_LIBRARY ( vOscillation SHARED
     src/vSterile.cc
     src/vSterileEE.cc
     )
+
+execute_process ( COMMAND root-config --incdir OUTPUT_VARIABLE incdir )
+execute_process ( COMMAND root-config --cflags OUTPUT_VARIABLE cflags )
+execute_process ( COMMAND root-config --libs   OUTPUT_VARIABLE libs   )
+
+STRING(STRIP ${incdir} incdir)
+STRING(STRIP ${cflags} cflags)
+STRING(STRIP ${libs}   libs)
+
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${cflags} ${libs}")
 
