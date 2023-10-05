@@ -29,7 +29,7 @@ public:
     TComplex GetPMNSmatrix(int row, int column) const;
 
     // DataLoader (Setter)
-    void LoadStdData(bool IO = false);
+    void LoadStdData(bool IO = false) {};
 
     // Setter
     void Settheta(double theta_12 = 33.44, double theta_13 = 8.57, double theta_23 = 49.2);
@@ -37,10 +37,14 @@ public:
     void SetDm2(double Dm2_21 = 0.0000742, double Dm2_31 = 0.002515);
     void Setdelta_CP(double delta_CP) { fdelta_CP = delta_CP; }
 
+    void Setsin(double sin_12=0.554, double sin_13=0.148, double sin_23=0.739);
+
     //Getter
     std::vector<double> Gettheta() const  { return { ftheta_12, ftheta_13, ftheta_23 }; }
     std::vector<double> Getradian() const { return { frad_12, frad_13, frad_23 }; }
     std::vector<double> GetDm2() const    { return { fDm2_21, fDm2_31, fDm2_32 }; }
+    std::vector<double> Getsin() const    { return { fsin_12, fsin_13, fsin_23}; }
+    std::vector<double> Getcos() const    { return { fcos_12, fcos_13, fcos_23}; }
     double Getdelta_CP() const { return fdelta_CP; }
 
 
@@ -55,6 +59,12 @@ protected:
     double fDm2_31 = 0.0025283; // eV^2
     double fDm2_32;             // eV^2
     double fdelta_CP = 194;     // degree
+    double fsin_12;
+    double fcos_12;
+    double fsin_13;
+    double fcos_13;
+    double fsin_23;
+    double fcos_23;
 
 private:
 // Standard Value

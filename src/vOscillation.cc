@@ -7,6 +7,7 @@ vOscillation::vOscillation()
     Settheta();
     SetDm2();
 };
+
 vOscillation::~vOscillation() {};
 
 
@@ -120,12 +121,12 @@ TComplex vOscillation::GetPMNSmatrix(int row, int column) const
 {
     double rad_delta_CP = fdelta_CP * TMath::Pi() / 180;
 
-    double s_12 = TMath::Sin(frad_12);
-    double s_13 = TMath::Sin(frad_13);
-    double s_23 = TMath::Sin(frad_23);
-    double c_12 = TMath::Cos(frad_12);
-    double c_13 = TMath::Cos(frad_13);
-    double c_23 = TMath::Cos(frad_23);
+    double s_12 = fsin_12; //TMath::Sin(frad_12);
+    double s_13 = fsin_13; //TMath::Sin(frad_13);
+    double s_23 = fsin_23; //TMath::Sin(frad_23);
+    double c_12 = fcos_12; //TMath::Cos(frad_12);
+    double c_13 = fcos_13; //TMath::Cos(frad_13);
+    double c_23 = fcos_23; //TMath::Cos(frad_23);
     double s_delta_CP = TMath::Sin(rad_delta_CP);
     double c_delta_CP = TMath::Cos(rad_delta_CP);
 
@@ -249,6 +250,13 @@ void vOscillation::Settheta(double theta_12, double theta_13, double theta_23)
     frad_12 = theta_12 / 180 * TMath::Pi();
     frad_13 = theta_13 / 180 * TMath::Pi();
     frad_23 = theta_23 / 180 * TMath::Pi();
+
+    fsin_12 = TMath::Sin(frad_12);
+    fsin_13 = TMath::Sin(frad_13);
+    fsin_23 = TMath::Sin(frad_23);
+    fcos_12 = TMath::Cos(frad_12);
+    fcos_13 = TMath::Cos(frad_13);
+    fcos_23 = TMath::Cos(frad_23);
 }
 
 
@@ -260,8 +268,32 @@ void vOscillation::Setradian(double rad_12, double rad_13, double rad_23)
     ftheta_12 = rad_12 / TMath::Pi() * 180;
     ftheta_13 = rad_13 / TMath::Pi() * 180;
     ftheta_23 = rad_23 / TMath::Pi() * 180;
+
+    fsin_12 = TMath::Sin(frad_12);
+    fsin_13 = TMath::Sin(frad_13);
+    fsin_23 = TMath::Sin(frad_23);
+    fcos_12 = TMath::Cos(frad_12);
+    fcos_13 = TMath::Cos(frad_13);
+    fcos_23 = TMath::Cos(frad_23);
 }
 
+
+void vOscillation::Setsin(double sin_12, double sin_13, double sin_23)
+{
+    fsin_12 = sin_12;
+    fsin_13 = sin_13;
+    fsin_23 = sin_23;
+    fcos_12 = TMath::Sqrt(1 - sin_12 * sin_12);
+    fcos_13 = TMath::Sqrt(1 - sin_13 * sin_13);
+    fcos_23 = TMath::Sqrt(1 - sin_23 * sin_23);
+
+    frad_12 = TMath::ASin(fsin_12);
+    frad_13 = TMath::ASin(fsin_13);
+    frad_23 = TMath::ASin(fsin_23);
+    ftheta_12 = frad_12 / TMath::Pi() * 180;
+    ftheta_13 = frad_13 / TMath::Pi() * 180;
+    ftheta_23 = frad_23 / TMath::Pi() * 180;
+}
 
 void vOscillation::SetDm2(double Dm2_21, double Dm2_31)
 {
