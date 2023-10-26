@@ -10,7 +10,7 @@ public:
 	double GetCrossSection_integral(double E, int npts=1001) const;
 
 	double GetDifCrossSection(double E, double theta) const;
-	double GetDifCrossSection_1st(double E, double theta) const;
+	double GetDifCrossSection_costheta(double E, double ct) const;
 
 private:
 	double GetMomentum_Positron(double E) const;

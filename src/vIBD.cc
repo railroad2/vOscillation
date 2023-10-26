@@ -10,12 +10,12 @@ double vIBD::GetCrossSection(double E) const
 
 double vIBD::GetCrossSection_integral(double E, int npts=1001) const
 {
-    double ct;
-    double dct = 2./(npts-1);
+    double costheta;
+    double dcostheta = 2./(npts-1);
     double sig = 0;
     for (int i=0; i<npts; i++) {
-        ct = -1 + i*dct;
-        sig += GetDifCrossSection_1st(E, ct) * dct;
+        costheta = -1 + i*dcostheta;
+        sig += GetDifCrossSection_costheta(E, costheta) * dcostheta;
     }
 
     return sig;
@@ -35,7 +35,7 @@ double vIBD::GetCrossSection_0th(double E) const
 }
 
 
-/** Something Wrong 
+/* 
  * this use the first order approximation of IBD cross section from Vogel's paper (1999)
  * with an assumption of E_nu > 5 MeV.
 double vIBD::GetCrossSection(double E) const
@@ -62,7 +62,6 @@ double vIBD::GetCrossSection(double E) const
         return sigma_tot;
     }
 }
-*/
 
 
 double vIBD::GetDifCrossSection(double E, double theta) const
@@ -93,6 +92,7 @@ double vIBD::GetDifCrossSection(double E, double theta) const
     }
     return result / 2 / TMath::Pi();
 }
+*/
 
 
 double vIBD::GetMomentum_Positron(double E) const
@@ -103,8 +103,12 @@ double vIBD::GetMomentum_Positron(double E) const
     else return 0;
 }
 
+double vIBD::GetDifCrossSection(double E, double theta) const
+{
+    return GetDifCrossSection_costheta(E, TMath::Cos(theta));
+}
 
-double vIBD::GetDifCrossSection_1st(double E, double ct) const
+double vIBD::GetDifCrossSection_costheta(double E, double costheta) const
 {
     double mp = MASSPROTON;
     double mn = MASSNEUTRON;
@@ -125,7 +129,7 @@ double vIBD::GetDifCrossSection_1st(double E, double ct) const
     double c3 = f*f + 3*g*g;
     double c4 = f*f - g*g;
 
-    double d1 = E/M*(1 - ve0*ct);
+    double d1 = E/M*(1 - ve0*costheta);
     double d2 = (Delta*Delta - me*me)/2/M;
     double Ee1 = Ee0*(1 - d1) - d2;
     if (Ee1*Ee1 - me*me < 0) { return 0; } 
@@ -133,10 +137,10 @@ double vIBD::GetDifCrossSection_1st(double E, double ct) const
     double ve1 = pe1/Ee1;
 
     double gamma = 0;
-    gamma += c1*((2*Ee0 + Delta)*(1 - ve0*ct) - me*me/Ee0);
-    gamma += c2*(Delta*(1 + ve0*ct) + me*me/Ee0);
-    gamma += c3*((Ee0 + Delta)*(1 - ve0*ct) - Delta);
-    gamma += c4*((Ee0 + Delta)*(1 - ve0*ct) - Delta) * ve0*ct;
+    gamma += c1*((2*Ee0 + Delta)*(1 - ve0*costheta) - me*me/Ee0);
+    gamma += c2*(Delta*(1 + ve0*costheta) + me*me/Ee0);
+    gamma += c3*((Ee0 + Delta)*(1 - ve0*costheta) - Delta);
+    gamma += c4*((Ee0 + Delta)*(1 - ve0*costheta) - Delta) * ve0*costheta;
 
     double GF = 1.16637e-11;
     double Vud = 0.97373;
@@ -144,7 +148,7 @@ double vIBD::GetDifCrossSection_1st(double E, double ct) const
     double hbarc = 197.327053;
 
     double sig_0 = GF*GF * Vud*Vud / TMath::Pi() * (1. + delta_inner) * hbarc * hbarc * 1e-26;
-    double dsig = (c3 + c4*ve1*ct)*Ee1*pe1 - gamma*Ee0*pe0/M;
+    double dsig = (c3 + c4*ve1*costheta)*Ee1*pe1 - gamma*Ee0*pe0/M;
     dsig *= sig_0 / 2;
 
     return dsig;
