@@ -9,7 +9,7 @@ public:
 	double GetCrossSection_0th(double E) const;
 	double GetCrossSection_integral(double E, int npts=1001) const;
 
-	double GetDifCrossSection(double E, double theta) const;
+	double GetDifCrossSection(double E, double theta) const; // theta in radian
 	double GetDifCrossSection_costheta(double E, double ct) const;
 
 private:

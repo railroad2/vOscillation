@@ -108,6 +108,27 @@ double vIBD::GetDifCrossSection(double E, double theta) const
     return GetDifCrossSection_costheta(E, TMath::Cos(theta));
 }
 
+
+double GetEe1(double E, double theta)
+{
+    double costheta = TMath::Cos(theta);
+    double mp = MASSPROTON;
+    double mn = MASSNEUTRON;
+    double M = (mp + mn)/2;
+    double me = MASSELECTRON;
+    double Delta = MASSDELTA;
+    double Ee0 = E - Delta;
+    if (Ee0 < me) { return 0; }
+    double pe0 = TMath::Sqrt(Ee0*Ee0 - me*me);
+    double ve0 = pe0/Ee0;
+
+    double d1 = E/M*(1 - ve0*costheta);
+    double d2 = (Delta*Delta - me*me)/2/M;
+    double Ee1 = Ee0*(1 - d1) - d2;
+    if (Ee1*Ee1 - me*me < 0) { return 0; } 
+    else { return Ee1; }
+}
+
 double vIBD::GetDifCrossSection_costheta(double E, double costheta) const
 {
     double mp = MASSPROTON;

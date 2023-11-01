@@ -19,6 +19,8 @@
 #include "src/vSolarFlux.cc"
 #include "src/vSterile.cc"
 #include "src/vSterileEE.cc"
+#include "src/vEventGenerator.cc"
+#include "header/vInterpolator.hh"
 
 
 #endif
