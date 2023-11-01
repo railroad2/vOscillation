@@ -5,11 +5,6 @@ This class need to be used with ROOT(CERN).
 
 
 -----------------------
-## How to download
-> git clone https://github.com/jangddol/vOscillation.git
-
-
------------------------
 ## Structure and Hierarchy
 ![plot](./Class_Diagram.png)
 
