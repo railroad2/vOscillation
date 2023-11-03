@@ -109,7 +109,7 @@ double vIBD::GetDifCrossSection(double E, double theta) const
 }
 
 
-double GetEe1(double E, double theta)
+double vIBD::GetEe1(double E, double theta) const
 {
     double costheta = TMath::Cos(theta);
     double mp = MASSPROTON;

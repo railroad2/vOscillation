@@ -1,9 +1,8 @@
 #include "../vClass.hh"
 
-TF1* func_detected_reactor_spectrum(double L0, double Wth)
+TF1* func_detected_source_spectrum(TVector3 relpos_source, double Wth)
 {
     // reactor
-    vReactorSpectrum *vHM = new vReactorSpectrum("HM");
     vHM->SetThermalPower(Wth); 
 
     // IBD cross section
@@ -33,6 +32,7 @@ TF1* func_detected_reactor_spectrum(double L0, double Wth)
     return f1;
 }
 
+
 vDetector* detector()
 {
     // cylindrical detector (target)
@@ -54,9 +54,10 @@ vDetector* detector()
     return det;
 }
 
+
 int main()
 {
-    double L0 = 65000; // m
+    double L0 = 10; // m
     double Wth = 20; // GW
     double Emin = 1.8; // MeV
     double Emax = 10; // MeV
@@ -103,7 +104,10 @@ int main()
         det->GetRandomPosition(x_det, y_det, z_det);
         
         vert = TVector3(x_det, y_det, z_det);
-        eg->GenerateIBD(Ev, pv0, pe, pn);
+        eg->GenerateIBD(Ev);
+        pv0 = eg->GetPv0();
+        pe  = eg->GetPe();
+        pn  = eg->GetPn();
 
         tree->Fill();
     }

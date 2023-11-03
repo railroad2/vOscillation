@@ -12,6 +12,8 @@ public:
 	double GetDifCrossSection(double E, double theta) const; // theta in radian
 	double GetDifCrossSection_costheta(double E, double ct) const;
 
+    double GetEe1(double E, double theta) const;
+
 private:
 	double GetMomentum_Positron(double E) const;
 };

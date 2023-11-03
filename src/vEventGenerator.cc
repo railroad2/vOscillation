@@ -2,12 +2,13 @@
 #include "../header/vIBD.hh"
 #include "../header/vInterpolator.hh"
 
-TF1* get_func_theta(double Ev)
+vIBD* ibd = new vIBD();
+
+TF1* vEventGenerator::GetFunctionTheta(double Ev)
 {
     int ntheta = 180;
     double dtheta = TMath::Pi() / (ntheta-1);
     double theta = 0;
-    vIBD* ibd = new vIBD();
 
     vector<double> vtheta;
     vector<double> vsigdiff;
@@ -25,18 +26,20 @@ TF1* get_func_theta(double Ev)
     return f1;
 }
 
-int vEventGenerator::GenerateIBD(double Ev, TVector3 uv) 
+int vEventGenerator::GenerateIBD(double Ev, TLorentzVector &pv0, TLorentzVector &pe, TLorentzVector &pn, 
+                                 TVector3 uv, double theta) 
 {
     pv0.SetPxPyPzE(0., 0., Ev, Ev);
     TLorentzVector pp(0., 0., 0., MASSPROTON);
 
-    TF1* ftheta = get_func_theta(Ev);
-    double theta;
+    TF1* ftheta = GetFunctionTheta(Ev);
     double phi = gRandom->Uniform(2.*TMath::Pi());  
     
-    theta = ftheta->GetRandom();
+    if (theta == -1) {
+        theta = ftheta->GetRandom();
+    }
 
-    double Ee1 = GetEe1(Ev, theta);
+    double Ee1 = ibd->GetEe1(Ev, theta);
     double pe1 = TMath::Sqrt(Ee1*Ee1 - MASSELECTRON*MASSELECTRON);
 
     TVector3 vpe; 
