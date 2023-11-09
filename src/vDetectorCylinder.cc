@@ -26,11 +26,11 @@ void vDetectorCylinder::CalVolume()
 
 double vDetectorCylinder::GetLDistribution(double L, double Xs, double Zs, int ndiv=1000, bool solid_angle=false) 
 {
-    double theta = -TMath::Pi();
+    double theta = -TMath::Pi()/2;
     double dtheta = TMath::Pi()/(ndiv - 1);
-    double larc;
-    double area;
-    double sf = (solid_angle && L>0) ? 1./L/L : 1;
+    double larc = 0;
+    double area = 0;
+    double sf = (solid_angle && L>0.) ? 1./L/L : 1;
 
     for (int i=0; i<ndiv; i++) {
         larc = GetArc(L, theta, Xs, Zs);

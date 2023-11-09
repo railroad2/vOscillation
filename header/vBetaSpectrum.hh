@@ -37,13 +37,13 @@ public:
     bool fFFreduced = false;
     FFmethod fFermiApproxMethod = EXACT;
 
-protected:
 	void SetVectorSize(int size) { fVectorSize = size; }
 	void SetQValues(std::vector<double> qValue) { fQValue = qValue; }
 	void SetZdaughter(std::vector<double> Z_f) { fZdaughter = Z_f; }
     void SetA(std::vector<double> A) { fA = A; }
 	void SetContribution(std::vector<double> cont) { fContribution = cont; }
 	void SetNormalization(std::vector<double> norm) { fNormalization = norm; }
+protected:
 
 private:
 	double fActivity;

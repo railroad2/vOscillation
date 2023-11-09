@@ -1,5 +1,28 @@
 #include "../vClass.hh"
 
+// Displaying progress bar using https://github.com/gipert/progressbar.git
+#if __has_include("progressbar.hpp")
+#include "progressbar.hpp"
+#endif
+
+string get_str(int i, int nevt, double t0)
+{
+    double ttmp;
+    TTimeStamp tstmp;
+    ttmp = tstmp.GetSec() + 1e-9*tstmp.GetNanoSec();
+    ttmp = ttmp - t0;
+    string stmp = to_string(ttmp);
+    string stot = to_string(ttmp/i*nevt);
+
+    string str = "  ";
+    str += to_string(i+1) + "/" + to_string(nevt);
+    str += "  ";
+    str += stmp.substr(0, stmp.find('.') + 3) + "/";
+    str += stot.substr(0, stot.find('.') + 3) + " s";
+
+    return str;
+}
+
 TF1* func_detected_reactor_spectrum(double L0, double Wth)
 {
     // reactor
@@ -30,6 +53,7 @@ TF1* func_detected_reactor_spectrum(double L0, double Wth)
     }
     vInterpolator *interp = new vInterpolator(x1, y1);
     TF1 *f1 = interp->GetTF1();
+
     return f1;
 }
 
@@ -61,6 +85,8 @@ int main()
     double Emin = 1.8; // MeV
     double Emax = 10; // MeV
 
+    TVector3 uv(1, 0, 0);
+
     // Get the function of reactor detected spectrum 
     // given the distance and thermal power 
     // (thermal power is not important because only the shape of the spectrum is used).
@@ -77,7 +103,7 @@ int main()
     double Ev; // neutrino energy
     double x_det, y_det, z_det; // vertex position
 
-    TFile *file = new TFile("ibdevt_reactor.root", "recreate");
+    TFile *file = new TFile("ibdevt_reactor_singleE.root", "recreate");
     TTree *tree = new TTree("ibd_events", "ibd_events"); 
     TTree *tree2 = new TTree("info", "info");
 
@@ -95,22 +121,49 @@ int main()
     tree2->Branch("det", "vDetectorCylinder", &det);
     tree2->Fill();
 
+
+    int last_i=0;
+    string last_str;
     TTimeStamp ts0;
     t0 = ts0.GetSec() + 1e-9*ts0.GetNanoSec();
+
+#ifdef __PROGRESSBAR_HPP
+    progressbar bar(nevt);
+#endif
+    cout << "\e[?25l";
 
     for (int i=0; i<nevt; i++) {
         Ev = f_reactor->GetRandom(Emin, Emax);
         det->GetRandomPosition(x_det, y_det, z_det);
         
         vert = TVector3(x_det, y_det, z_det);
-        eg->GenerateIBD(Ev, pv0, pe, pn);
+        eg->GenerateIBD(Ev, pv0, pe, pn, uv);
 
         tree->Fill();
+
+        string str = get_str(i, nevt, t0);
+
+        if (i >= last_i) {
+#ifdef __PROGRESSBAR_HPP
+            cout << std::string(last_str.size(), '\b');
+            bar.update();
+            cout << str;
+#else
+            cout << std::string(last_str.size(), '\b');
+            cout << str;
+#endif
+        }
+        last_i = i;
+        last_str = str;
     }
+    cout << "\e[?25h" << endl;
 
     TTimeStamp ts1;
     t1 = ts1.GetSec() + 1e-9*ts1.GetNanoSec();
-    cout << (t1 - t0)/nevt << endl;
+    cout << "Generated events         : " << nevt << endl;
+    cout << "Elapsed time             : " << (t1 - t0) << " s" << endl;
+    cout << "Elapsed time per event   : " << (t1 - t0)/nevt << " s" << endl;
+
     tree->Write();
     tree2->Write();
     file->Close();
