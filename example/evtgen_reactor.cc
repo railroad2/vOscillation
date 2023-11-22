@@ -98,11 +98,13 @@ int main()
     // event generator
     vEventGenerator *eg = new vEventGenerator();
 
-    int nevt = 10000; // number of events to generate
+    int nevt = 100000; // number of events to generate
     double t0, t1; 
     double Ev; // neutrino energy
     double x_det, y_det, z_det; // vertex position
 
+    //TFile *file = new TFile("ibdevt_reactor.root", "recreate");
+    //TFile *file = new TFile("tmp.root", "recreate");
     TFile *file = new TFile("ibdevt_reactor_singleE.root", "recreate");
     TTree *tree = new TTree("ibd_events", "ibd_events"); 
     TTree *tree2 = new TTree("info", "info");
@@ -133,7 +135,8 @@ int main()
     cout << "\e[?25l";
 
     for (int i=0; i<nevt; i++) {
-        Ev = f_reactor->GetRandom(Emin, Emax);
+        //Ev = f_reactor->GetRandom(Emin, Emax);
+        Ev = 2.5;
         det->GetRandomPosition(x_det, y_det, z_det);
         
         vert = TVector3(x_det, y_det, z_det);
