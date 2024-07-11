@@ -33,7 +33,7 @@ int vEventGenerator::GenerateIBD(double Ev, TLorentzVector &pv0, TLorentzVector 
     TLorentzVector pp(0., 0., 0., MASSPROTON);
 
     TF1* ftheta = GetFunctionTheta(Ev);
-    double phi = gRandom->Uniform(2.*TMath::Pi());  
+    double phi = gRandom->Uniform(2.0*TMath::Pi());  
     
     if (theta == -1) {
         theta = ftheta->GetRandom();
@@ -60,4 +60,16 @@ int vEventGenerator::GenerateIBD(double Ev, TLorentzVector &pv0, TLorentzVector 
     return 0;
 }
 
+int vEventGenerator::GenerateElastic(double Ev, TLorentxVector &pv0, TLorentxVector &pe, TLorentzVector &pv, 
+                                     TVector3 uv, double theta)
+{
+    pv0.SetPxPyPzE(0, 0, Ev, Ev);
+    TLorentzVector pe0(0, 0, 0, MASSELECTRON);
+    double phi = gRandom->Uniform(2.0*TMath::Pi());
 
+    if (theta == -1) {
+        theta = ftheta->GetRandom();
+    }
+
+    return 0;
+}
