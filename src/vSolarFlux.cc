@@ -19,7 +19,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, TString src) const
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, int src = 0) const
+double vSolarFlux::GetSolarNeutrinoFlux_NoPeak(double E, int src) const
 {
     double enu = E * 1000;
     double flux = 0;
@@ -41,7 +41,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(TString src) const
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src = 0) const
+double vSolarFlux::GetSolarNeutrinoFlux_PeakEnergy(int src) const
 {
     if (src == 7) // pep
     {
@@ -71,7 +71,7 @@ double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(TString src) const
 }
 
 
-double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src = 0) const
+double vSolarFlux::GetSolarNeutrinoFlux_PeakFlux(int src) const
 {
     double flux = 0;
     if (src == 7) // pep

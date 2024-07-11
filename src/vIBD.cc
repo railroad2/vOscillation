@@ -8,7 +8,7 @@ double vIBD::GetCrossSection(double E) const
     return GetCrossSection_integral(E);
 }
 
-double vIBD::GetCrossSection_integral(double E, int npts=1001) const
+double vIBD::GetCrossSection_integral(double E, int npts) const
 {
     double costheta;
     double dcostheta = 2./(npts-1);

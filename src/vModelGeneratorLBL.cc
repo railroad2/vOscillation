@@ -65,9 +65,9 @@ void vModelGeneratorLBL::FillHistogram(TH1D* oHistL, TH1D* oHistE, TH1D* oHistLo
 
 void vModelGeneratorLBL::PrintInfo() const
 {
-	cout << "<vModelGenerator>" << endl;
-	cout << "    Delta X          : " << fDeltaX << endl;
-	cout << "    Delta Z          : " << fDeltaZ << endl;
+	std::cout << "<vModelGenerator>" << std::endl;
+	std::cout << "    Delta X          : " << fDeltaX << std::endl;
+	std::cout << "    Delta Z          : " << fDeltaZ << std::endl;
 	fDetector->PrintInfo();
 	fSource->PrintInfo();
 	fSpectrum.PrintInfo();

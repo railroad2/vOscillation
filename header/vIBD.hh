@@ -1,6 +1,7 @@
 #ifndef VIBD_HH
 #define VIBD_HH
 
+#include "TMath.h"
 
 class vIBD
 {

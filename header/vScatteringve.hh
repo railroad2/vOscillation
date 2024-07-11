@@ -1,6 +1,10 @@
 #ifndef VSCATTERINGVE_HH
 #define VSCATTERINGVE_HH
 
+#include <iostream>
+
+#include "TMath.h"
+#include "TString.h"
 
 class vScatteringve
 {

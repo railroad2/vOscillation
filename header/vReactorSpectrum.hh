@@ -3,9 +3,13 @@
 #ifndef VREACTORSPECTRUM_HH
 #define VREACTORSPECTRUM_HH
 
+#include <iostream>
+#include <vector>
+
+#include "TString.h"
+#include "TMath.h"
 
 #include "vNeutrinoSpectrum.hh"
-#include <vector>
 
 
 class vReactorSpectrum : public vNeutrinoSpectrum

@@ -3,7 +3,7 @@
 
 
 #include "vModelGenerator.hh"
-#include "vOscillation.hh"
+#include "vPMNS.hh"
 
 
 class vModelGeneratorLBL : public vModelGenerator
@@ -21,15 +21,15 @@ public:
 	
 	void PrintInfo() const override;
 
-	void SetvOscillation(vOscillation* vosc) { fvosc = vosc; }
-	vOscillation* GetvOscillation() const { return fvosc; }
+	void SetvPMNS(vPMNS* vosc) { fvosc = vosc; }
+	vPMNS* GetvPMNS() const { return fvosc; }
 	double GetDistance() const { return fDistance; }
 
 private:
 	void CalDistance();
 
 	double fDistance;
-	vOscillation* fvosc;
+	vPMNS* fvosc;
 };
 
 #endif

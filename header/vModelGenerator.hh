@@ -1,6 +1,10 @@
 #ifndef VMODELGENERATOR_HH
 #define VMODELGENERATOR_HH
 
+#include <iostream>
+
+#include "TH1D.h"
+#include "TH2D.h"
 
 #include "vDetector.hh"
 #include "vSource.hh"

@@ -1,6 +1,8 @@
 #ifndef VSOLARFLUX_HH
 #define VSOLARFLUX_HH
 
+#include "TString.h"
+#include "TMath.h"
 
 class vSolarFlux
 {

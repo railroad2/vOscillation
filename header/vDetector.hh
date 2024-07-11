@@ -1,6 +1,12 @@
 #ifndef VDETECTOR_HH
 #define VDETECTOR_HH
 
+#include <iostream>
+
+#include "TMath.h"
+#include "TString.h"
+#include "TRandom.h"
+
 
 /**
  * This class is for the vModelGenerator which needs the spatial information of the detector to work.

@@ -1,6 +1,7 @@
 #ifndef VMODELGENERATORSTERILEEE_HH
 #define VMODELGENERATORSTERILEEE_HH
 
+#include "TF1.h"
 
 #include "vModelGenerator.hh"
 #include "vSterileEE.hh"

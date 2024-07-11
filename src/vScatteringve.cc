@@ -2,7 +2,7 @@
 #include "../header/vConstant.hh"
 
 
-double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour = "e") const
+double vScatteringve::GetDifCrossSection(double E, double T, TString vflavour) const
 {
     // Bahcall - Neutrino electron scattering and solar neutrino experiments
     double sign_g_L = 0;
