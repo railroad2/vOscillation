@@ -2,7 +2,7 @@
 #define VINTERPOLATOR_HH
 // convert TH1 or x-y array to ROOT::Math::Interpolator 
 
-class vInterpolator : public ROOT::Math::Interpolator 
+class vInterpolator : public ROOT::Math::Interpolator
 {
 public:
     vInterpolator(TH1 *h_in) {

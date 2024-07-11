@@ -2,15 +2,15 @@
 #define VSTERILE_HH
 
 
-#include "vOscillation.hh"
+#include "vPMNS.hh"
 #include "TString.h"
 #include "TComplex.h"
 
 
-class vSterile : public vOscillation
+class vSterile : public vPMNS
 {
 public:
-    vSterile() : vOscillation()
+    vSterile() : vPMNS()
     {
         Set4radian(0, 0, 0);
         Set4Dm2(0);

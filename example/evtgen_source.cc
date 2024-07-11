@@ -173,7 +173,7 @@ int main()
     double Emax = 3; // MeV
     double L;
 
-    int nevt = 10000; // number of events to generate
+    int nevt = 100000; // number of events to generate
     double t0, t1; 
     double Ev; // neutrino energy
     double x_det, y_det, z_det; // vertex position
@@ -186,7 +186,7 @@ int main()
     TVector3 pos_src(10, 0, 0);
     TVector3 uv(0, 0, 1);
 
-    //vOscillation *vosc = new vOscillation();
+    //vPMNS *vosc = new vPMNS();
     vSterile *vosc = new vSterile ();
     vosc->LoadStdData();
     vosc->Load4StdData();

@@ -20,7 +20,7 @@
 #include "src/vSterile.cc"
 #include "src/vSterileEE.cc"
 #include "src/vEventGenerator.cc"
-#include "header/vInterpolator.hh"
+//#include "header/vInterpolator.hh"
 
 
 #endif

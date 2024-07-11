@@ -33,7 +33,7 @@ TF1* func_detected_reactor_spectrum(double L0, double Wth)
     vIBD *ibd = new vIBD();
 
     // neutrino oscillation
-    vOscillation *vosc = new vOscillation();
+    vPMNS *vosc = new vPMNS();
     vosc->LoadStdData();
 
     double Emin = 1.5;
