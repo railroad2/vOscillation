@@ -23,6 +23,24 @@ string get_str(int i, int nevt, double t0)
     return str;
 }
 
+string get_xyz(TLorentzVector v, double scale=1.0)
+{
+    string mystr = "";
+    mystr += to_string(v.X()*scale);
+    mystr += '\t';
+    mystr += to_string(v.Y()*scale);
+    mystr += '\t';
+    mystr += to_string(v.Z()*scale);
+
+    return mystr;
+}
+
+string get_xyz(TVector3 v, double scale=1.0)
+{
+    TLorentzVector tmp(v, 0);
+    return get_xyz(tmp, scale);
+}
+
 TF1* func_detected_reactor_spectrum(double L0, double Wth)
 {
     // reactor
@@ -98,14 +116,14 @@ int main()
     // event generator
     vEventGenerator *eg = new vEventGenerator();
 
-    int nevt = 100000; // number of events to generate
+    int nevt = 10000; // number of events to generate
     double t0, t1; 
     double Ev; // neutrino energy
     double x_det, y_det, z_det; // vertex position
 
     //TFile *file = new TFile("ibdevt_reactor.root", "recreate");
     //TFile *file = new TFile("tmp.root", "recreate");
-    TFile *file = new TFile("ibdevt_reactor_singleE.root", "recreate");
+    TFile *file = new TFile("ibdevt_reactor.root", "recreate");
     TTree *tree = new TTree("ibd_events", "ibd_events"); 
     TTree *tree2 = new TTree("info", "info");
 
@@ -123,6 +141,8 @@ int main()
     tree2->Branch("det", "vDetectorCylinder", &det);
     tree2->Fill();
 
+    ofstream outfile;
+    outfile.open("HEPEvt_reactor.txt");
 
     int last_i=0;
     string last_str;
@@ -135,8 +155,8 @@ int main()
     cout << "\e[?25l";
 
     for (int i=0; i<nevt; i++) {
-        //Ev = f_reactor->GetRandom(Emin, Emax);
-        Ev = 2.5;
+        Ev = f_reactor->GetRandom(Emin, Emax);
+        //Ev = 2.5;
         det->GetRandomPosition(x_det, y_det, z_det);
         
         vert = TVector3(x_det, y_det, z_det);
@@ -158,8 +178,41 @@ int main()
         }
         last_i = i;
         last_str = str;
+
+        outfile << "3" << '\n';
+        // electron anti-neutrino
+        outfile << "1" << '\t';                 // status
+        outfile << " -12" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pv0, 1e-3) << '\t';  // momentum (GeV)
+        outfile << "0.000000" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
+
+        // positron
+        outfile << "1" << '\t';                 // status
+        outfile << " -11" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pe, 1e-3) << '\t';   // momentum (GeV)
+        outfile << "0.000511" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
+
+        // neutron
+        outfile << "1" << '\t';                 // status
+        outfile << "2112" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pe, 1e-3) << '\t';   // momentum (GeV)
+        outfile << "0.939565" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
     }
     cout << "\e[?25h" << endl;
+
+    outfile.close();
 
     TTimeStamp ts1;
     t1 = ts1.GetSec() + 1e-9*ts1.GetNanoSec();

@@ -28,6 +28,24 @@ string get_str(int i, int nevt, double t0)
     return str;
 }
 
+string get_xyz(TLorentzVector v, double scale=1.0)
+{
+    string mystr = "";
+    mystr += to_string(v.X()*scale);
+    mystr += '\t';
+    mystr += to_string(v.Y()*scale);
+    mystr += '\t';
+    mystr += to_string(v.Z()*scale);
+
+    return mystr;
+}
+
+string get_xyz(TVector3 v, double scale=1.0)
+{
+    TLorentzVector tmp(v, 0);
+    return get_xyz(tmp, scale);
+}
+
 double get_Lmin_cylinder(double Rd, double Hd, double Xs, double Zs)
 //{{{
 {
@@ -173,7 +191,7 @@ int main()
     double Emax = 3; // MeV
     double L;
 
-    int nevt = 100000; // number of events to generate
+    int nevt = 10000; // number of events to generate
     double t0, t1; 
     double Ev; // neutrino energy
     double x_det, y_det, z_det; // vertex position
@@ -233,6 +251,8 @@ int main()
     double Hd = det->GetHeight();
     double Lmin = get_Lmin_cylinder(Rd, Hd, Xs, Zs);
 
+    ofstream outfile;
+    outfile.open("HEPEvt_source.txt");
 
     int last_i=0;
     string last_str;
@@ -288,8 +308,41 @@ int main()
         }
         last_i = i;
         last_str = str;
+
+        outfile << "3" << '\n';
+        // electron anti-neutrino
+        outfile << "1" << '\t';                 // status
+        outfile << " -12" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pv0, 1e-3) << '\t';  // momentum (GeV)
+        outfile << "0.000000" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
+
+        // positron
+        outfile << "1" << '\t';                 // status
+        outfile << " -11" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pe, 1e-3) << '\t';   // momentum (GeV)
+        outfile << "0.000511" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
+
+        // neutron
+        outfile << "1" << '\t';                 // status
+        outfile << "2112" << '\t';              // PDG code
+        outfile << "0" << '\t';                 // daughter 0
+        outfile << "0" << '\t';                 // daughter 1
+        outfile << get_xyz(pe, 1e-3) << '\t';   // momentum (GeV)
+        outfile << "0.939565" << '\t';          // mass (GeV)
+        outfile << "0.000000" << '\t';          // dT (ns)
+        outfile << get_xyz(vert) << '\n';       // vertex position
     }
     cout << "\e[?25h" << endl;
+
+    outfile.close();
 
     TTimeStamp ts1;
     t1 = ts1.GetSec() + 1e-9*ts1.GetNanoSec();
