@@ -206,7 +206,7 @@ TComplex vOscillation::GetPMNSmatrix(int row, int column) const
 }
 
 
-void vOscillation::LoadStdData(bool IO = false)
+void vOscillation::LoadStdData()
 {
     if (IO == false)
     {
